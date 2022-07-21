@@ -1,0 +1,53 @@
+{
+  "weatherForecast": [
+    {
+      "date": "2022-07-23T00:25:04.3842762+05:30",
+      "id": 1,
+      "temperatureC": -6,
+      "temperatureF": 22,
+      "summary": "Mild"
+    },
+    {
+      "date": "2022-07-24T00:25:47.5965327+05:30",
+      "id": 2,
+      "temperatureC": -15,
+      "temperatureF": 6,
+      "summary": "Chilly"
+    },
+    {
+      "date": "2022-07-25T00:25:51.4430307+05:30",
+      "id": 3,
+      "temperatureC": -1,
+      "temperatureF": 31,
+      "summary": "Freezing"
+    },
+    {
+      "date": "2022-07-26T00:25:54.378446+05:30",
+      "id": 4,
+      "temperatureC": 32,
+      "temperatureF": 89,
+      "summary": "Cool"
+    },
+    {
+      "date": "2022-07-27T00:25:55.0756354+05:30",
+      "id": 5,
+      "temperatureC": 36,
+      "temperatureF": 96,
+      "summary": "Freezing"
+    },
+    {
+      "date": "2022-07-28T00:25:55.6932521+05:30",
+      "id": 6,
+      "temperatureC": 11,
+      "temperatureF": 51,
+      "summary": "Cool"
+    },
+    {
+      "date": "2022-07-29T00:25:56.3357525+05:30",
+      "id": 7,
+      "temperatureC": -2,
+      "temperatureF": 29,
+      "summary": "Sweltering"
+    }
+  ]
+}

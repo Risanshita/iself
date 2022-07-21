@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Authors>Tomi Tuhkanen</Authors>
+    <AssemblyVersion>2.3.0.0</AssemblyVersion>
+    <PackageProjectUrl>https://github.com/ttu/json-flatfile-datastore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ttu/json-flatfile-datastore</RepositoryUrl>
+    <Version>2.3.0</Version>
+    <Company />
+    <Description>Simple JSON flat file data store</Description>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageTags>json flat file data store database linq</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <FileVersion>2.3.0.0</FileVersion>
+    <Product>JsonFlatFileDataStore</Product>
+    <LangVersion>8</LangVersion>
+    <PackageVersion>2.3.0</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\JsonFlatFileDataStore.xml</DocumentationFile>
+    <NoWarn>1591;1701;1702;1705</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\JsonFlatFileDataStore.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+ 
+
+</Project>

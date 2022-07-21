@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iself", "iself\iself.csproj", "{D994FC68-166D-4484-B239-B8F7D21C3F12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "iself", "iself\iself.csproj", "{D994FC68-166D-4484-B239-B8F7D21C3F12}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonFlatFileDataStore", "JsonFlatFileDataStore\JsonFlatFileDataStore.csproj", "{539DFA79-2481-48B5-88A7-355DEB938EE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D994FC68-166D-4484-B239-B8F7D21C3F12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D994FC68-166D-4484-B239-B8F7D21C3F12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D994FC68-166D-4484-B239-B8F7D21C3F12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{539DFA79-2481-48B5-88A7-355DEB938EE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{539DFA79-2481-48B5-88A7-355DEB938EE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{539DFA79-2481-48B5-88A7-355DEB938EE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{539DFA79-2481-48B5-88A7-355DEB938EE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

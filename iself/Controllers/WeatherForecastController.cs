@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JsonFlatFileDataStore;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace iself.Controllers
 {
@@ -21,13 +23,24 @@ namespace iself.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var store = new DataStore("data.json");
+            // Get employee collection
+            var collection = store.GetCollection<WeatherForecast>();
+            var results = collection.AsQueryable().TakeLast(1).FirstOrDefault();
+            var id = results != null ? results.Id + 1 : 1;
+           
+                  var obj = new WeatherForecast
+                  {
+                      Id = id,
+                      Date = DateTime.Now.AddDays(id),
+                      TemperatureC = Random.Shared.Next(-20, 55),
+                      Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                  };
+                  collection.InsertOneAsync(obj).Wait(); 
+
+            var list = collection.AsQueryable().TakeLast(20);
+
+            return list;
         }
     }
 }
