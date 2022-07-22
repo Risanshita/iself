@@ -1,0 +1,60 @@
+.power-loader {
+  position: relative;
+  top: 50%;
+  left: 49%;
+  transform: translate(-50%, -50%) scale(2);
+}
+.power-loader svg polyline {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.power-loader svg polyline#back {
+  stroke: rgba(var(--ant-primary-color),0.3);
+}
+.power-loader svg polyline#front {
+  stroke: var(--ant-primary-color);
+  stroke-dasharray: 12, 36;
+  stroke-dashoffset: 48;
+  animation: dash 1s linear infinite;
+}
+.cta {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  color: #222;
+  font-weight: bold;
+}
+@-moz-keyframes dash {
+  62.5% {
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@-webkit-keyframes dash {
+  62.5% {
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@-o-keyframes dash {
+  62.5% {
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes dash {
+  62.5% {
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}

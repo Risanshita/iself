@@ -1,0 +1,28 @@
+.ant-select-item-option-state {
+  display: none;
+}
+/* 
+.ant-select-selector .ant-checkbox.ant-checkbox-checked {
+  display: none;
+}
+
+.ant-select-selector .ant-checkbox-wrapper{
+  display: none;
+} */
+
+.ant-select-multiple .ant-select-selection-item {
+  height: 28px;
+  padding-left: 0;
+}
+
+.select-box-tag {
+  background-color: var(--ant-primary-color);
+  color: white;
+  padding: 5px;
+  text-align: center;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+
+  padding: 0 8px;
+}

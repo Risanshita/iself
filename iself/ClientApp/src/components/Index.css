@@ -1,0 +1,104 @@
+.ant-col-24.ant-form-item-label,
+.ant-col-xl-24.ant-form-item-label,
+.ant-form-vertical .ant-form-item-label {
+  padding: 0;
+  padding-left: 7px;
+  padding-bottom: 3px;
+}
+
+.ant-form-item-label
+  > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+  content: "";
+}
+
+.ant-form-item-label
+  > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+  display: inline-block;
+  margin-left: 1px;
+  color: var(--ant-primary-color);
+  font-family: "Exo 2", sans-serif !important;
+  line-height: 1;
+  content: "*";
+}
+
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+  border-color: transparent;
+  box-shadow: none;
+  border-right-width: 1px;
+  outline: 0;
+}
+
+.hover-input {
+  border-color: var(--ant-primary-color) !important;
+}
+
+.selected-input {
+  border-color: var(--ant-primary-color) !important;
+  box-shadow: 0 0 5px 1px var(--ant-primary-4);
+  border-right-width: 1px;
+  outline: 0;
+}
+
+.ant-form-item {
+  margin-bottom: 0;
+}
+
+.ant-form-item-body {
+  border: 1px solid #dedfe0;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.ant-form-item-body-parent-nomargin {
+  margin: 0;
+}
+.ant-form-item-body-parent {
+  margin: 10px;
+  margin-bottom: 12px;
+}
+.ant-form-item-body-error {
+  /* height: 0; */
+  /* opacity: 0; */
+  color: var(--ant-error-color);
+  /* font-size: 14px; */
+  /* transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1); */
+}
+
+.ant-input[disabled] {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.ant-form-item-label
+  > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+  content: "";
+}
+
+.ant-form-item-label
+  > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+  display: inline-block;
+  margin-left: 1px;
+  color: var(--ant-primary-color);
+  font-family: "Exo 2", sans-serif !important;
+  line-height: 1;
+  content: "*";
+}
+
+.ant-input-group-addon {
+  border: none;
+}
+
+.ant-form-item-label > label {
+  font-weight: 600;
+  padding: 0;
+}
+
+/* button style */
+
+.ant-btn {
+  text-transform: uppercase;
+  border-radius: 2px;
+  border-color: transparent;
+}
+
+/* */
