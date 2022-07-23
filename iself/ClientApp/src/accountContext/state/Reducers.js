@@ -2,7 +2,8 @@ const initialState = {
   theme: "light",
   userDetails: {},
   loading: false,
-  menuDetails: []
+  menuDetails: [],
+  login: true,
 };
 
 const types = {
@@ -24,11 +25,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         userDetails: action.payload,
-        loading: true,
+        loading: false,
+        login: true,
       };
     case types.SET_LOGOUT:
       return {
         ...state,
+        login: false,
         userDetails: action.payload,
       };
     case types.SET_MENU:
@@ -39,6 +42,6 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
 export { initialState, types, reducer };

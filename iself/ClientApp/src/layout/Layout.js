@@ -1,19 +1,20 @@
 import React, { Component } from "react";
-import { Layout } from "antd";
+import { Col, Layout, Row } from "antd";
 import NavMenu from "./NavMenu";
+import "./Style.css";
 
 const { Content, Footer } = Layout;
 
-export default class AppLayout extends Component {
-  static displayName = Layout.name;
-
-  render() {
-    return (
-      <Layout>
-        <NavMenu />
-        <Content>{this.props.children}</Content>
-        <Footer style={{ textAlign: "center" }}>iself@2022</Footer>
-      </Layout>
-    );
-  }
+export default function AppLayout({ children }) {
+  return (
+    <Layout>
+      <NavMenu key="app_nav_menu" />
+      <Content className="body">{children}</Content>
+      <Footer className="footer">
+        <Row style={{ height: "100%" }} justify="center" align="middle">
+          <Col>iself@2022</Col>
+        </Row>
+      </Footer>
+    </Layout>
+  );
 }

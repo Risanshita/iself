@@ -31,7 +31,7 @@ const AccountProvider = ({ children }) => {
       userDetails: {
         ...accountInitialState.userDetails,
         ...userDetails,
-        user_name: window.localStorage.getItem("logged-user-name"),
+        fullName: window.localStorage.getItem("logged-user-name"),
       },
       menuDetails: userMenuDetails,
     }),

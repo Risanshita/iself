@@ -1,0 +1,46 @@
+.login-form {
+  background-color: var(--ant-primary-10);
+  height: 68%;
+}
+.intro {
+  background-color: var(--ant-primary-10);
+  height: 32%;
+}
+
+.intro .login-image {
+  width: 200px;
+}
+.login-page {
+  color: white;
+}
+
+.form-body {
+  align-items: flex-start;
+}
+
+.ant-form-item-body-parent,
+.specing {
+  margin-bottom: 25px;
+}
+@media (min-width: 768px) {
+  .intro {
+    background-color: var(--ant-primary-8);
+    height: 100%;
+  }
+
+  .login-form {
+    background-color: var(--ant-primary-10);
+    height: 100%;
+  }
+  .ant-form-item-body-parent,
+  .specing {
+    margin-bottom: 40px;
+  }
+  .intro .login-image {
+    width: 250px;
+  }
+
+  .form-body {
+    align-items: center;
+  }
+}

@@ -10,6 +10,7 @@ export const useActions = (state, dispatch) => {
   };
 
   const login = ({ username, password }, callback) => {
+    dispatch({ type: types.SET_LOGIN, payload: {} });
     // dispatch({ type: types.SET_LOADING });
     // post(
     //   userBaseUrl() + "/validate/login",
@@ -22,7 +23,7 @@ export const useActions = (state, dispatch) => {
     //   if (result.data.status) {
     //     var data = result.data.data[0];
 
-    //     window.localStorage.setItem("logged-user-name", data.user_name); 
+    //     window.localStorage.setItem("logged-user-name", data.user_name);
     //     window.localStorage.setItem("user-details", JSON.stringify(data));
     //     dispatch({ type: types.SET_LOGIN, payload: data });
     //     postNotification({
@@ -45,10 +46,8 @@ export const useActions = (state, dispatch) => {
     //   (result) => {
     //     console.log(result);
     //     var list = result.data.data;
-
     //     window.localStorage.setItem("user-menu", JSON.stringify(list));
     //     dispatch({ type: types.SET_MENU, payload: list });
-
     //     if (typeof callback === "function") callback();
     //   }
     // );

@@ -1,13 +1,13 @@
 import { Navigate } from "react-router-dom";
 import { Counter } from "./screens/Counter";
 import { FetchData } from "./screens/FetchData";
-import { Home } from "./screens/Home";
+import { Home } from "./screens/homepage";
 import Login from "./screens/login";
 import NotFound from "./screens/NotFound";
 
 const AppRoutes = [
   {
-    index: true,
+    path: "/",
     element: <Home />,
   },
   {
