@@ -22,7 +22,7 @@ export default class App extends Component {
   }
   render() {
     return (
-      <ConfigProvider componentSize="large">
+      <ConfigProvider componentSize="middle">
         <Layout>
           <Routes>
             {AppRoutes.map((route, index) => {

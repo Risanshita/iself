@@ -1,16 +1,19 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
-import { NavMenu } from "./NavMenu";
+import { Layout } from "antd";
+import NavMenu from "./NavMenu";
 
-export default class Layout extends Component {
+const { Content, Footer } = Layout;
+
+export default class AppLayout extends Component {
   static displayName = Layout.name;
 
   render() {
     return (
-      <div>
+      <Layout>
         <NavMenu />
-        <Container>{this.props.children}</Container>
-      </div>
+        <Content>{this.props.children}</Content>
+        <Footer style={{ textAlign: "center" }}>iself@2022</Footer>
+      </Layout>
     );
   }
 }

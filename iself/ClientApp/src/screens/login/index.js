@@ -40,7 +40,7 @@ const Login = () => {
 
   return (
     <>
-      <Row>
+      <Row justify="center" align="middle">
         <Col xs={24} sm={24} md={12} lg={12} xl={12}></Col>
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
           <Form
