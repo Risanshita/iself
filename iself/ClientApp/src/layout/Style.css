@@ -16,6 +16,7 @@
 }
 .ant-layout .body {
   height: calc(100% - 60px);
+  overflow-y: hidden;
 }
 .ant-layout .header.login {
   background-color: #3e3f47;
