@@ -48,6 +48,104 @@
       "temperatureC": -2,
       "temperatureF": 29,
       "summary": "Sweltering"
+    },
+    {
+      "date": "2022-08-01T19:55:00.2405692+05:30",
+      "id": 8,
+      "temperatureC": 39,
+      "temperatureF": 102,
+      "summary": "Freezing"
+    },
+    {
+      "date": "2022-08-02T19:55:31.0144106+05:30",
+      "id": 9,
+      "temperatureC": 46,
+      "temperatureF": 114,
+      "summary": "Scorching"
+    },
+    {
+      "date": "2022-08-03T19:57:14.0830568+05:30",
+      "id": 10,
+      "temperatureC": 33,
+      "temperatureF": 91,
+      "summary": "Chilly"
+    },
+    {
+      "date": "2022-08-04T19:58:09.3712951+05:30",
+      "id": 11,
+      "temperatureC": 46,
+      "temperatureF": 114,
+      "summary": "Chilly"
+    },
+    {
+      "date": "2022-08-05T19:58:17.9116585+05:30",
+      "id": 12,
+      "temperatureC": -1,
+      "temperatureF": 31,
+      "summary": "Sweltering"
+    },
+    {
+      "date": "2022-08-06T20:00:26.6348749+05:30",
+      "id": 13,
+      "temperatureC": -1,
+      "temperatureF": 31,
+      "summary": "Mild"
+    },
+    {
+      "date": "2022-08-07T20:01:27.4122959+05:30",
+      "id": 14,
+      "temperatureC": -1,
+      "temperatureF": 31,
+      "summary": "Warm"
+    },
+    {
+      "date": "2022-08-08T20:03:39.7305093+05:30",
+      "id": 15,
+      "temperatureC": 39,
+      "temperatureF": 102,
+      "summary": "Bracing"
+    },
+    {
+      "date": "2022-08-09T20:09:21.7232139+05:30",
+      "id": 16,
+      "temperatureC": 9,
+      "temperatureF": 48,
+      "summary": "Hot"
+    },
+    {
+      "date": "2022-08-10T21:38:40.9072697+05:30",
+      "id": 17,
+      "temperatureC": 54,
+      "temperatureF": 129,
+      "summary": "Hot"
+    },
+    {
+      "date": "2022-08-11T21:45:23.3802357+05:30",
+      "id": 18,
+      "temperatureC": 25,
+      "temperatureF": 76,
+      "summary": "Hot"
+    },
+    {
+      "date": "2022-08-12T22:01:27.4454854+05:30",
+      "id": 19,
+      "temperatureC": -10,
+      "temperatureF": 15,
+      "summary": "Balmy"
+    },
+    {
+      "date": "2022-08-13T22:01:29.5657286+05:30",
+      "id": 20,
+      "temperatureC": -16,
+      "temperatureF": 4,
+      "summary": "Balmy"
+    },
+    {
+      "date": "2022-08-14T22:05:04.7897054+05:30",
+      "id": 21,
+      "temperatureC": -11,
+      "temperatureF": 13,
+      "summary": "Freezing"
     }
   ],
   "post": [

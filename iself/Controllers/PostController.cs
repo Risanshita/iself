@@ -8,8 +8,8 @@ using System.Net;
 
 namespace iself.Controllers
 {
-    [Route("api/posts")]
     [ApiController]
+    [Route("posts")]
     public class PostController : ControllerBase
     {
         private readonly NewPostValidator _validationRules;
@@ -22,11 +22,10 @@ namespace iself.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(string? createdBy, PostType? type, string? query, int take = 20, int skip = 0)
+        public IActionResult Get([FromQuery]string? createdBy, [FromQuery] PostType? type, [FromQuery] string? query, [FromQuery] int take = 20, [FromQuery] int skip = 0)
         {
             try
-            {
-
+            { 
                 if (type != null)
                     return _postService.GetPostByType((PostType)type, createdBy, take, skip).GetSuccessResponse();
 
@@ -39,7 +38,7 @@ namespace iself.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(string id)
+        public IActionResult Get([FromRoute] string id)
         {
             try
             {
@@ -77,7 +76,7 @@ namespace iself.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(string id, [FromBody] PostUpdateRequest request)
+        public async Task<IActionResult> Put([FromRoute] string id, [FromBody] PostUpdateRequest request)
         {
 
             try
@@ -110,7 +109,7 @@ namespace iself.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete([FromRoute] string id)
         {
             try
             {
