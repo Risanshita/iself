@@ -1,0 +1,126 @@
+﻿using iself.Controllers.Validators;
+using iself.Data.Models;
+using iself.Models.Request;
+using iself.Services.Interfaces;
+using iself.Utils;
+using Microsoft.AspNetCore.Mvc;
+using System.Net;
+
+namespace iself.Controllers
+{
+    [Route("api/posts")]
+    [ApiController]
+    public class PostController : ControllerBase
+    {
+        private readonly NewPostValidator _validationRules;
+        private readonly IPostService _postService;
+
+        public PostController(IPostService postService, NewPostValidator validationRules)
+        {
+            _validationRules = validationRules;
+            _postService = postService;
+        }
+
+        [HttpGet]
+        public IActionResult Get(string? createdBy, PostType? type, string? query, int take = 20, int skip = 0)
+        {
+            try
+            {
+
+                if (type != null)
+                    return _postService.GetPostByType((PostType)type, createdBy, take, skip).GetSuccessResponse();
+
+                return _postService.GetPosts(query, createdBy, take, skip).GetSuccessResponse();
+            }
+            catch (Exception ex)
+            {
+                return ex.GetResponse();
+            }
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(string id)
+        {
+            try
+            {
+                var result = _postService.GetPost(id);
+                if (result == null)
+                    return "Post not found".GetErrorResponse(HttpStatusCode.NotFound);
+                return result.GetSuccessResponse();
+            }
+            catch (Exception ex)
+            {
+                return ex.GetResponse();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] NewPostRequest request)
+        {
+            try
+            {
+                var result = await _validationRules.ValidateAsync(request);
+                if (result.IsValid)
+                {
+                    var post = await _postService.AddPostAsync(request);
+                    if (post != null)
+                        return post.GetSuccessResponse(HttpStatusCode.Created);
+                    else
+                        return false.GetResponse();
+                }
+                return result.Errors.GetErrorResponse();
+            }
+            catch (Exception ex)
+            {
+                return ex.GetResponse();
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(string id, [FromBody] PostUpdateRequest request)
+        {
+
+            try
+            {
+                var post = _postService.GetPost(id);
+                if (post == null)
+                    return "Post not found".GetErrorResponse(HttpStatusCode.NotFound);
+
+                var result = await _validationRules.ValidateAsync(new NewPostRequest
+                {
+                    Type = request.Type,
+                    Language = request.Language,
+                    Data1 = request.Data1,
+                    Data2 = request.Data2,
+                    Author = request.Author,
+                    Source = request.Source,
+                    Title = request.Title,
+                });
+                if (result.IsValid)
+                {
+                    var response = await _postService.UpdatePostAsync(id, request);
+                    return response.GetResponse();
+                }
+                return result.Errors.GetErrorResponse();
+            }
+            catch (Exception ex)
+            {
+                return ex.GetResponse();
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            try
+            {
+                var result = await _postService.DeletePostAsync(id);
+                return result.GetResponse();
+            }
+            catch (Exception ex)
+            {
+                return ex.GetResponse();
+            }
+        }
+    }
+}

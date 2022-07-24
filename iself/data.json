@@ -49,5 +49,21 @@
       "temperatureF": 29,
       "summary": "Sweltering"
     }
+  ],
+  "post": [
+    {
+      "id": "844ff01b-0560-4d4e-a208-ee12a05cd805",
+      "title": "",
+      "type": 0,
+      "data1": "Dont ask",
+      "data2": "",
+      "source": "",
+      "author": "",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-24T16:55:19.0763836+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-24T16:55:19.0763851+05:30"
+    }
   ]
 }
