@@ -73,6 +73,15 @@ const NavMenu = () => {
         </NavLink>
       ),
     },
+    {
+      link: "/demo",
+      label: (
+        <NavLink tag={Link} to="/demo">
+          <ScheduleOutlined />
+          <span className="menu-label">Demo</span>
+        </NavLink>
+      ),
+    },
   ];
 
   return (

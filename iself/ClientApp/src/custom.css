@@ -1,6 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800;900&display=swap");
 @import "~antd/dist/antd.css";
 @import "antd/dist/antd.variable.min.css";
+@import "~antd/dist/antd.dark.css";
+
+/* Custom variables */
+:root {
+  --page-body-background-color: #17171b;
+  --page-form-body-background-color: #3e3f47;
+}
 
 body {
   margin: 0;
@@ -42,3 +49,11 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--ant-primary-6);
 }
+
+/*Ant design css overriding*/
+.ant-input,
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border-color: #767676;
+  border-radius: 5px;
+}
+/*Ant design css overriding end*/

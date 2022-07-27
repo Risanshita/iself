@@ -22,6 +22,7 @@
 .specing {
   margin-bottom: 25px;
 }
+
 @media (min-width: 768px) {
   .intro {
     background-color: var(--ant-primary-8);

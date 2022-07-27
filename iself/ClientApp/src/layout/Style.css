@@ -15,8 +15,10 @@
   padding: 0 0;
 }
 .ant-layout .body {
+  background-color: var(--page-body-background-color);
+  color: white !important;
   height: calc(100% - 60px);
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 .ant-layout .header.login {
   background-color: #3e3f47;
@@ -65,5 +67,6 @@
   }
   .ant-layout .body {
     height: calc(100% - 70px);
+    overflow-y: hidden;
   }
 }

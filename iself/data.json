@@ -146,6 +146,90 @@
       "temperatureC": -11,
       "temperatureF": 13,
       "summary": "Freezing"
+    },
+    {
+      "date": "2022-08-15T22:34:39.9485929+05:30",
+      "id": 22,
+      "temperatureC": -18,
+      "temperatureF": 0,
+      "summary": "Sweltering"
+    },
+    {
+      "date": "2022-08-16T22:36:38.8982902+05:30",
+      "id": 23,
+      "temperatureC": -14,
+      "temperatureF": 7,
+      "summary": "Cool"
+    },
+    {
+      "date": "2022-08-17T22:46:52.2782353+05:30",
+      "id": 24,
+      "temperatureC": 48,
+      "temperatureF": 118,
+      "summary": "Warm"
+    },
+    {
+      "date": "2022-08-18T23:49:00.9282986+05:30",
+      "id": 25,
+      "temperatureC": 34,
+      "temperatureF": 93,
+      "summary": "Freezing"
+    },
+    {
+      "date": "2022-08-19T23:49:03.3004119+05:30",
+      "id": 26,
+      "temperatureC": 22,
+      "temperatureF": 71,
+      "summary": "Balmy"
+    },
+    {
+      "date": "2022-08-20T23:49:12.8346052+05:30",
+      "id": 27,
+      "temperatureC": 18,
+      "temperatureF": 64,
+      "summary": "Sweltering"
+    },
+    {
+      "date": "2022-08-22T11:01:06.0312024+05:30",
+      "id": 28,
+      "temperatureC": 25,
+      "temperatureF": 76,
+      "summary": "Mild"
+    },
+    {
+      "date": "2022-08-23T11:01:49.5229366+05:30",
+      "id": 29,
+      "temperatureC": -7,
+      "temperatureF": 20,
+      "summary": "Balmy"
+    },
+    {
+      "date": "2022-08-25T15:54:25.2525502+05:30",
+      "id": 30,
+      "temperatureC": 8,
+      "temperatureF": 46,
+      "summary": "Sweltering"
+    },
+    {
+      "date": "2022-08-26T18:48:58.7695838+05:30",
+      "id": 31,
+      "temperatureC": 44,
+      "temperatureF": 111,
+      "summary": "Sweltering"
+    },
+    {
+      "date": "2022-08-27T18:49:01.215764+05:30",
+      "id": 32,
+      "temperatureC": 30,
+      "temperatureF": 85,
+      "summary": "Scorching"
+    },
+    {
+      "date": "2022-08-29T14:38:07.8768162+05:30",
+      "id": 33,
+      "temperatureC": 0,
+      "temperatureF": 32,
+      "summary": "Cool"
     }
   ],
   "post": [
@@ -153,12 +237,12 @@
       "id": "844ff01b-0560-4d4e-a208-ee12a05cd805",
       "title": "",
       "type": 0,
-      "data1": "Dont ask",
+      "data1": "A room without books is like a body without a soul.",
       "data2": "",
-      "source": "",
-      "author": "",
+      "source": "Google",
+      "author": "Johney deep",
       "language": "",
-      "createdBy": "",
+      "createdBy": "Nitish K",
       "createdAt": "2022-07-24T16:55:19.0763836+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-24T16:55:19.0763851+05:30"

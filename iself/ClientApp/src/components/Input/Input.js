@@ -1,7 +1,7 @@
 import { Input } from "antd";
 import { useState } from "react";
 import InputWrapper from "../InputWrapper";
-import './Style.css';
+import "./Style.css";
 
 function InputBox({
   type,
@@ -19,6 +19,7 @@ function InputBox({
   regexp,
   referenceValue,
   formatter,
+  placeholder,
 }) {
   const [focused, setFocus] = useState(false);
 
@@ -51,6 +52,7 @@ function InputBox({
         addonBefore={addonBefore}
         disabled={disabled}
         bordered={false}
+        placeholder={placeholder}
         onChange={(e) => {
           if (typeof onChange === "function")
             onChange(e, {
@@ -77,6 +79,5 @@ function InputBox({
     </InputWrapper>
   );
 }
-
 
 export { InputBox as default };

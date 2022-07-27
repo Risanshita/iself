@@ -23,7 +23,8 @@ function SelectBox({
   regexp,
   tagOption,
   tagStyle,
-  filterOption
+  filterOption,
+  placeholder,
 }) {
   const [focused, setFocus] = useState(false);
   const [value, setValue] = useState(undefined);
@@ -73,14 +74,12 @@ function SelectBox({
   };
 
   const onFilterOption = (inputValue, option) => {
-    if (typeof filterOption === 'function')
-    {
+    if (typeof filterOption === "function") {
       return filterOption(inputValue, option);
-    }
-    else {
+    } else {
       return option.label.toLowerCase().includes(inputValue);
     }
-  }
+  };
 
   return (
     <InputWrapper
@@ -93,6 +92,7 @@ function SelectBox({
       required={required}
     >
       <Select
+        placeholder={placeholder}
         showSearch={allowSearch}
         disabled={disabled}
         allowClear={!required}

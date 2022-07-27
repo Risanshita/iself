@@ -1,0 +1,21 @@
+.info-byte-page {
+  font-size: 50px;
+  text-align: center;
+}
+
+.post-info {
+  position: absolute;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.7px;
+}
+
+.post-info.by {
+  right: 10px;
+  bottom: 5px;
+}
+
+.post-info.source {
+  left: 10px;
+  bottom: 5px;
+}

@@ -1,9 +1,9 @@
-import "./custom.css";
 import React, { Component } from "react";
 import { Route, Routes } from "react-router-dom";
+import { ConfigProvider } from "antd";
 import AppRoutes from "./AppRoutes";
 import Layout from "./layout";
-import { ConfigProvider } from "antd";
+import "./custom.css";
 
 export default class App extends Component {
   static displayName = App.name;
@@ -22,7 +22,7 @@ export default class App extends Component {
   }
   render() {
     return (
-      <ConfigProvider componentSize="middle">
+      <ConfigProvider componentSize="large">
         <Layout>
           <Routes>
             {AppRoutes.map((route, index) => {
