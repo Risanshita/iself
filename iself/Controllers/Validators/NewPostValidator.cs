@@ -29,7 +29,7 @@ namespace iself.Controllers.Validators
                       return !string.IsNullOrWhiteSpace(request.Data1);
                   }
                   return true;
-              }).WithMessage("Line cannot be empty");
+              }).WithMessage("InfoByte cannot be empty");
 
             RuleFor(a => a)
               .Must((request) =>
@@ -49,7 +49,7 @@ namespace iself.Controllers.Validators
                       return !string.IsNullOrWhiteSpace(request.Language) && !string.IsNullOrWhiteSpace(request.Data1) && !string.IsNullOrWhiteSpace(request.Data2) && !string.IsNullOrWhiteSpace(request.Title);
                   }
                   return true;
-              }).WithMessage("Language, Code, Corrected Code and title cannot be empty");
+              }).WithMessage("Language, Code, Refactored Code and title cannot be empty");
 
             RuleFor(a => a)
               .Must((request) =>
@@ -59,7 +59,7 @@ namespace iself.Controllers.Validators
                       return !string.IsNullOrWhiteSpace(request.Data1) && !string.IsNullOrWhiteSpace(request.Data2);
                   }
                   return true;
-              }).WithMessage("Line and corrected line cannot be empty");
+              }).WithMessage("Paraphase1 and Paraphase2 line cannot be empty");
         }
     }
 }

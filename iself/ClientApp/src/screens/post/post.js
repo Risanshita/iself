@@ -1,5 +1,4 @@
 import { Col, Select, Form, Input, Row, Button, message } from "antd";
-import TextArea from "antd/lib/input/TextArea";
 import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import LanguageList from "../../utils/LanguageList";
@@ -44,12 +43,12 @@ function Post({ type, onChangeType }) {
   );
 
   const getPlaceholderData2 = () => {
-    return type === PostTypes.Paraphase
+    return type === PostTypes.paraphase
       ? "Please enter paraphase"
       : "Write your refactor code here ...";
   };
   const getMessageForData2 = () => {
-    return type === PostTypes.Paraphase
+    return type === PostTypes.paraphase
       ? "Please enter paraphase"
       : "Write enter refactor code";
   };
@@ -140,73 +139,111 @@ function Post({ type, onChangeType }) {
                       onChange={onChangeType}
                       value={type}
                     >
-                      <Option value={PostTypes.infoByte}>infoByte</Option>
-                      <Option value={PostTypes.notification}>
+                      <Option
+                        key={PostTypes.infoByte}
+                        value={PostTypes.infoByte}
+                      >
+                        infoByte
+                      </Option>
+                      <Option
+                        key={PostTypes.notification}
+                        value={PostTypes.notification}
+                      >
                         Notification
                       </Option>
-                      <Option value={PostTypes.paraphase}>Paraphase</Option>
-                      <Option value={PostTypes.codeTip}>Code</Option>
-                      <Option value={PostTypes.refactor}>Code-Refactor</Option>
+                      <Option
+                        key={PostTypes.paraphase}
+                        value={PostTypes.paraphase}
+                      >
+                        Paraphase
+                      </Option>
+                      <Option key={PostTypes.codeTip} value={PostTypes.codeTip}>
+                        Code
+                      </Option>
+                      <Option
+                        key={PostTypes.refactor}
+                        value={PostTypes.refactor}
+                      >
+                        Code-Refactor
+                      </Option>
                     </Select>
                   </Form.Item>
                 </Col>
               </Row>
-              <Row
-                justify="space-between"
-                gutter={[10, 10]}
-                style={{ marginTop: 20 }}
-              >
-                <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-                  <Form.Item
-                    name="source"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter source!",
-                      },
-                    ]}
-                  >
-                    <Input placeholder={"Source"} />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-                  {!isCode && (
+
+              {type !== PostTypes.notification && (
+                <Row justify="space-between" gutter={[10, 10]}>
+                  <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                     <Form.Item
-                      name="author"
+                      name="source"
                       rules={[
                         {
                           required: true,
-                          message: "Please enter Author!",
+                          message: "Please enter source!",
                         },
                       ]}
                     >
-                      <Input placeholder={"Author"} />
+                      <Input placeholder={"Source"} />
                     </Form.Item>
-                  )}
-                  {isCode && (
-                    <Form.Item
-                      name="language"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Select Langauge!",
-                        },
-                      ]}
-                    >
-                      <Select
-                        style={{ width: "100%" }}
-                        placeholder="Select Language ...."
-                        showSearch={true}
+                  </Col>
+                  <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+                    {!isCode && (
+                      <Form.Item
+                        name="author"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please enter Author!",
+                          },
+                        ]}
                       >
-                        {LanguageList.map((a) => (
-                          <Option value={a.value}>{a.name}</Option>
-                        ))}
-                      </Select>
+                        <Input placeholder={"Author"} />
+                      </Form.Item>
+                    )}
+                    {isCode && (
+                      <Form.Item
+                        name="language"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Select Langauge!",
+                          },
+                        ]}
+                      >
+                        <Select
+                          style={{ width: "100%" }}
+                          placeholder="Select Language...."
+                          showSearch={true}
+                        >
+                          {LanguageList.map((a) => (
+                            <Option key={a.value} value={a.value}>
+                              {a.name}
+                            </Option>
+                          ))}
+                        </Select>
+                      </Form.Item>
+                    )}
+                  </Col>
+                </Row>
+              )}
+              {isCode && (
+                <Row justify="center">
+                  <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                    <Form.Item
+                      name="title"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please enter title",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="Enter title...."></Input>
                     </Form.Item>
-                  )}
-                </Col>
-              </Row>
-              <Row gutter={[10, 10]} style={{ marginTop: 20 }}>
+                  </Col>
+                </Row>
+              )}
+              <Row gutter={[10, 10]}>
                 <Col
                   xs={24}
                   sm={24}
@@ -224,7 +261,7 @@ function Post({ type, onChangeType }) {
                       },
                     ]}
                   >
-                    <TextArea
+                    <Input.TextArea
                       showCount
                       placeholder={getPlaceholderData1()}
                       maxLength={process.env.REACT_APP_MAX_LENGTH}
@@ -250,7 +287,7 @@ function Post({ type, onChangeType }) {
                         },
                       ]}
                     >
-                      <TextArea
+                      <Input.TextArea
                         showCount
                         placeholder={getPlaceholderData2()}
                         maxLength={process.env.REACT_APP_MAX_LENGTH}
