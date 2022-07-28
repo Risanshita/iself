@@ -5,7 +5,7 @@ import { FetchData } from "./screens/FetchData";
 import { HomeScreen } from "./screens/homepage";
 import Login from "./screens/login";
 import NotFound from "./screens/NotFound";
-import PostNew from "./screens/post";
+import PostScreen from "./screens/post";
 
 const AppRoutes = [
   {
@@ -14,14 +14,14 @@ const AppRoutes = [
   },
   {
     path: "/post",
-    element: <PostNew />,
+    element: <PostScreen />,
   },
   {
     path: "/demo",
     element: <Demo />,
   },
   {
-    path: "/counter",
+    path: "/paraphrase",
     element: <Counter />,
   },
   {

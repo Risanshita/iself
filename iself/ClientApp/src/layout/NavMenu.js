@@ -47,11 +47,11 @@ const NavMenu = () => {
       ),
     },
     {
-      link: "/counter",
+      link: "/paraphrase",
       label: (
         <NavLink tag={Link} to="/counter">
           <IssuesCloseOutlined />
-          <span className="menu-label">Line Correction</span>
+          <span className="menu-label">Paraphrase</span>
         </NavLink>
       ),
     },

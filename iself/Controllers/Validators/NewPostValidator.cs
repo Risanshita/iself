@@ -24,7 +24,7 @@ namespace iself.Controllers.Validators
             RuleFor(a => a)
               .Must((request) =>
               {
-                  if (request.Type == Data.Models.PostType.Line)
+                  if (request.Type == Data.Models.PostType.InfoByte)
                   {
                       return !string.IsNullOrWhiteSpace(request.Data1);
                   }
@@ -34,7 +34,7 @@ namespace iself.Controllers.Validators
             RuleFor(a => a)
               .Must((request) =>
               {
-                  if (request.Type == Data.Models.PostType.Code)
+                  if (request.Type == Data.Models.PostType.CodeTip)
                   {
                       return !string.IsNullOrWhiteSpace(request.Language) && !string.IsNullOrWhiteSpace(request.Data1) && !string.IsNullOrWhiteSpace(request.Title);
                   }
@@ -44,7 +44,7 @@ namespace iself.Controllers.Validators
             RuleFor(a => a)
               .Must((request) =>
               {
-                  if (request.Type == Data.Models.PostType.CodeCorrection)
+                  if (request.Type == Data.Models.PostType.Refactor)
                   {
                       return !string.IsNullOrWhiteSpace(request.Language) && !string.IsNullOrWhiteSpace(request.Data1) && !string.IsNullOrWhiteSpace(request.Data2) && !string.IsNullOrWhiteSpace(request.Title);
                   }
@@ -54,7 +54,7 @@ namespace iself.Controllers.Validators
             RuleFor(a => a)
               .Must((request) =>
               {
-                  if (request.Type == Data.Models.PostType.LineCorrection)
+                  if (request.Type == Data.Models.PostType.Paraphase)
                   {
                       return !string.IsNullOrWhiteSpace(request.Data1) && !string.IsNullOrWhiteSpace(request.Data2);
                   }

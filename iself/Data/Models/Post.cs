@@ -2,11 +2,11 @@
 {
     public enum PostType
     {
-        Line,
-        LineCorrection,
-        Notification,
-        Code,
-        CodeCorrection
+        InfoByte,
+        Paraphase,
+        CodeTip,
+        Refactor, 
+        Notification
     }
 
     public class Post

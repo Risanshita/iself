@@ -230,6 +230,27 @@
       "temperatureC": 0,
       "temperatureF": 32,
       "summary": "Cool"
+    },
+    {
+      "date": "2022-08-31T18:18:34.9371893+05:30",
+      "id": 34,
+      "temperatureC": 48,
+      "temperatureF": 118,
+      "summary": "Scorching"
+    },
+    {
+      "date": "2022-09-01T18:18:40.4823956+05:30",
+      "id": 35,
+      "temperatureC": 10,
+      "temperatureF": 49,
+      "summary": "Mild"
+    },
+    {
+      "date": "2022-09-02T18:18:42.8035942+05:30",
+      "id": 36,
+      "temperatureC": 53,
+      "temperatureF": 127,
+      "summary": "Cool"
     }
   ],
   "post": [
@@ -246,6 +267,20 @@
       "createdAt": "2022-07-24T16:55:19.0763836+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-24T16:55:19.0763851+05:30"
+    },
+    {
+      "id": "844ff01b-0560-4d4e-a208-ee12a05cd806",
+      "title": "",
+      "type": 0,
+      "data1": "sdfsdf",
+      "data2": "",
+      "source": "a",
+      "author": "s",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-28T22:04:58.0873326+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-28T22:04:58.0873349+05:30"
     }
   ]
 }
