@@ -15,6 +15,7 @@ function Post({ type, onChangeType }) {
     type === PostTypes.paraphase || type === PostTypes.refactor;
   const isCode = type === PostTypes.codeTip || type === PostTypes.refactor;
 
+  
   const getMessageForData1 = () => {
     switch (type) {
       case PostTypes.paraphase:
