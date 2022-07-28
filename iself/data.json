@@ -281,6 +281,48 @@
       "createdAt": "2022-07-28T22:04:58.0873326+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-28T22:04:58.0873349+05:30"
+    },
+    {
+      "id": "844ff01b-0560-4d4e-a208-ee12a05cd807",
+      "title": "",
+      "type": 0,
+      "data1": "“A room without books is like a body without a soul.”",
+      "data2": "",
+      "source": "Google",
+      "author": "Nitish kumar",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-28T22:22:35.9477725+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-28T22:22:35.9477742+05:30"
+    },
+    {
+      "id": "844ff01b-0560-4d4e-a208-ee12a05cd808",
+      "title": "",
+      "type": 0,
+      "data1": "sdfsdf",
+      "data2": "",
+      "source": "a",
+      "author": "s",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-28T22:25:26.3107471+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-28T22:25:26.3107489+05:30"
+    },
+    {
+      "id": "844ff01b-0560-4d4e-a208-ee12a05cd809",
+      "title": "",
+      "type": 4,
+      "data1": "sdd",
+      "data2": "",
+      "source": "sds",
+      "author": "fds",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-28T22:25:38.6076392+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-28T22:25:38.6076407+05:30"
     }
   ]
 }

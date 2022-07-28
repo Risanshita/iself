@@ -16,18 +16,43 @@ function Post({ type, onChangeType }) {
     type === PostTypes.paraphase || type === PostTypes.refactor;
   const isCode = type === PostTypes.codeTip || type === PostTypes.refactor;
 
+  const getMessageForData1 = () => {
+    switch (type) {
+      case PostTypes.paraphase:
+        return "Please enter Incorrect Paraphase";
+      case PostTypes.notification:
+        return "Please enter Notification";
+      case PostTypes.codeTip:
+        return "Please enter code here";
+      case PostTypes.refactor:
+        return "Please enter code";
+      default:
+        return "Please enter Info Byte";
+    }
+  };
   useEffect(
     function () {
-      form.setFieldsValue({});
+      form.setFieldsValue({
+        source: "",
+        author: "",
+        language: "",
+        data1: "",
+        data2: "",
+      });
     },
     [type]
   );
+
   const getPlaceholderData2 = () => {
     return type === PostTypes.Paraphase
       ? "Please enter paraphase"
       : "Write your refactor code here ...";
   };
-
+  const getMessageForData2 = () => {
+    return type === PostTypes.Paraphase
+      ? "Please enter paraphase"
+      : "Write enter refactor code";
+  };
   const getPlaceholderData1 = () => {
     switch (type) {
       case PostTypes.paraphase:
@@ -44,7 +69,9 @@ function Post({ type, onChangeType }) {
   };
   const onFinish = (values) => {
     console.log("Success:", values);
-    createPost(values);
+    createPost(values, () => {
+      form.resetFields();
+    });
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -149,7 +176,7 @@ function Post({ type, onChangeType }) {
                       rules={[
                         {
                           required: true,
-                          message: "Please enter source!",
+                          message: "Please enter Author!",
                         },
                       ]}
                     >
@@ -162,7 +189,7 @@ function Post({ type, onChangeType }) {
                       rules={[
                         {
                           required: true,
-                          message: "Please enter source!",
+                          message: "Select Langauge!",
                         },
                       ]}
                     >
@@ -193,7 +220,7 @@ function Post({ type, onChangeType }) {
                     rules={[
                       {
                         required: true,
-                        message: "Please Select Type",
+                        message: getMessageForData1(),
                       },
                     ]}
                   >
@@ -219,7 +246,7 @@ function Post({ type, onChangeType }) {
                       rules={[
                         {
                           required: true,
-                          message: "Text Box Could not be Empty",
+                          message: getMessageForData2(),
                         },
                       ]}
                     >

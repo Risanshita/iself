@@ -2,7 +2,7 @@ import { message } from "antd";
 import { types } from "./Reducers";
 
 export const useActions = (state, dispatch) => {
-  async function createPost(post) {
+  async function createPost(post, callback) {
     dispatch({
       type: types.START_LOADING,
     });
@@ -20,6 +20,9 @@ export const useActions = (state, dispatch) => {
       dispatch({
         type: types.START_LOADING,
       });
+      if (typeof callback === "function") {
+        callback();
+      }
       message.success(response.message);
     } else message.error(response.message);
   }

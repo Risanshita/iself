@@ -38,9 +38,9 @@ namespace iself.Utils
 
         public static ObjectResult GetErrorResponse(this List<ValidationFailure> failures, HttpStatusCode httpStatusCode = HttpStatusCode.BadRequest)
         {
-            var res = failures.GetFormattedErrors(); 
+            var res = failures.GetFormattedErrors();
 
-            ObjectResult result = new(new Response { Errors = res, Succeeded = false })
+            ObjectResult result = new(new Response { Errors = res, Succeeded = false, Message = res.ErrorMessage })
             {
                 StatusCode = (int)httpStatusCode
             };
@@ -68,7 +68,7 @@ namespace iself.Utils
             };
             return result;
         }
-         
+
 
         public static ObjectResult GetErrorResponse(this string message, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
         {
@@ -82,7 +82,7 @@ namespace iself.Utils
             };
             return result;
         }
-         
+
         public static ObjectResult GetResponse(this Exception exception)
         {
             ObjectResult result = new(new Response
@@ -101,6 +101,6 @@ namespace iself.Utils
             };
             return result;
         }
-         
+
     }
 }
