@@ -1,8 +1,8 @@
 import { Col, Select, Form, Input, Row, Button, message } from "antd";
 import React, { useContext, useState } from "react";
 import { useEffect } from "react";
+import { PostContext } from "../../context/postContext";
 import LanguageList from "../../utils/LanguageList";
-import { PostContext } from "./state";
 import "./style.css";
 
 const { Option } = Select;
@@ -15,7 +15,6 @@ function Post({ type, onChangeType }) {
     type === PostTypes.paraphase || type === PostTypes.refactor;
   const isCode = type === PostTypes.codeTip || type === PostTypes.refactor;
 
-  
   const getMessageForData1 = () => {
     switch (type) {
       case PostTypes.paraphase:
@@ -38,6 +37,7 @@ function Post({ type, onChangeType }) {
         language: "",
         data1: "",
         data2: "",
+        title: "",
       });
     },
     [type]

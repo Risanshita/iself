@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { Counter } from "./screens/Counter";
-import Demo from "./screens/demo";
+import { DemoScreen } from "./screens/demo";
 import { FetchData } from "./screens/FetchData";
 import { HomeScreen } from "./screens/homepage";
 import Login from "./screens/login";
@@ -18,7 +18,7 @@ const AppRoutes = [
   },
   {
     path: "/demo",
-    element: <Demo />,
+    element: <DemoScreen />,
   },
   {
     path: "/paraphrase",

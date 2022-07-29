@@ -28,15 +28,7 @@ namespace iself.Controllers
             var collection = store.GetCollection<WeatherForecast>();
             var results = collection.AsQueryable().TakeLast(1).FirstOrDefault();
             var id = results != null ? results.Id + 1 : 1;
-           
-                  var obj = new WeatherForecast
-                  {
-                      Id = id,
-                      Date = DateTime.Now.AddDays(id),
-                      TemperatureC = Random.Shared.Next(-20, 55),
-                      Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-                  };
-                  collection.InsertOneAsync(obj).Wait(); 
+            
 
             var list = collection.AsQueryable().TakeLast(20);
 

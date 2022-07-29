@@ -1,4 +1,3 @@
-import postNotification from "../../components/Message";
 import { types } from "./Reducers";
 
 export const useActions = (state, dispatch) => {

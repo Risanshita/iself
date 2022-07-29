@@ -1,28 +1,116 @@
 {
   "post": [
     {
-      "id": "844ff01b-0560-4d4e-a208-ee12a05cd805",
+      "id": "0f31858b-ffc4-423b-aaf6-4a5f9e80b5e7",
       "title": "",
       "type": 0,
-      "data1": "A room without books is like a body without a soul.",
+      "data1": "sdfsfgsfdsvdvsdvdsvdsvdvdsvsdvsd",
       "data2": "",
-      "source": "Google",
-      "author": "Jittu Bhiya  ",
+      "source": "google.com",
+      "author": "nk",
       "language": "",
-      "createdBy": "Nitish K",
-      "createdAt": "2022-07-24T16:55:19.0763836+05:30",
+      "createdBy": "",
+      "createdAt": "2022-07-29T23:33:41.2440598+05:30",
       "updatedBy": "",
-      "updatedAt": "2022-07-24T16:55:19.0763851+05:30"
+      "updatedAt": "2022-07-29T23:33:41.2440627+05:30"
     },
-    
-  ],
-  "weatherForecast": [
     {
-      "date": "2022-07-30T07:27:08.5489094+05:30",
-      "id": 1,
-      "temperatureC": 40,
-      "temperatureF": 103,
-      "summary": "Bracing"
+      "id": "0f31858b-ffc4-423b-aaf6-4a5f9e80b5e9",
+      "title": "",
+      "type": 1,
+      "data1": "sfsfd",
+      "data2": "fdsf",
+      "source": "dfsdf",
+      "author": "dsfds",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-29T23:33:56.3306827+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-29T23:33:56.3306847+05:30"
+    },
+    {
+      "id": "0f31858b-ffc4-423b-aaf6-4a5f9e80b5e10",
+      "title": "sdfsd",
+      "type": 2,
+      "data1": "dsfsdf",
+      "data2": "",
+      "source": "dsfsd",
+      "author": "",
+      "language": "accesslog",
+      "createdBy": "",
+      "createdAt": "2022-07-29T23:36:59.0015688+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-29T23:36:59.0015707+05:30"
+    },
+    {
+      "id": "0f31858b-ffc4-423b-aaf6-4a5f9e80b5e11",
+      "title": "",
+      "type": 0,
+      "data1": "ewrwe",
+      "data2": "",
+      "source": "ewe",
+      "author": "ewr",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-29T23:37:28.8835338+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-29T23:37:28.8835351+05:30"
+    },
+    {
+      "id": "0f31858b-ffc4-423b-aaf6-4a5f9e80b5e12",
+      "title": "",
+      "type": 4,
+      "data1": "dsfsdfsdf",
+      "data2": "",
+      "source": "",
+      "author": "",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-29T23:37:38.1533242+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-29T23:37:38.1533255+05:30"
+    },
+    {
+      "id": "0f31858b-ffc4-423b-aaf6-4a5f9e80b5e13",
+      "title": "",
+      "type": 4,
+      "data1": "sdfsdfdsf",
+      "data2": "",
+      "source": "",
+      "author": "",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-29T23:37:41.0792286+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-29T23:37:41.0792294+05:30"
+    },
+    {
+      "id": "0f31858b-ffc4-423b-aaf6-4a5f9e80b5e14",
+      "title": "fsdfds",
+      "type": 2,
+      "data1": "dsfdsfd",
+      "data2": "",
+      "source": "dsfds",
+      "author": "",
+      "language": "actionscript",
+      "createdBy": "",
+      "createdAt": "2022-07-29T23:37:48.0241039+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-29T23:37:48.024106+05:30"
+    },
+    {
+      "id": "0f31858b-ffc4-423b-aaf6-4a5f9e80b5e15",
+      "title": "",
+      "type": 4,
+      "data1": "cxcvcxvxc",
+      "data2": "",
+      "source": "",
+      "author": "",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-29T23:38:52.0626624+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-29T23:38:52.0626651+05:30"
     }
   ]
 }

@@ -1,8 +1,8 @@
 import React, { useReducer } from "react";
-import { reducer, initialState } from "./Reducers";
+import { reducer, initialState } from "./state/Reducers";
 
-import { useActions } from "./Actions";
-import { useCombinedReducer } from "../../../utils/CombineReducer";
+import { useActions } from "./state/Actions";
+import { useCombinedReducer } from "../../utils/CombineReducer";
 
 const PostContext = React.createContext();
 
