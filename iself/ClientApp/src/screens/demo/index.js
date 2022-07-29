@@ -1,8 +1,25 @@
 import { Col, Row } from "antd";
-import { useState, Select, Option } from "react";
-
+import { MoreOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Dropdown, Menu, Space } from "antd";
 function Demo() {
-  const [Selects, setSelect] = useState();
+  // const onFinish = (values) => {
+  //   console.log("Success:", values);
+  //   deletePost(values, () => {
+  //     form.resetFields();
+  //   });
+  // };
+  const menu = (
+    <Menu
+      style={{ borderRadius: "5px", backgroundColor: "#3E3F47" }}
+      items={[
+        {
+          key: "1",
+          label: <DeleteOutlined />,
+        },
+      ]}
+    />
+  );
+
   const myPost = [
     {
       id: "844ff01b-0560-4d4e-a208-ee12a05cd805",
@@ -151,19 +168,44 @@ function Demo() {
       className="postnew-page"
       justify="center"
       align="middle"
-      style={{ height: "100%" }}
+      style={{ height: "100%", padding: "20px" }}
       gutter={[16, 16]}
     >
       {myPost.map((a) => (
-        <Col xs={12} sm={12} md={8} lg={6} xl={6} style={{ height: 200 }}>
+        <Col xs={12} sm={12} md={8} lg={6} xl={6} style={{ height: 248 }}>
           <Row
             style={{
+              padding: "10px",
               height: "100%",
-              backgroundColor: "#ccc",
+              backgroundColor: "#3E3F47",
               borderRadius: 5,
             }}
           >
-            {a.type}
+            <Col span={24} style={{ height: "100%" }}>
+              <span className="post-info post-type">{a.type}</span>
+              <span className="post-info more-option">
+                <Dropdown overlay={menu}>
+                  <a /*onClick={onFinish}*/>
+                    <Space>
+                      <MoreOutlined style={{ color: "white" }} />
+                    </Space>
+                  </a>
+                </Dropdown>
+              </span>
+              <Row
+                className="post-data"
+                align="middle"
+                justify="center"
+                style={{ height: "80%", fontSize: "20px" }}
+              >
+                {a.data1}
+              </Row>
+              <span className="post-info by1">{a.createdBy}</span>
+              <span className="post-info source">
+                <div className="source1">{a.source}</div>
+                <div className="author1">{a.author}</div>
+              </span>
+            </Col>
           </Row>
         </Col>
       ))}

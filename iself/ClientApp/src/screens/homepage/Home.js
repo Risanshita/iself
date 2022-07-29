@@ -29,7 +29,7 @@ export const HomePage = () => {
     <Row style={{ height: "100%" }}>
       {currentPost && (
         <Col span={24} style={{ height: "100%", padding: 20 }}>
-          <CodeTip post={currentPost} />
+          <InfoByte post={currentPost} />
           <span className="post-info by">{currentPost.createdBy}</span>
           <span className="post-info source">
             <div className=" author">{currentPost.source}</div>
