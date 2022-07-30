@@ -6,7 +6,11 @@ import {
   EditOutlined,
 } from "@ant-design/icons";
 
-import { message, Upload, Button } from "antd";
+import phone from "../../assets/images/phone.png";
+import email from "../../assets/images/email.png";
+import person from "../../assets/images/person.png";
+
+import { message, Form, Button, Input, Image } from "antd";
 import React, { useState } from "react";
 import { Col, Row } from "antd";
 const getBase64 = (img, callback) => {
@@ -30,9 +34,17 @@ const beforeUpload = (file) => {
 
   return isJpgOrPng && isLt2M;
 };
+
 function Profile() {
+  const [isEdit, setEdit] = useState(false);
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
+  const [user, setuser] = useState({
+    name: "Nitish kumar",
+    email: "Nitishr833@gmail.com",
+    number: "7033161175",
+  });
+  const [form] = Form.useForm();
 
   const handleChange = (info) => {
     if (info.file.status === "uploading") {
@@ -49,38 +61,72 @@ function Profile() {
     }
   };
 
-  const uploadButton = (
-    <div>
-      {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div
-        style={{
-          marginTop: 8,
-        }}
-      >
-        Upload
-      </div>
-    </div>
-  );
-  const [size, setSize] = useState("large");
+  const onEdit = () => {
+    setEdit(true);
+    form.setFieldsValue({ ...user });
+  };
+
+  const onFinish = (values) => {
+    console.log("Success:", values);
+    setuser(values);
+    // createPost(values, () => {
+    //   form.resetFields();
+    // });
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
+  // const uploadButton = (
+  //   <div>
+  //     {loading ? <LoadingOutlined /> : <PlusOutlined />}
+  //     <div
+  //       style={{
+  //         marginTop: 8,
+  //       }}
+  //     >
+  //       Upload
+  //     </div>
+  //   </div>
+  // );
+
+  // function editbutton(index) {
+  //   console.log(index);
+  // }
+
   return (
     <>
       <Row
         justify="center"
         align="middle"
         style={{
+          height: "300px",
           width: "100%",
           backgroundColor: "#3E3F47",
           padding: "20px",
           borderRadius: "10px",
         }}
       >
-        <span className="edit-button">
-          {" "}
-          <Button type="primary" icon={<EditOutlined />} size={size} />{" "}
-        </span>
+        <Row
+          justify="end"
+          style={{
+            width: "100%",
+          }}
+        >
+          <Button type="default" icon={<EditOutlined />} onClick={onEdit} />
+        </Row>
         <Col align="center" justify="middle" style={{ borderRadius: "50%" }}>
-          <div className="profile-image" style={{ padding: "20px" }}>
-            <Upload
+          <div
+            className="profile-image"
+            style={{
+              padding: "20px",
+              backgroundColor: "gray",
+              borderRadius: "50%",
+              marginRight: "10px",
+            }}
+          >
+            {/* <Upload
               name="avatar"
               listType="picture-card"
               className="avatar-uploader"
@@ -100,28 +146,111 @@ function Profile() {
               ) : (
                 uploadButton
               )}
-            </Upload>
+            </Upload> */}
+            <Image
+              width={100}
+              preview={false}
+              className="profile-image"
+              src={person}
+            />
           </div>
         </Col>
         <Col>
-          <Row>
-            <span className="profileinfo name">
-              <InfoCircleOutlined />
-            </span>
-            <span className="profileinfo name">Nitish kumar</span>
-          </Row>
-          <Row>
-            <span className="profileinfo email">
-              <InfoCircleOutlined />
-            </span>
-            <span className="profileinfo email">Nitishr833@gmail.com</span>
-          </Row>
-          <Row>
-            <span className="profileinfo number">
-              <InfoCircleOutlined />
-            </span>
-            <span className="profileinfo number">7033161175</span>
-          </Row>
+          <Form
+            name="profile_edit_form"
+            initialValues={{
+              remember: false,
+            }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete="off"
+            form={form}
+          >
+            <Row align="middle">
+              <span className="profileinfo logo">
+                <Image
+                  width={20}
+                  preview={false}
+                  className="profile-image"
+                  src={person}
+                />
+              </span>
+
+              <span className="profileinfo name">
+                {isEdit == true ? (
+                  <Form.Item
+                    name="name"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please enter your name!",
+                      },
+                    ]}
+                  >
+                    <Input placeholder="Full name" />
+                  </Form.Item>
+                ) : (
+                  user.name
+                )}
+              </span>
+            </Row>
+
+            <Row align="middle">
+              <span className="profileinfo logo">
+                <Image
+                  width={20}
+                  preview={false}
+                  className="profile-image"
+                  src={email}
+                />
+              </span>
+              <span className="profileinfo email">
+                {isEdit == true ? (
+                  <Form.Item
+                    name="email"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please enter your email!",
+                      },
+                    ]}
+                  >
+                    <Input placeholder="Email" />
+                  </Form.Item>
+                ) : (
+                  user.email
+                )}
+              </span>
+            </Row>
+            <Row align="middle">
+              <span className="profileinfo logo">
+                <Image
+                  width={20}
+                  preview={false}
+                  className="profile-image"
+                  src={phone}
+                />
+              </span>
+
+              <span className="profileinfo number">
+                {isEdit == true ? (
+                  <Form.Item
+                    name="number"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please enter mobile number!",
+                      },
+                    ]}
+                  >
+                    <Input placeholder="Mobile number" />
+                  </Form.Item>
+                ) : (
+                  user.number
+                )}
+              </span>
+            </Row>
+          </Form>
         </Col>
       </Row>
     </>
