@@ -1,11 +1,11 @@
 import { Navigate } from "react-router-dom";
 import { Counter } from "./screens/Counter";
-import { DemoScreen } from "./screens/demo";
 import { FetchData } from "./screens/FetchData";
 import { HomeScreen } from "./screens/homepage";
 import Login from "./screens/login";
 import NotFound from "./screens/NotFound";
 import PostScreen from "./screens/post";
+import { ProfileScreen } from "./screens/profile";
 
 const AppRoutes = [
   {
@@ -17,8 +17,8 @@ const AppRoutes = [
     element: <PostScreen />,
   },
   {
-    path: "/demo",
-    element: <DemoScreen />,
+    path: "/profile",
+    element: <ProfileScreen />,
   },
   {
     path: "/paraphrase",

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { PostProvider } from "../../context/postContext";
-import Demo from "./DemoScreen";
+import Profile from "./profile";
 
-export const DemoScreen = () => {
+export const ProfileScreen = () => {
   return (
     <PostProvider>
-      <Demo />
+      <Profile />
     </PostProvider>
   );
 };

@@ -74,11 +74,11 @@ const NavMenu = () => {
       ),
     },
     {
-      link: "/demo",
+      link: "/profile",
       label: (
-        <NavLink tag={Link} to="/demo">
+        <NavLink tag={Link} to="/profile">
           <ScheduleOutlined />
-          <span className="menu-label">Demo</span>
+          <span className="menu-label">Profile</span>
         </NavLink>
       ),
     },

@@ -1,260 +1,122 @@
-import {
-  LoadingOutlined,
-  InfoCircleOutlined,
-  PlusOutlined,
-  DownloadOutlined,
-  EditOutlined,
-} from "@ant-design/icons";
-
-import phone from "../../assets/images/phone.png";
-import email from "../../assets/images/email.png";
-import person from "../../assets/images/person.png";
-
-import { message, Form, Button, Input, Image } from "antd";
-import React, { useState } from "react";
 import { Col, Row } from "antd";
-const getBase64 = (img, callback) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result));
-  reader.readAsDataURL(img);
-};
-
-const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-
-  if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
-  }
-
-  const isLt2M = file.size / 1024 / 1024 < 2;
-
-  if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
-  }
-
-  return isJpgOrPng && isLt2M;
-};
-
+import { MoreOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Dropdown, Menu, Space } from "antd";
+import { PostContext } from "../../context/postContext";
+import { useContext, useState } from "react";
+import ProfileHeader from "./profilehead";
 function Profile() {
-  const [isEdit, setEdit] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState();
-  const [user, setuser] = useState({
-    name: "Nitish kumar",
-    email: "Nitishr833@gmail.com",
-    number: "7033161175",
-  });
-  const [form] = Form.useForm();
+  const { state, actions } = useContext(PostContext);
+  const [isInitialLoad, setInitialLoad] = useState(true);
+  const { loadData, deletePost } = actions.post;
+  const { posts } = state.post;
 
-  const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
 
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
+  if (isInitialLoad) {
+    loadData();
+    setInitialLoad(false);
+  }
+
+  const menu = (post) => {
+    return (
+      <Menu
+        style={{ borderRadius: "5px", backgroundColor: "#3E3F47" }}
+        items={[
+          {
+            key: "1",
+            label: <DeleteOutlined />,
+            onClick: () => {
+              deletePost(post, () => {
+                loadData();
+              });
+            },
+          },
+        ]}
+      />
+    );
   };
-
-  const onEdit = () => {
-    setEdit(true);
-    form.setFieldsValue({ ...user });
-  };
-
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    setuser(values);
-    // createPost(values, () => {
-    //   form.resetFields();
-    // });
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-
-  // const uploadButton = (
-  //   <div>
-  //     {loading ? <LoadingOutlined /> : <PlusOutlined />}
-  //     <div
-  //       style={{
-  //         marginTop: 8,
-  //       }}
-  //     >
-  //       Upload
-  //     </div>
-  //   </div>
-  // );
-
-  // function editbutton(index) {
-  //   console.log(index);
-  // }
 
   return (
-    <>
+    <Row
+      // className="postnew-page"
+      justify="center"
+      style={{ height: "100%", overflowY: "auto", padding: "20px" }}
+    >
+      <ProfileHeader />
       <Row
-        justify="center"
         align="middle"
+        justify="center"
         style={{
-          height: "300px",
+          // backgroundColor: "#3E3F47",
           width: "100%",
-          backgroundColor: "#3E3F47",
-          padding: "20px",
           borderRadius: "10px",
+          margin: "10px 0",
         }}
       >
-        <Row
-          justify="end"
-          style={{
-            width: "100%",
-          }}
-        >
-          <Button type="default" icon={<EditOutlined />} onClick={onEdit} />
-        </Row>
-        <Col align="center" justify="middle" style={{ borderRadius: "50%" }}>
-          <div
-            className="profile-image"
-            style={{
-              padding: "20px",
-              backgroundColor: "gray",
-              borderRadius: "50%",
-              marginRight: "10px",
-            }}
-          >
-            {/* <Upload
-              name="avatar"
-              listType="picture-card"
-              className="avatar-uploader"
-              showUploadList={true}
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              beforeUpload={beforeUpload}
-              onChange={handleChange}
-            >
-              {imageUrl ? (
-                <img
-                  src={imageUrl}
-                  alt="Profile pic"
-                  style={{
-                    width: "100%",
-                  }}
-                />
-              ) : (
-                uploadButton
-              )}
-            </Upload> */}
-            <Image
-              width={100}
-              preview={false}
-              className="profile-image"
-              src={person}
-            />
-          </div>
-        </Col>
-        <Col>
-          <Form
-            name="profile_edit_form"
-            initialValues={{
-              remember: false,
-            }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-            form={form}
-          >
-            <Row align="middle">
-              <span className="profileinfo logo">
-                <Image
-                  width={20}
-                  preview={false}
-                  className="profile-image"
-                  src={person}
-                />
-              </span>
-
-              <span className="profileinfo name">
-                {isEdit == true ? (
-                  <Form.Item
-                    name="name"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter your name!",
-                      },
-                    ]}
-                  >
-                    <Input placeholder="Full name" />
-                  </Form.Item>
-                ) : (
-                  user.name
-                )}
-              </span>
-            </Row>
-
-            <Row align="middle">
-              <span className="profileinfo logo">
-                <Image
-                  width={20}
-                  preview={false}
-                  className="profile-image"
-                  src={email}
-                />
-              </span>
-              <span className="profileinfo email">
-                {isEdit == true ? (
-                  <Form.Item
-                    name="email"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter your email!",
-                      },
-                    ]}
-                  >
-                    <Input placeholder="Email" />
-                  </Form.Item>
-                ) : (
-                  user.email
-                )}
-              </span>
-            </Row>
-            <Row align="middle">
-              <span className="profileinfo logo">
-                <Image
-                  width={20}
-                  preview={false}
-                  className="profile-image"
-                  src={phone}
-                />
-              </span>
-
-              <span className="profileinfo number">
-                {isEdit == true ? (
-                  <Form.Item
-                    name="number"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter mobile number!",
-                      },
-                    ]}
-                  >
-                    <Input placeholder="Mobile number" />
-                  </Form.Item>
-                ) : (
-                  user.number
-                )}
-              </span>
-            </Row>
-          </Form>
-        </Col>
+        <Col style={{ padding: "10px" }}>Your Posts</Col>
       </Row>
-    </>
+      <Row style={{ width: "100%" }}>
+        {posts.map((a) => (
+          <Col
+            xs={12}
+            sm={12}
+            md={8}
+            lg={6}
+            xl={6}
+            style={{ height: 248, padding: 7 }}
+          >
+            <Row
+              style={{
+                padding: "10px",
+                height: "100%",
+                backgroundColor: "#3E3F47",
+                borderRadius: 5,
+              }}
+            >
+              <Col span={24} style={{ height: "100%" }}>
+                <Row justify="space-between">
+                  <Col>{a.type}</Col>
+                  <Col>
+                    <Dropdown overlay={menu(a)}>
+                      <a /*onClick={onFinish}*/>
+                        <Space>
+                          <MoreOutlined style={{ color: "white" }} />
+                        </Space>
+                      </a>
+                    </Dropdown>
+                  </Col>
+                </Row>
+                {/* <span className="post-info post-type"></span>
+                <span className="post-info more-option"></span> */}
+                <Row
+                  className="post-data"
+                  align="middle"
+                  justify="center"
+                  style={{
+                    height: "80%",
+                    padding: "10px 0px",
+                    fontSize: "20px",
+                    overflowY: "auto",
+                  }}
+                >
+                  {a.data1}
+                </Row>
+
+                <span className="post-info by1">{a.createdBy}</span>
+                <span className="post-info source">
+                  <div className="source1">{a.source}</div>
+                  <div className="author1">{a.author}</div>
+                </span>
+                <span className="post-info by1">
+                  {/* <span className="language-circle"></span> */}
+                  {a.language}
+                </span>
+              </Col>
+            </Row>
+          </Col>
+        ))}
+        {posts.length == 0 && <Col span={4}>No post</Col>}
+      </Row>
+    </Row>
   );
 }
-
 export default Profile;

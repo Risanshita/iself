@@ -22,6 +22,7 @@ body {
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
+  display: none;
 }
 
 .thin-scrollbar::-webkit-scrollbar {
@@ -66,18 +67,4 @@ body {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
-}
-
-/*Ant design css overriding end*/
-.profileinfo {
-  font-size: 18px;
-  padding: 5px 5px;
-}
-.edit-button {
-  position: absolute;
-  right: 40px;
-  top: 90px;
-  /* background-color: #17171b; */
-  /* padding: 10px; */
-  /* border-radius: 10px; */
 }
