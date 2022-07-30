@@ -3,6 +3,7 @@ import { MoreOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space } from "antd";
 import { PostContext } from "../../context/postContext";
 import { useContext, useState } from "react";
+import Profile from "../profile/profile";
 function Demo() {
   const { state, actions } = useContext(PostContext);
   const [isInitialLoad, setInitialLoad] = useState(true);
@@ -40,6 +41,18 @@ function Demo() {
       align="middle"
       style={{ height: "100%", overflowY: "auto", padding: "20px" }}
     >
+      <Profile />
+      <Row
+        align="middle"
+        justify="center"
+        style={{
+          backgroundColor: "#3E3F47",
+          width: "100%",
+          borderRadius: "10px",
+        }}
+      >
+        <Col style={{ padding: "10px" }}>Your Posts</Col>
+      </Row>
       {posts.map((a) => (
         <Col
           xs={12}

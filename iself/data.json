@@ -1,20 +1,6 @@
 {
   "post": [
     {
-      "id": "0f31858b-ffc4-423b-aaf6-4a5f9e80b5e7",
-      "title": "",
-      "type": 0,
-      "data1": "sdfsfgsfdsvdvsdvdsvdsvdvdsvsdvsd",
-      "data2": "",
-      "source": "google.com",
-      "author": "nk",
-      "language": "",
-      "createdBy": "",
-      "createdAt": "2022-07-29T23:33:41.2440598+05:30",
-      "updatedBy": "",
-      "updatedAt": "2022-07-29T23:33:41.2440627+05:30"
-    },
-    {
       "id": "0f31858b-ffc4-423b-aaf6-4a5f9e80b5e9",
       "title": "",
       "type": 1,
@@ -69,48 +55,6 @@
       "createdAt": "2022-07-29T23:37:38.1533242+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-29T23:37:38.1533255+05:30"
-    },
-    {
-      "id": "0f31858b-ffc4-423b-aaf6-4a5f9e80b5e13",
-      "title": "",
-      "type": 4,
-      "data1": "sdfsdfdsf",
-      "data2": "",
-      "source": "",
-      "author": "",
-      "language": "",
-      "createdBy": "",
-      "createdAt": "2022-07-29T23:37:41.0792286+05:30",
-      "updatedBy": "",
-      "updatedAt": "2022-07-29T23:37:41.0792294+05:30"
-    },
-    {
-      "id": "0f31858b-ffc4-423b-aaf6-4a5f9e80b5e14",
-      "title": "fsdfds",
-      "type": 2,
-      "data1": "dsfdsfd",
-      "data2": "",
-      "source": "dsfds",
-      "author": "",
-      "language": "actionscript",
-      "createdBy": "",
-      "createdAt": "2022-07-29T23:37:48.0241039+05:30",
-      "updatedBy": "",
-      "updatedAt": "2022-07-29T23:37:48.024106+05:30"
-    },
-    {
-      "id": "0f31858b-ffc4-423b-aaf6-4a5f9e80b5e15",
-      "title": "",
-      "type": 4,
-      "data1": "cxcvcxvxc",
-      "data2": "",
-      "source": "",
-      "author": "",
-      "language": "",
-      "createdBy": "",
-      "createdAt": "2022-07-29T23:38:52.0626624+05:30",
-      "updatedBy": "",
-      "updatedAt": "2022-07-29T23:38:52.0626651+05:30"
     }
   ]
 }
