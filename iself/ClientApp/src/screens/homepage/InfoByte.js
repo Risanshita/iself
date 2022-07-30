@@ -1,10 +1,10 @@
-import { Button, Row } from "antd";
+import { Row } from "antd";
 import AnimatedText from "react-animated-text-content";
 
 const InfoByte = ({ post }) => {
   return (
     <Row
-      style={{ height: "100%" }}
+      style={{ height: "100%", overflowX: "hidden" }}
       justify="center"
       align="middle"
       className="info-byte-page"
@@ -26,7 +26,7 @@ const InfoByte = ({ post }) => {
         threshold={0.1}
         rootMargin="20%"
       >
-        {post.data1 + post.data1}
+        {post.data1}
       </AnimatedText>
       {/* <Button
         onClick={() => {
