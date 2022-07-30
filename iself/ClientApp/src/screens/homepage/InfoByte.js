@@ -1,4 +1,4 @@
-import { Button, Row } from "antd";
+import { Row } from "antd";
 import AnimatedText from "react-animated-text-content";
 
 const InfoByte = ({ post }) => {
@@ -26,7 +26,7 @@ const InfoByte = ({ post }) => {
         threshold={0.1}
         rootMargin="20%"
       >
-        {post.data1 + post.data1}
+        {post.data1}
       </AnimatedText>
       {/* <Button
         onClick={() => {

@@ -7,12 +7,26 @@ import Profile from "../profile/profile";
 function Demo() {
   const { state, actions } = useContext(PostContext);
   const [isInitialLoad, setInitialLoad] = useState(true);
-  const { loadData, deletePost } = actions.post;
+  const { loadData, deletePost, nextPost } = actions.post;
   const { currentPost, posts } = state.post;
+
+  const startAnimation = () => {
+    if (!posts || posts.length === 0) {
+      setTimeout(() => { 
+        startAnimation();
+      }, 1000);
+    } else
+      setTimeout(() => {
+        console.log(currentPost);
+        console.log(posts);
+        nextPost();
+      }, 5000);
+  };
 
   if (isInitialLoad) {
     loadData();
     setInitialLoad(false);
+    startAnimation();
   }
 
   const menu = (post) => {
@@ -98,7 +112,7 @@ function Demo() {
           </Row>
         </Col>
       ))}
-      {posts.length == 0 && <Col span={4}>No post</Col>}
+      {posts.length === 0 && <Col span={4}>No post</Col>}
     </Row>
   );
 }

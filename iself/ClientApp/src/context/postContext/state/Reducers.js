@@ -2,7 +2,8 @@ const initialState = {
   theme: "light",
   posts: [],
   loading: false,
-  currentPost: {},
+  currentPost: undefined,
+  postIndex: undefined,
 };
 
 const types = {
@@ -28,7 +29,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         posts: action.payload,
-        currentPost: action.payload.length > 0 ? action.payload[0] : {},
         loading: false,
       };
     case types.SET_CURRENT_POST:

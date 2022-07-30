@@ -6,7 +6,7 @@ export const useActions = (state, dispatch) => {
     createdBy = "",
     q = "",
     type = "",
-    take = 50,
+    take = 100,
     skip = 0
   ) {
     var res = await fetch(
@@ -21,13 +21,13 @@ export const useActions = (state, dispatch) => {
       });
   }
 
-  const start = () => {
-    const { posts, currentPost } = state.home;
-    if (Array.isArray(posts)) {
+  const nextPost = () => {
+    const { currentPost, posts } = state.post;
+    if (Array.isArray(posts) && posts.length > 0) {
       var currentIndex = currentPost
-        ? posts.findIndex((a) => a.id == currentPost.id) + 1
+        ? posts.findIndex((a) => a.id === currentPost.id) + 1
         : 0;
-      if (currentIndex < posts.length - 1) {
+      if (!(currentIndex < posts.length)) {
         currentIndex = 0;
       }
       dispatch({
@@ -36,6 +36,7 @@ export const useActions = (state, dispatch) => {
       });
     }
   };
+
   async function createPost(post, callback) {
     dispatch({
       type: types.START_LOADING,
@@ -84,7 +85,7 @@ export const useActions = (state, dispatch) => {
   }
   return {
     loadData,
-    start,
+    nextPost,
     deletePost,
     createPost,
   };

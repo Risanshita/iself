@@ -1,19 +1,22 @@
 import React, { useReducer } from "react";
-import { reducer, initialState } from "./state/Reducers";
+import {
+  reducer as postReducer,
+  initialState as postInitialState,
+} from "./state/Reducers";
 
-import { useActions } from "./state/Actions";
+import { useActions as postActions } from "./state/Actions";
 import { useCombinedReducer } from "../../utils/CombineReducer";
 
 const PostContext = React.createContext();
 
 const PostProvider = ({ children }) => {
   const [state, dispatch] = useCombinedReducer({
-    post: useReducer(reducer, initialState),
+    post: useReducer(postReducer, postInitialState),
   });
 
   //Get action from useActions and pass it to context
   const actions = {
-    post: useActions(state, dispatch),
+    post: postActions(state, dispatch),
   };
 
   return (
