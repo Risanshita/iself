@@ -11,7 +11,7 @@ const onFinishFailed = (errorInfo) => {
 const Paraphrase = ({ post }) => {
   return (
     <Row
-      style={{ height: "100%" }}
+      style={{ height: "100%", overflowX: "hidden" }}
       justify="center"
       align="middle"
       className="info-byte-page"

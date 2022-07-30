@@ -5,7 +5,7 @@ export const useActions = (state, dispatch) => {
     createdBy = "",
     q = "",
     type = "",
-    take = 50,
+    take = 100,
     skip = 0
   ) {
     var res = await fetch(
@@ -20,11 +20,11 @@ export const useActions = (state, dispatch) => {
       });
   }
 
-  const start = () => {
-    const { posts, currentPost } = state.home;
+  const start = (posts) => {
+    const { currentPost } = state.home;
     if (Array.isArray(posts)) {
       var currentIndex = currentPost
-        ? posts.findIndex((a) => a.id == currentPost.id) + 1
+        ? posts.findIndex((a) => a.id === currentPost.id) + 1
         : 0;
       if (currentIndex < posts.length - 1) {
         currentIndex = 0;

@@ -1,5 +1,5 @@
 import { Col, Row } from "antd";
-import React, { Component, useContext, useState } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import CodeTip from "./CodeTip";
 import InfoByte from "./InfoByte";
 import Paraphrase from "./Paraphrase";
@@ -11,19 +11,13 @@ export const HomePage = () => {
   const { currentPost, posts } = state.home;
   const [isInitialLoad, setInitialLoad] = useState(true);
 
-  const startAnimation = () => {
-    setTimeout(() => {
-      // start();
-      loadData();
-      startAnimation();
-    }, 10000);
-  };
-
   if (isInitialLoad) {
     loadData();
     setInitialLoad(false);
-    startAnimation();
   }
+  useEffect(() => {
+    start(posts);
+  }, [posts, start]);
 
   return (
     <Row style={{ height: "100%" }}>
