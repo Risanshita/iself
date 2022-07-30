@@ -75,7 +75,6 @@ function Profile() {
         }}
       >
         <span className="edit-button">
-          {" "}
           <Button type="primary" icon={<EditOutlined />} size={size} />{" "}
         </span>
         <Col align="center" justify="middle" style={{ borderRadius: "50%" }}>
