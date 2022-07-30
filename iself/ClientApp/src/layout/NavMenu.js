@@ -12,7 +12,7 @@ import {
   InfoCircleOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
-import { AccountContext } from "../accountContext";
+import { AccountContext } from "../context/accountContext";
 const { Header } = Layout;
 
 const NavMenu = () => {

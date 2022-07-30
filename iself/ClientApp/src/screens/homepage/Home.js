@@ -1,14 +1,14 @@
 import { Col, Row } from "antd";
+import React, { useContext, useState } from "react";
+import { PostContext } from "../../context/postContext";
 import React, { Component, useContext, useEffect, useState } from "react";
 import CodeTip from "./CodeTip";
 import InfoByte from "./InfoByte";
-import Paraphrase from "./Paraphrase";
-import { HomeContext } from "./state";
 
 export const HomePage = () => {
-  const { state, actions } = useContext(HomeContext);
-  const { loadData, start } = actions.home;
-  const { currentPost, posts } = state.home;
+  const { state, actions } = useContext(PostContext);
+  const { loadData, start } = actions.post;
+  const { currentPost, posts } = state.post;
   const [isInitialLoad, setInitialLoad] = useState(true);
 
   if (isInitialLoad) {

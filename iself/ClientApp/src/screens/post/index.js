@@ -1,7 +1,7 @@
 import { Row } from "antd";
 import React, { Component } from "react";
+import { PostProvider } from "../../context/postContext";
 import PostNew from "./post";
-import { PostProvider } from "./state";
 
 const PostScreen = () => {
   return (

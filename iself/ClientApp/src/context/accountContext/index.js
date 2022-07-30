@@ -1,11 +1,11 @@
 import React, { useReducer } from "react";
-import { useCombinedReducer } from "../utils/CombineReducer";
 import {
   reducer as accountReducer,
   initialState as accountInitialState,
 } from "./state/Reducers";
 
 import { useActions as accountActions } from "./state/Actions";
+import { useCombinedReducer } from "../../utils/CombineReducer";
 
 const AccountContext = React.createContext();
 

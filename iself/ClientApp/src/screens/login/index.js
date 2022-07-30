@@ -3,8 +3,8 @@ import { Button, Col, Form, Image, Row } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import Input, { InputPassword } from "../../components/Input";
-import { AccountContext } from "../../accountContext";
 import image from "../../assets/images/login-image.png";
+import { AccountContext } from "../../context/accountContext";
 import "./Style.css";
 
 const Login = () => {
@@ -63,7 +63,12 @@ const Login = () => {
           </Row>
         </Col>
         <Col className="login-form" xs={24} sm={24} md={12} lg={12} xl={12}>
-          <Row className="form-body" justify="center" align="middle" style={{ height: "100%" }}>
+          <Row
+            className="form-body"
+            justify="center"
+            align="middle"
+            style={{ height: "100%" }}
+          >
             <Col xs={22} sm={22} md={20} lg={18} xl={18}>
               <div className="specing" style={{ padding: "0 10px" }}>
                 <div style={{ fontSize: 30 }}>Log In</div>
