@@ -69,6 +69,20 @@
       "createdAt": "2022-07-30T16:25:08.5025414+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-30T16:25:08.5025433+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d13",
+      "title": "",
+      "type": 1,
+      "data1": "The shortest distance between two points is straight line.",
+      "data2": "The shortest distance between two points is a straight line.",
+      "source": "brainyquote",
+      "author": "Archimedes",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-31T00:21:38.909645+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-31T00:21:38.9099449+05:30"
     }
   ]
 }

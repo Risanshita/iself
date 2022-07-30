@@ -33,17 +33,17 @@ namespace iself.Data.Repositories
         public List<Post> GetPostByOwner(string createdBy, int take = 20, int skip = 0)
         {
             return _collection
-                    .AsQueryable().Where(a => a.CreatedBy == createdBy).Skip(skip).Take(take).ToList();
+                    .AsQueryable().OrderByDescending(a => a.UpdatedAt).Where(a => a.CreatedBy == createdBy).Skip(skip).Take(take).ToList();
         }
 
         public List<Post> GetPostByType(PostType type, string? createdBy = null, int take = 20, int skip = 0)
         {
             if (string.IsNullOrWhiteSpace(createdBy))
                 return _collection
-                        .AsQueryable().Where(a => a.Type == type).Skip(skip).Take(take).ToList();
+                        .AsQueryable().Where(a => a.Type == type).OrderByDescending(a => a.UpdatedAt).Skip(skip).Take(take).ToList();
 
             return _collection
-                    .AsQueryable().Where(a => a.Type == type && a.CreatedBy == createdBy).Skip(skip).Take(take).ToList();
+                    .AsQueryable().Where(a => a.Type == type && a.CreatedBy == createdBy).OrderByDescending(a => a.UpdatedAt).Skip(skip).Take(take).ToList();
         }
 
         public List<Post> GetPosts(string query, string? createdBy, int take = 20, int skip = 0)
@@ -52,8 +52,8 @@ namespace iself.Data.Repositories
             {
                 if (!string.IsNullOrWhiteSpace(createdBy))
                     return _collection
-                    .AsQueryable().Where(a => a.CreatedBy == createdBy).Skip(skip).Take(take).ToList();
-                return _collection.AsQueryable().Skip(skip).Take(take).ToList();
+                    .AsQueryable().Where(a => a.CreatedBy == createdBy).OrderByDescending(a => a.UpdatedAt).OrderByDescending(a => a.UpdatedAt).Skip(skip).Take(take).ToList();
+                return _collection.AsQueryable().OrderByDescending(a => a.UpdatedAt).Skip(skip).Take(take).ToList();
             }
 
             return !string.IsNullOrWhiteSpace(createdBy) ?
@@ -64,14 +64,16 @@ namespace iself.Data.Repositories
                     || a.Title.ToLower().Contains(query)
                     || a.Author.ToLower().Contains(query)
                     || a.Data1.ToLower().Contains(query)
-                    || a.Data2.ToLower().Contains(query))).Skip(skip).Take(take).ToList() :
+                    || a.Data2.ToLower().Contains(query)))
+                .OrderByDescending(a => a.UpdatedAt).Skip(skip).Take(take).ToList() :
                     _collection.AsQueryable().Where(a => a.Language.ToLower() == query
                     || a.Type.ToString().ToLower() == query
                     || a.Source.ToLower().Contains(query)
                     || a.Title.ToLower().Contains(query)
                     || a.Author.ToLower().Contains(query)
                     || a.Data1.ToLower().Contains(query)
-                    || a.Data2.ToLower().Contains(query)).Skip(skip).Take(take).ToList();
+                    || a.Data2.ToLower().Contains(query))
+                .OrderByDescending(a => a.UpdatedAt).Skip(skip).Take(take).ToList();
         }
 
         public async Task<bool> UpdatePostAsync(string id, PostUpdateRequest post)
