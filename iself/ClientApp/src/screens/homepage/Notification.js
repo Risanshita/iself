@@ -48,6 +48,12 @@ const Notification = ({ post }) => {
       align="middle"
       className="info-byte-page"
     >
+      <Row justify="center" align="top">
+        <NotificationOutlined
+          style={{ paddingRight: "10px", fontSize: "24px" }}
+        />
+        <h5>Notification</h5>
+      </Row>
       <Row
         style={{
           height: "50%",
@@ -57,13 +63,6 @@ const Notification = ({ post }) => {
         justify="center"
         align="top"
       >
-        <Row justify="center" align="top">
-          <NotificationOutlined
-            style={{ paddingRight: "10px", fontSize: "24px" }}
-          />
-          <h5>Notification</h5>
-        </Row>
-
         <Textfit
           mode="multi"
           autoResize={true}
