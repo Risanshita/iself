@@ -73,44 +73,16 @@
     {
       "id": "007f0782-fd63-45a7-acda-df95562ea5d13",
       "title": "",
-      "type": 3,
-      "data1": "\"You might not think that programmers are artists, but programming is an extremely creative profession. It's logic-based creativity.”",
-      "data2": "",
-      "source": "learnpick.in",
-      "author": "John Romero",
-      "language": "",
-      "createdBy": "",
-      "createdAt": "2022-07-30T21:07:46.2768551+05:30",
-      "updatedBy": "",
-      "updatedAt": "2022-07-30T21:07:46.2768586+05:30"
-    },
-    {
-      "id": "007f0782-fd63-45a7-acda-df95562ea5d14",
-      "title": "dsfsdf",
-      "type": 2,
-      "data1": "sfsfsd",
-      "data2": "",
-      "source": "sdfsdf",
-      "author": "",
-      "language": "actionscript",
-      "createdBy": "",
-      "createdAt": "2022-07-30T21:10:28.1050144+05:30",
-      "updatedBy": "",
-      "updatedAt": "2022-07-30T21:10:28.1050161+05:30"
-    },
-    {
-      "id": "007f0782-fd63-45a7-acda-df95562ea5d15",
-      "title": "",
       "type": 1,
-      "data1": "sdfdsf",
-      "data2": "",
-      "source": "sdfsdf",
-      "author": "sfsdfsdf",
+      "data1": "The shortest distance between two points is straight line.",
+      "data2": "The shortest distance between two points is a straight line.",
+      "source": "brainyquote",
+      "author": "Archimedes",
       "language": "",
       "createdBy": "",
-      "createdAt": "2022-07-30T21:15:14.0876659+05:30",
+      "createdAt": "2022-07-31T00:21:38.909645+05:30",
       "updatedBy": "",
-      "updatedAt": "2022-07-30T21:15:14.0876718+05:30"
+      "updatedAt": "2022-07-31T00:21:38.9099449+05:30"
     }
   ]
 }
