@@ -139,6 +139,20 @@
       "createdAt": "2022-07-31T22:44:11.2811985+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-31T22:44:11.2812002+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d22",
+      "title": "",
+      "type": 4,
+      "data1": "New version of logger has been released!",
+      "data2": "",
+      "source": "",
+      "author": "",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-31T23:45:56.3845413+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-31T23:45:56.3845446+05:30"
     }
   ]
 }
