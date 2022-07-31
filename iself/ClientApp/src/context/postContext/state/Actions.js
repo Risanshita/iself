@@ -22,14 +22,29 @@ export const useActions = (state, dispatch) => {
   }
 
   const nextPost = () => {
+    changePost();
+  };
+
+  const previousPost = () => {
+    changePost(true);
+  };
+
+  const changePost = (isPrevious = false) => {
     const { currentPost, posts } = state.post;
     if (Array.isArray(posts) && posts.length > 0) {
       var currentIndex = currentPost
-        ? posts.findIndex((a) => a.id === currentPost.id) + 1
+        ? posts.findIndex((a) => a.id === currentPost.id) +
+          (!isPrevious ? 1 : -1)
         : 0;
-      if (!(currentIndex < posts.length)) {
+
+      if (!isPrevious && !(currentIndex < posts.length)) {
         currentIndex = 0;
       }
+
+      if (isPrevious && currentIndex < 0) {
+        currentIndex = posts.length - 1;
+      }
+
       dispatch({
         type: types.SET_CURRENT_POST,
         payload: posts[currentIndex],
@@ -88,5 +103,6 @@ export const useActions = (state, dispatch) => {
     nextPost,
     deletePost,
     createPost,
+    previousPost,
   };
 };
