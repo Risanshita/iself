@@ -59,7 +59,7 @@
     {
       "id": "007f0782-fd63-45a7-acda-df95562ea5d12",
       "title": "",
-      "type": 0,
+      "type":4,
       "data1": "A woman of the world is anxious to exhibit her form and shape, whether walking, standing, sitting, or sleeping. Even when represented as a picture, she desires to captivate with the charms of her beauty and, thus, rob men of their steadfast hearts.",
       "data2": "",
       "source": "brainyquote",
@@ -69,6 +69,48 @@
       "createdAt": "2022-07-30T16:25:08.5025414+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-30T16:25:08.5025433+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d13",
+      "title": "",
+      "type": 3,
+      "data1": "\"You might not think that programmers are artists, but programming is an extremely creative profession. It's logic-based creativity.”",
+      "data2": "",
+      "source": "learnpick.in",
+      "author": "John Romero",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-30T21:07:46.2768551+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-30T21:07:46.2768586+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d14",
+      "title": "dsfsdf",
+      "type": 2,
+      "data1": "sfsfsd",
+      "data2": "",
+      "source": "sdfsdf",
+      "author": "",
+      "language": "actionscript",
+      "createdBy": "",
+      "createdAt": "2022-07-30T21:10:28.1050144+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-30T21:10:28.1050161+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d15",
+      "title": "",
+      "type": 1,
+      "data1": "sdfdsf",
+      "data2": "",
+      "source": "sdfsdf",
+      "author": "sfsdfsdf",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-30T21:15:14.0876659+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-30T21:15:14.0876718+05:30"
     }
   ]
 }

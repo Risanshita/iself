@@ -4,12 +4,12 @@ import { Dropdown, Menu, Space } from "antd";
 import { PostContext } from "../../context/postContext";
 import { useContext, useState } from "react";
 import ProfileHeader from "./profilehead";
+import "./style.css";
 function Profile() {
   const { state, actions } = useContext(PostContext);
   const [isInitialLoad, setInitialLoad] = useState(true);
   const { loadData, deletePost } = actions.post;
   const { posts } = state.post;
-
 
   if (isInitialLoad) {
     loadData();
@@ -101,14 +101,15 @@ function Profile() {
                   {a.data1}
                 </Row>
 
-                <span className="post-info by1">{a.createdBy}</span>
-                <span className="post-info source">
-                  <div className="source1">{a.source}</div>
-                  <div className="author1">{a.author}</div>
-                </span>
-                <span className="post-info by1">
+                <span className="post-info createdby">{a.createdBy}</span>
+                <div className="post-info source">{a.source}</div>
+                <div className="post-info author">{a.author}</div>
+                <span className="post-info langugae">
                   {/* <span className="language-circle"></span> */}
-                  {a.language}
+                  <Row justify="start" align="middle">
+                    {a.language ? <div className="circle"></div> : ""}
+                    {a.language}
+                  </Row>
                 </span>
               </Col>
             </Row>
