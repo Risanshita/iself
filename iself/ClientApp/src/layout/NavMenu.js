@@ -118,9 +118,14 @@ const NavMenu = () => {
           </Row>
         </Col>
         <Col>
-          <Row align="middle">
+          <Row align="middle" justify="center">
             {login && (
-              <NavLink to="/post" className="custom-primary-button" tag={Link}>
+              <NavLink
+                to="/post"
+                className="custom-primary-button"
+                tag={Link}
+                style={{ backgroundColor: "#FFB800" }}
+              >
                 <PlusOutlined />
                 <div className="menu-label">POST</div>
               </NavLink>

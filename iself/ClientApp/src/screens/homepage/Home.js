@@ -5,6 +5,7 @@ import { PostTypes } from "../post/post";
 import CodeRefactor from "./CodeRefactor";
 import CodeTip from "./CodeTip";
 import InfoByte from "./InfoByte";
+import Notification from "./Notification";
 import Paraphrase from "./Paraphrase";
 
 export const HomePage = () => {
@@ -59,7 +60,9 @@ export const HomePage = () => {
             <CodeTip post={currentPost} />
           )}
           {currentPost.type === PostTypes.refactor && (
-            <CodeRefactor post={currentPost} />
+            <CodeRefactor post={currentPost} />)}
+          {currentPost.type === PostTypes.notification && (
+            <Notification post={currentPost} />
           )}
         </Col>
       )}

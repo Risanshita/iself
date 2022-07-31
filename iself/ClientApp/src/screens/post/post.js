@@ -319,7 +319,14 @@ function Post({ type, onChangeType }) {
                 {isData2Visible && (
                   <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                     <Form.Item>
-                      <Button type="primary" style={{ width: "100%" }}>
+                      <Button
+                        type="primary"
+                        style={{
+                          width: "100%",
+                          backgroundColor: "#FFB800",
+                          border: "none",
+                        }}
+                      >
                         Preview
                       </Button>
                     </Form.Item>
