@@ -4,6 +4,7 @@ import { PostContext } from "../../context/postContext";
 import { PostTypes } from "../post/post";
 import CodeTip from "./CodeTip";
 import InfoByte from "./InfoByte";
+import Notification from "./Notification";
 import Paraphrase from "./Paraphrase";
 
 export const HomePage = () => {
@@ -40,6 +41,9 @@ export const HomePage = () => {
           )}
           {currentPost.type === PostTypes.codeTip && (
             <CodeTip post={currentPost} />
+          )}
+          {currentPost.type === PostTypes.notification && (
+            <Notification post={currentPost} />
           )}
         </Col>
       )}

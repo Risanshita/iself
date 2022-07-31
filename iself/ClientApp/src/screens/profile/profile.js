@@ -5,6 +5,7 @@ import { PostContext } from "../../context/postContext";
 import { useContext, useState } from "react";
 import ProfileHeader from "./profilehead";
 import "./style.css";
+import PostList from "../post/postList";
 function Profile() {
   const { state, actions } = useContext(PostContext);
   const [isInitialLoad, setInitialLoad] = useState(true);
@@ -16,24 +17,6 @@ function Profile() {
     setInitialLoad(false);
   }
 
-  const menu = (post) => {
-    return (
-      <Menu
-        style={{ borderRadius: "5px", backgroundColor: "#3E3F47" }}
-        items={[
-          {
-            key: "1",
-            label: <DeleteOutlined />,
-            onClick: () => {
-              deletePost(post, () => {
-                loadData();
-              });
-            },
-          },
-        ]}
-      />
-    );
-  };
 
   return (
     <Row
@@ -54,67 +37,7 @@ function Profile() {
       >
         <Col style={{ padding: "10px" }}>Your Posts</Col>
       </Row>
-      <Row style={{ width: "100%" }}>
-        {posts.map((a) => (
-          <Col
-            xs={12}
-            sm={12}
-            md={8}
-            lg={6}
-            xl={6}
-            style={{ height: 248, padding: 7 }}
-          >
-            <Row
-              style={{
-                padding: "10px",
-                height: "100%",
-                backgroundColor: "#3E3F47",
-                borderRadius: 5,
-              }}
-            >
-              <Col span={24} style={{ height: "100%" }}>
-                <Row justify="space-between">
-                  <Col>{a.type}</Col>
-                  <Col>
-                    <Dropdown overlay={menu(a)} placement="bottomRight">
-                      <Space>
-                        <MoreOutlined style={{ color: "white" }} />
-                      </Space>
-                    </Dropdown>
-                  </Col>
-                </Row>
-                {/* <span className="post-info post-type"></span>
-                <span className="post-info more-option"></span> */}
-                <Row
-                  className="post-data"
-                  align="middle"
-                  justify="center"
-                  style={{
-                    height: "80%",
-                    padding: "10px 0px",
-                    fontSize: "20px",
-                    overflowY: "auto",
-                  }}
-                >
-                  {a.data1}
-                </Row>
-
-                <span className="post-info createdby">{a.createdBy}</span>
-                <div className="post-info source">{a.source}</div>
-                <div className="post-info author">{a.author}</div>
-                <span className="post-info langugae">
-                  {/* <span className="language-circle"></span> */}
-                  <Row justify="start" align="middle">
-                    {a.language ? <div className="circle"></div> : ""}
-                    {a.language}
-                  </Row>
-                </span>
-              </Col>
-            </Row>
-          </Col>
-        ))}
-        {posts.length == 0 && <Col span={4}>No post</Col>}
-      </Row>
+      <PostList posts={posts} />
     </Row>
   );
 }
