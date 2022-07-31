@@ -60,7 +60,8 @@ export const HomePage = () => {
             <CodeTip post={currentPost} />
           )}
           {currentPost.type === PostTypes.refactor && (
-            <CodeRefactor post={currentPost} />)}
+            <CodeRefactor post={currentPost} />
+          )}
           {currentPost.type === PostTypes.notification && (
             <Notification post={currentPost} />
           )}
