@@ -3,7 +3,15 @@ import React, { useContext, useEffect, useState } from "react";
 import { NavItem, NavLink } from "reactstrap";
 import { Link, useLocation } from "react-router-dom";
 import { Col, Layout, Image, Row } from "antd";
-import person from "../assets/images/person.png";
+import code from "../assets/images/code.png";
+import browse from "../assets/images/browse.png";
+import home from "../assets/images/home.png";
+import eye from "../assets/images/eye.png";
+import add from "../assets/images/add.png";
+// import code from "../assets/images/infobyte.png";
+import infobyte from "../assets/images/infobyte.png";
+import refactor from "../assets/images/refactor.png";
+import signout from "../assets/images/signout.png";
 import {
   SmileOutlined,
   HomeOutlined,
@@ -38,7 +46,8 @@ const NavMenu = () => {
       link: "/",
       label: (
         <NavLink tag={Link} to="/">
-          <HomeOutlined />
+          {/* <HomeOutlined /> */}
+          <Image width={17} preview={false} src={home} />
           <span className="menu-label">Home</span>
         </NavLink>
       ),
@@ -47,7 +56,7 @@ const NavMenu = () => {
       link: "/line",
       label: (
         <NavLink tag={Link} to="/line">
-          <InfoCircleOutlined />
+          <Image width={17} preview={false} src={infobyte} />
           <span className="menu-label">Line</span>
         </NavLink>
       ),
@@ -56,7 +65,7 @@ const NavMenu = () => {
       link: "/paraphrase",
       label: (
         <NavLink tag={Link} to="/counter">
-          <IssuesCloseOutlined />
+          <Image width={17} preview={false} src={home} />
           <span className="menu-label">Paraphrase</span>
         </NavLink>
       ),
@@ -65,8 +74,26 @@ const NavMenu = () => {
       link: "/fetch-data",
       label: (
         <NavLink tag={Link} to="/fetch-data">
-          <ProfileOutlined />
+          <Image width={17} preview={false} src={code} />
           <span className="menu-label">Code</span>
+        </NavLink>
+      ),
+    },
+    {
+      link: "/fetch-data",
+      label: (
+        <NavLink tag={Link} to="/fetch-data">
+          <Image width={17} preview={false} src={refactor} />
+          <span className="menu-label">Refactor</span>
+        </NavLink>
+      ),
+    },
+    {
+      link: "/fetch-data",
+      label: (
+        <NavLink tag={Link} to="/fetch-data">
+          <Image width={17} preview={false} src={browse} />
+          <span className="menu-label">Browse</span>
         </NavLink>
       ),
     },
@@ -100,8 +127,15 @@ const NavMenu = () => {
       }}
       key="header"
     >
-      <Row style={{ height: "100%" }} align="middle" justify="space-between">
-        <Col className="logo">ISELF</Col>
+      <Row
+        style={{ height: "100%", padding: "0px 10px" }}
+        align="middle"
+        justify="space-between"
+      >
+        <Row justify="center" align="middle">
+          <Image width={30} preview={false} src={eye} />
+          <Col className="logo">ISELF</Col>
+        </Row>
 
         <Col>
           <Row className="menu-list" align="middle">
@@ -126,7 +160,7 @@ const NavMenu = () => {
                 tag={Link}
                 style={{ backgroundColor: "#FFB800" }}
               >
-                <PlusOutlined />
+                <Image width={17} preview={false} src={add} />
                 <div className="menu-label">POST</div>
               </NavLink>
             )}
@@ -154,8 +188,10 @@ const NavMenu = () => {
             }
             {!login && (
               <NavLink tag={Link} to="/login">
-                <LoginOutlined />
-                <span className="menu-label">Login</span>
+                <Row justify="center" align="middle">
+                  <Image width={17} preview={false} src={signout} />
+                  <span className="menu-label">Login</span>
+                </Row>
               </NavLink>
             )}
           </Row>

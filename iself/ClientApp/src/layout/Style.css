@@ -33,7 +33,10 @@
   float: left;
   width: 50px;
   height: 100%;
-  color: white;
+  color: #ffb800;
+  font-size: 30px;
+  font-weight: 700;
+  margin-left: 10px;
 }
 .ant-layout .header .menu-label {
   display: none;
@@ -58,6 +61,8 @@
   .ant-layout .header .menu-label {
     display: inline-flex;
     margin-left: 3px;
+    padding-left: 2px;
+    font-weight: 500;
   }
   .ant-layout .header .logo {
     width: 120px;
