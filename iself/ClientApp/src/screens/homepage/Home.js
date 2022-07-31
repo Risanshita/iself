@@ -2,6 +2,7 @@ import { Col, Row } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { PostContext } from "../../context/postContext";
 import { PostTypes } from "../post/post";
+import CodeTip from "./CodeTip";
 import InfoByte from "./InfoByte";
 import Paraphrase from "./Paraphrase";
 
@@ -31,11 +32,14 @@ export const HomePage = () => {
     <Row style={{ height: "100%" }} className="prevent-select">
       {currentPost && (
         <Col span={24} style={{ height: "100%", padding: 20 }}>
-           {currentPost.type === PostTypes.infoByte && (
+          {currentPost.type === PostTypes.infoByte && (
             <InfoByte post={currentPost} />
-          )} 
+          )}
           {currentPost.type === PostTypes.paraphase && (
             <Paraphrase post={currentPost} />
+          )}
+          {currentPost.type === PostTypes.codeTip && (
+            <CodeTip post={currentPost} />
           )}
         </Col>
       )}
