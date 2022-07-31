@@ -90,7 +90,6 @@ export default class TextFit extends React.Component {
 
     const originalWidth = innerWidth(el);
     const originalHeight = innerHeight(el);
-
     if (originalHeight <= 0 || isNaN(originalHeight)) {
       console.warn(
         "Can not process element without height. Make sure the element is displayed and has a static height."
@@ -210,9 +209,15 @@ export default class TextFit extends React.Component {
       /* eslint-enable no-shadow */
       autoResize,
       onReady,
+      callback,
+      currentFontSize,
+      visible,
       ...props
     } = this.props;
     const { fontSize, ready } = this.state;
+    if (currentFontSize !== fontSize) {
+      callback(fontSize);
+    }
     const finalStyle = {
       ...style,
       fontSize: fontSize,
@@ -220,8 +225,6 @@ export default class TextFit extends React.Component {
 
     const wrapperStyle = {
       display: ready ? "block" : "inline-block",
-      height: "100%",
-      width: "100%",
     };
     if (mode === "single") wrapperStyle.whiteSpace = "nowrap";
 

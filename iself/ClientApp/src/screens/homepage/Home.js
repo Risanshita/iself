@@ -31,22 +31,10 @@ export const HomePage = () => {
     <Row style={{ height: "100%" }} className="prevent-select">
       {currentPost && (
         <Col span={24} style={{ height: "100%", padding: 20 }}>
-          <Textfit
-            mode="multi"
-            style={{ height: "100%", width: "100%" }}
-            max={500}
-            onReady={() => setReady(true)}
-          >
-            <InfoByte post={currentPost} />
-          </Textfit>
-          <span className="post-info by">{currentPost.createdBy}</span>
-          <span className="post-info source">
-            <div className=" author">{currentPost.source}</div>
-            <div className=" author">{currentPost.author}</div>
-          </span>
+          <InfoByte post={currentPost} />
         </Col>
       )}
-      {currentPost && <Col>No post available</Col>}
+      {!currentPost && <Col>No post available</Col>}
     </Row>
   );
 };
