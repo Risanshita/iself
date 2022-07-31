@@ -59,7 +59,7 @@
     {
       "id": "007f0782-fd63-45a7-acda-df95562ea5d12",
       "title": "",
-      "type":4,
+      "type": 4,
       "data1": "A woman of the world is anxious to exhibit her form and shape, whether walking, standing, sitting, or sleeping. Even when represented as a picture, she desires to captivate with the charms of her beauty and, thus, rob men of their steadfast hearts.",
       "data2": "",
       "source": "brainyquote",
@@ -97,6 +97,34 @@
       "createdAt": "2022-07-31T16:58:16.6177151+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-31T16:58:16.6183173+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d15",
+      "title": "",
+      "type": 1,
+      "data1": "Give me a lever long enough and a fulcrum on which to place it, and I shall move the world.",
+      "data2": "Give me a lever long enough and a fulcrum on which to place it, and I shall move the world.",
+      "source": "Google",
+      "author": "Google",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-31T18:01:14.5166573+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-31T18:01:14.5168508+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d16",
+      "title": "",
+      "type": 1,
+      "data1": "A woman of the world is anxious to exhibit her form and shape, whether walking, standing, sitting, or sleeping. Even when represented as a picture, she desires to captivate with the charms of her beauty and, thus, rob men of their steadfast hearts.",
+      "data2": "A woman of the world is anxious to exhibit her form and shape, whether walking, standing, sitting, or sleeping. Even when represented as a picture, she desires to captivate with the charms of her beauty and, thus, rob men of their steadfast hearts.",
+      "source": "GOOGLE",
+      "author": "GOOGLE",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-31T18:01:51.3187653+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-31T18:01:51.3187665+05:30"
     }
   ]
 }

@@ -1,15 +1,15 @@
 import { Col, Row } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { PostContext } from "../../context/postContext";
-import Textfit from "../../utils/Textfit";
+import { PostTypes } from "../post/post";
 import InfoByte from "./InfoByte";
+import Paraphrase from "./Paraphrase";
 
 export const HomePage = () => {
   const { state, actions } = useContext(PostContext);
   const { loadData, nextPost } = actions.post;
   const { currentPost, posts } = state.post;
   const [isInitialLoad, setInitialLoad] = useState(true);
-  const [isReady, setReady] = useState(false);
 
   useEffect(() => {
     setTimeout(
@@ -31,7 +31,12 @@ export const HomePage = () => {
     <Row style={{ height: "100%" }} className="prevent-select">
       {currentPost && (
         <Col span={24} style={{ height: "100%", padding: 20 }}>
-          <InfoByte post={currentPost} />
+           {currentPost.type === PostTypes.infoByte && (
+            <InfoByte post={currentPost} />
+          )} 
+          {currentPost.type === PostTypes.paraphase && (
+            <Paraphrase post={currentPost} />
+          )}
         </Col>
       )}
       {!currentPost && <Col>No post available</Col>}

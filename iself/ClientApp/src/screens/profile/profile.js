@@ -76,12 +76,10 @@ function Profile() {
                 <Row justify="space-between">
                   <Col>{a.type}</Col>
                   <Col>
-                    <Dropdown overlay={menu(a)}>
-                      <a /*onClick={onFinish}*/>
-                        <Space>
-                          <MoreOutlined style={{ color: "white" }} />
-                        </Space>
-                      </a>
+                    <Dropdown overlay={menu(a)} placement="bottomRight">
+                      <Space>
+                        <MoreOutlined style={{ color: "white" }} />
+                      </Space>
                     </Dropdown>
                   </Col>
                 </Row>

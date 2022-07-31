@@ -1,57 +1,103 @@
-import { Row, Col } from "antd";
+import { Row } from "antd";
+import { useEffect, useState } from "react";
 import AnimatedText from "react-animated-text-content";
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
-
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
+import Textfit from "../../utils/Textfit";
 
 const Paraphrase = ({ post }) => {
+  const [fontSize, setFontSize] = useState(0);
+  const [isReady, setReady] = useState(false);
+
+  useEffect(() => {
+    setReady(false);
+    setFontSize(0);
+  }, [post]);
+
   return (
     <Row
-      style={{ height: "100%", overflowX: "hidden" }}
+      style={{
+        height: "100%",
+        width: "100%",
+        overflowX: "hidden",
+      }}
       justify="center"
       align="middle"
       className="info-byte-page"
     >
-      <Col>
-        <Row
-          className="praphrase-text"
-          justify="center"
-          style={{ marginBottom: 50 }}
+      <Row
+        style={{
+          height: "50%",
+          width: "100%",
+          overflowX: "hidden",
+        }}
+        justify="center"
+        align="top"
+        className="praphrase-text"
+      >
+        <Textfit
+          mode="multi"
+          autoResize={true}
+          max={800}
+          forceSingleModeWidth={false} 
+          style={{ height: "100%", width: "100%" }} 
         >
           {post.data1}
-        </Row>
-        <AnimatedText
-          type="words" // animate words or chars
-          animation={{
-            x: "200px",
-            y: "-20px",
-            scale: 1.1,
-            ease: "ease-in-out",
-          }}
-          animationType="float"
-          interval={0.06}
-          duration={0.8}
-          tag="p"
-          className="animated-paragraph"
-          includeWhiteSpaces
-          threshold={0.1}
-          rootMargin="20%"
-        >
-          {post.data1 + post.data1}
-        </AnimatedText>
-      </Col>
-
-      {/* <Button
-        onClick={() => {
-          document.getElementById("app_body").requestFullscreen();
+        </Textfit>
+      </Row>
+      <Row
+        style={{
+          height: "50%",
+          width: "100%",
+          overflowX: "hidden",
+          fontSize: fontSize,
         }}
+        justify="center"
+        align="middle"
       >
-        Full Screen
-      </Button> */}
+        {isReady && fontSize && (
+          <AnimatedText
+            type="words" // animate words or chars
+            animation={{
+              x: "200px",
+              y: "-20px",
+              scale: 1.1,
+              ease: "ease-in-out",
+            }}
+            animationType="float"
+            interval={0.06}
+            duration={0.8}
+            tag="div"
+            className="animated-paragraph"
+            includeWhiteSpaces
+            threshold={0.1}
+            rootMargin="20%"
+          >
+            {post.data2}
+          </AnimatedText>
+        )}
+        {!isReady && (
+          <Textfit
+            mode="multi"
+            autoResize={true}
+            max={800}
+            forceSingleModeWidth={false}
+            onReady={() => {
+              setReady(true);
+            }}
+            style={{ height: "100%", width: "100%" }}
+            callback={(fontSize) => {
+              setFontSize(fontSize);
+            }}
+          >
+            {post.data2}
+          </Textfit>
+        )}
+      </Row>
+
+      <span className="post-info by">{post.createdBy}</span>
+      <span className="post-info source">
+        <div className="author">{post.source}</div>
+        <div className="author">{post.author}</div>
+      </span>
     </Row>
   );
 };

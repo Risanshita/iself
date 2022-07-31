@@ -210,14 +210,11 @@ export default class TextFit extends React.Component {
       autoResize,
       onReady,
       callback,
-      currentFontSize,
       visible,
       ...props
     } = this.props;
     const { fontSize, ready } = this.state;
-    if (currentFontSize !== fontSize) {
-      callback(fontSize);
-    }
+    if (typeof callback === "function") callback(fontSize);
     const finalStyle = {
       ...style,
       fontSize: fontSize,
