@@ -2,15 +2,17 @@ import { Col, Row } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { PostContext } from "../../context/postContext";
 import { PostTypes } from "../post/post";
+import CodeRefactor from "./CodeRefactor";
 import CodeTip from "./CodeTip";
 import InfoByte from "./InfoByte";
 import Paraphrase from "./Paraphrase";
 
 export const HomePage = () => {
   const { state, actions } = useContext(PostContext);
-  const { loadData, nextPost } = actions.post;
+  const { loadData, nextPost, previousPost } = actions.post;
   const { currentPost, posts } = state.post;
   const [isInitialLoad, setInitialLoad] = useState(true);
+  const [pressedKey, setPressedKey] = useState(true);
 
   useEffect(() => {
     setTimeout(
@@ -26,7 +28,22 @@ export const HomePage = () => {
   if (isInitialLoad) {
     loadData();
     setInitialLoad(false);
+
+    // document.addEventListener("keypress", (e) => {
+    //   setPressedKey(e.key.toLocaleLowerCase());
+    // });
   }
+
+  useEffect(() => {
+    console.log(pressedKey);
+    if (pressedKey === "p") {
+      previousPost();
+    }
+    if (pressedKey === "n") {
+      nextPost();
+    }
+    setPressedKey(undefined);
+  }, [pressedKey]);
 
   return (
     <Row style={{ height: "100%" }} className="prevent-select">
@@ -40,6 +57,9 @@ export const HomePage = () => {
           )}
           {currentPost.type === PostTypes.codeTip && (
             <CodeTip post={currentPost} />
+          )}
+          {currentPost.type === PostTypes.refactor && (
+            <CodeRefactor post={currentPost} />
           )}
         </Col>
       )}
