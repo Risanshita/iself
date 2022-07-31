@@ -82,19 +82,19 @@
       "createdBy": "",
       "createdAt": "2022-07-31T19:42:31.7593195+05:30",
       "updatedBy": "",
-      "updatedAt": "2022-07-31T18:56:06.4327601+05:30"
+      "updatedAt": "2022-07-31T19:42:31.7593226+05:30"
     },
     {
-      "id": "007f0782-fd63-45a7-acda-df95562ea5d18",
-      "title": "Hello World program in c#",
-      "type": 3,
-      "data1": "namespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            System.Console.WriteLine(\"Hello World!\");\n        }\n    }\n}",
-      "data2": "Using System;\nnamespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            Console.WriteLine(\"Hello World!\");\n        }\n    }\n}",
-      "source": "Google",
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d20",
+      "title": "What can JavaScript do?",
+      "type": 2,
+      "data1": "<!DOCTYPE html>\n<html>\n<body>\n\n<h2>What Can JavaScript Do?</h2>\n\n<p id=\"demo\">JavaScript can change HTML content.</p>\n\n<button type=\"button\" onclick='document.getElementById(\"demo\").innerHTML = \"Hello JavaScript!\"'>Click Me!</button>\n\n</body>\n</html>",
+      "data2": "",
+      "source": "W3SCHOOL",
       "author": "",
-      "language": "csharp",
+      "language": "vbscriptHtml (vbscript-html)",
       "createdBy": "",
-      "createdAt": "2022-07-31T20:37:14.4126314+05:30",
+      "createdAt": "2022-07-31T20:32:18.3478474+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-31T20:37:14.4129441+05:30"
     },
