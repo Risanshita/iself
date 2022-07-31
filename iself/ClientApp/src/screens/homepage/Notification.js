@@ -1,5 +1,5 @@
 import { NotificationOutlined } from "@ant-design/icons";
-import { Row } from "antd";
+import { Row, Col } from "antd";
 import Textfit from "../../utils/Textfit";
 // sgv
 const Notification = ({ post }) => {

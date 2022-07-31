@@ -1,8 +1,8 @@
-import { Row } from "antd";
+import { Row, Col } from "antd";
 import { useEffect, useState } from "react";
 import AnimatedText from "react-animated-text-content";
 import Textfit from "../../utils/Textfit";
-
+import "./Style.css";
 const Paraphrase = ({ post }) => {
   const [fontSize, setFontSize] = useState(0);
   const [isReady, setReady] = useState(false);
@@ -37,8 +37,8 @@ const Paraphrase = ({ post }) => {
           mode="multi"
           autoResize={true}
           max={800}
-          forceSingleModeWidth={false} 
-          style={{ height: "100%", width: "100%" }} 
+          forceSingleModeWidth={false}
+          style={{ height: "100%", width: "100%" }}
         >
           {post.data1}
         </Textfit>
@@ -92,10 +92,9 @@ const Paraphrase = ({ post }) => {
           </Textfit>
         )}
       </Row>
-
       <span className="post-info by">{post.createdBy}</span>
       <span className="post-info source">
-        <div className="author">{post.source}</div>
+        <div className="author">{" " + post.source}</div>
         <div className="author">{post.author}</div>
       </span>
     </Row>

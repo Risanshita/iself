@@ -40,3 +40,7 @@
   overflow: hidden;
   word-wrap: break-word;
 }
+.post-info.source {
+  align-items: initial;
+  text-align: start;
+}

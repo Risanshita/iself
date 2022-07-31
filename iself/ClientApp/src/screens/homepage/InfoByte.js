@@ -1,4 +1,4 @@
-import { Row } from "antd";
+import { Row, Col } from "antd";
 import { useEffect, useState } from "react";
 import AnimatedText from "react-animated-text-content";
 import Textfit from "../../utils/Textfit";
