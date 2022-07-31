@@ -1,8 +1,11 @@
+import { Button, Tooltip } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { NavItem, NavLink } from "reactstrap";
 import { Link, useLocation } from "react-router-dom";
-import { Col, Layout, Menu, Row } from "antd";
+import { Col, Layout, Image, Row } from "antd";
+import person from "../assets/images/person.png";
 import {
+  SmileOutlined,
   HomeOutlined,
   LoginOutlined,
   LogoutOutlined,
@@ -16,6 +19,9 @@ import { AccountContext } from "../context/accountContext";
 const { Header } = Layout;
 
 const NavMenu = () => {
+  function profileClick() {
+    <NavLink tag={Link} to="/profile"></NavLink>;
+  }
   const { pathname } = useLocation();
   const [path, setPath] = useState(pathname);
 
@@ -119,12 +125,23 @@ const NavMenu = () => {
                 <div className="menu-label">POST</div>
               </NavLink>
             )}
-            {login && (
-              <NavLink onClick={logout}>
-                <LogoutOutlined />
-                <span className="menu-label">Logout</span>
-              </NavLink>
-            )}
+            {
+              login && (
+                <Tooltip title="profile">
+                  <Button
+                    onClick={profileClick()}
+                    style={{ margin: "0px 5px", backgroundColor: "#4361EE" }}
+                    shape="circle"
+                    size="35"
+                    icon={<SmileOutlined />}
+                  />
+                </Tooltip>
+              )
+              // <NavLink onClick={logout}>
+              //   <LogoutOutlined />
+              //   <span className="menu-label">Logout</span>
+              // </NavLink>
+            }
             {!login && (
               <NavLink tag={Link} to="/login">
                 <LoginOutlined />

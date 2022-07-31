@@ -1,0 +1,23 @@
+.post-info.author {
+  right: 0;
+  bottom: 0;
+}
+
+.post-info.langugae {
+  right: 0;
+  bottom: 0;
+}
+
+.post-info {
+  position: absolute;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ffb800;
+  margin-right: 5px;
+}
+
+/* // flip */
