@@ -1,6 +1,7 @@
 import { Col, Row } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { PostContext } from "../../context/postContext";
+import Textfit from "../../utils/Textfit";
 import InfoByte from "./InfoByte";
 
 export const HomePage = () => {
@@ -8,6 +9,7 @@ export const HomePage = () => {
   const { loadData, nextPost } = actions.post;
   const { currentPost, posts } = state.post;
   const [isInitialLoad, setInitialLoad] = useState(true);
+  const [isReady, setReady] = useState(false);
 
   useEffect(() => {
     setTimeout(
@@ -29,7 +31,14 @@ export const HomePage = () => {
     <Row style={{ height: "100%" }} className="prevent-select">
       {currentPost && (
         <Col span={24} style={{ height: "100%", padding: 20 }}>
-          <InfoByte post={currentPost} />
+          <Textfit
+            mode="multi"
+            style={{ height: "100%", width: "100%" }}
+            max={500}
+            onReady={() => setReady(true)}
+          >
+            <InfoByte post={currentPost} />
+          </Textfit>
           <span className="post-info by">{currentPost.createdBy}</span>
           <span className="post-info source">
             <div className=" author">{currentPost.source}</div>

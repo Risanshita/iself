@@ -1,5 +1,6 @@
 import { Row } from "antd";
 import AnimatedText from "react-animated-text-content";
+import Textfit from "../../utils/Textfit";
 
 const InfoByte = ({ post }) => {
   return (
@@ -20,11 +21,12 @@ const InfoByte = ({ post }) => {
         animationType="float"
         interval={0.06}
         duration={0.8}
-        tag="p"
+        tag="div"
         className="animated-paragraph"
         includeWhiteSpaces
         threshold={0.1}
         rootMargin="20%"
+        // style={{ height: "100%", width: "100%", textAlign: "center" }}
       >
         {post.data1}
       </AnimatedText>
