@@ -1,4 +1,5 @@
 import { Navigate } from "react-router-dom";
+import BrowsePage from "./screens/browse/BrowsePage";
 import { Counter } from "./screens/Counter";
 import { FetchData } from "./screens/FetchData";
 import { HomeScreen } from "./screens/homepage";
@@ -32,6 +33,11 @@ const AppRoutes = [
     path: "login",
     element: <Login />,
   },
+  {
+    path: "/BrowsePage",
+    element: <BrowsePage />,
+  },
+
   {
     path: "404",
     element: <NotFound />,

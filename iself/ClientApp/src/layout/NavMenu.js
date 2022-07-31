@@ -91,7 +91,7 @@ const NavMenu = () => {
     {
       link: "/fetch-data",
       label: (
-        <NavLink tag={Link} to="/fetch-data">
+        <NavLink tag={Link} to="/BrowsePage">
           <Image width={17} preview={false} src={browse} />
           <span className="menu-label">Browse</span>
         </NavLink>
