@@ -17,7 +17,6 @@ function Profile() {
     setInitialLoad(false);
   }
 
-
   return (
     <Row
       // className="postnew-page"
@@ -25,18 +24,7 @@ function Profile() {
       style={{ height: "100%", overflowY: "auto", padding: "20px" }}
     >
       <ProfileHeader />
-      <Row
-        align="middle"
-        justify="center"
-        style={{
-          // backgroundColor: "#3E3F47",
-          width: "100%",
-          borderRadius: "10px",
-          margin: "10px 0",
-        }}
-      >
-        <Col style={{ padding: "10px" }}>Your Posts</Col>
-      </Row>
+
       <PostList posts={posts} />
     </Row>
   );
