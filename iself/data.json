@@ -96,49 +96,63 @@
       "createdBy": "",
       "createdAt": "2022-07-31T20:32:18.3478474+05:30",
       "updatedBy": "",
-      "updatedAt": "2022-07-31T20:32:18.34807+05:30"
+      "updatedAt": "2022-07-31T20:37:14.4129441+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d19",
+      "title": "Hello world",
+      "type": 2,
+      "data1": "namespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            System.Console.WriteLine(\"Hello World!\");\n        }\n    }\n}",
+      "data2": "",
+      "source": "GOOGLE",
+      "author": "",
+      "language": "csharp",
+      "createdBy": "",
+      "createdAt": "2022-07-31T22:06:15.9156118+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-31T22:06:15.9156142+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d20",
+      "title": "Hello world",
+      "type": 3,
+      "data1": "namespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            System.Console.WriteLine(\"Hello World!\");\n        }\n    }\n}",
+      "data2": "using System;\nnamespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            Console.WriteLine(\"Hello World!\");\n        }\n    }\n}",
+      "source": "Google",
+      "author": "",
+      "language": "csharp",
+      "createdBy": "",
+      "createdAt": "2022-07-31T22:32:56.0605478+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-31T22:32:56.0605532+05:30"
     },
     {
       "id": "007f0782-fd63-45a7-acda-df95562ea5d21",
-      "title": "JavaScript HTML Input Examples",
+      "title": "HelloWorld",
       "type": 3,
-      "data1": "<!DOCTYPE html>\n<html>\n<body>\n\n\n<p>Click the \"Disable\" button to disable the \"OK\" button:</p>\n\n<script>\nfunction disableElement() {\n  document.getElementById(\"btn01\").disabled = true;\n}\n</script>\n\n</body>\n</html>",
-      "data2": "<!DOCTYPE html>\n<html>\n<body>\n\n<form>\n<input type=\"button\" id=\"btn01\" value=\"OK\">\n</form>\n\n<p>Click the \"Disable\" button to disable the \"OK\" button:</p>\n\n<button onclick=\"disableElement()\">Disable</button>\n\n<script>\nfunction disableElement() {\n  document.getElementById(\"btn01\").disabled = true;\n}\n</script>\n\n</body>\n</html>",
-      "source": "W3SCHOOL",
+      "data1": "namespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            System.Console.WriteLine(\"Hello World!\");\n        }\n    }\n}\nnamespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            System.Console.WriteLine(\"Hello World!\");\n        }\n    }\n}",
+      "data2": "namespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            System.Console.WriteLine(\"Hello World!\");\n        }\n    }\n}\nnamespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            System.Console.WriteLine(\"Hello World!\");\n        }\n    }\n}",
+      "source": "s",
       "author": "",
-      "language": "htmlbars",
+      "language": "csharp",
       "createdBy": "",
-      "createdAt": "2022-07-31T20:33:53.7958578+05:30",
+      "createdAt": "2022-07-31T22:44:11.2811985+05:30",
       "updatedBy": "",
-      "updatedAt": "2022-07-31T20:33:53.7958592+05:30"
+      "updatedAt": "2022-07-31T22:44:11.2812002+05:30"
     },
     {
       "id": "007f0782-fd63-45a7-acda-df95562ea5d22",
       "title": "",
-      "type": 1,
-      "data1": "Paraphrasing skills will help you boost the quality and copy enhance the effectiveness of your content by making it both comprehensive and exclusive to your target audience.",
-      "data2": "Paraphrasing skills will help you boost the quality and copy enhance the effectiveness of your content by making it both comprehensive and exclusive to your target audience.",
-      "source": "www.paraphraser.io",
-      "author": "Nitish kumar",
+      "type": 4,
+      "data1": "New version of logger has been released!",
+      "data2": "",
+      "source": "",
+      "author": "",
       "language": "",
       "createdBy": "",
-      "createdAt": "2022-07-31T20:35:30.1551626+05:30",
+      "createdAt": "2022-07-31T23:45:56.3845413+05:30",
       "updatedBy": "",
-      "updatedAt": "2022-07-31T20:35:30.1551639+05:30"
-    },
-    {
-      "id": "007f0782-fd63-45a7-acda-df95562ea5d23",
-      "title": "Enter your name",
-      "type": 2,
-      "data1": "<body>\nEnter your name: <input type=\"text\" id=\"fname\" onblur=\"myFunction()\">\n<p>When you leave the input field, a function is triggered which transforms the input text to upper case.</p>\n</body>",
-      "data2": "",
-      "source": "w3school",
-      "author": "",
-      "language": "javascript",
-      "createdBy": "",
-      "createdAt": "2022-07-31T20:36:19.2799789+05:30",
-      "updatedBy": "",
-      "updatedAt": "2022-07-31T20:36:19.2799802+05:30"
+      "updatedAt": "2022-07-31T23:45:56.3845446+05:30"
     }
   ]
 }
