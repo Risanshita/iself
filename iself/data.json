@@ -83,6 +83,76 @@
       "createdAt": "2022-07-31T19:42:31.7593195+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-31T19:42:31.7593226+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d20",
+      "title": "What can JavaScript do?",
+      "type": 2,
+      "data1": "<!DOCTYPE html>\n<html>\n<body>\n\n<h2>What Can JavaScript Do?</h2>\n\n<p id=\"demo\">JavaScript can change HTML content.</p>\n\n<button type=\"button\" onclick='document.getElementById(\"demo\").innerHTML = \"Hello JavaScript!\"'>Click Me!</button>\n\n</body>\n</html>",
+      "data2": "",
+      "source": "W3SCHOOL",
+      "author": "",
+      "language": "vbscriptHtml (vbscript-html)",
+      "createdBy": "",
+      "createdAt": "2022-07-31T20:32:18.3478474+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-31T20:32:18.34807+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d21",
+      "title": "JavaScript HTML Input Examples",
+      "type": 3,
+      "data1": "<!DOCTYPE html>\n<html>\n<body>\n\n\n<p>Click the \"Disable\" button to disable the \"OK\" button:</p>\n\n<script>\nfunction disableElement() {\n  document.getElementById(\"btn01\").disabled = true;\n}\n</script>\n\n</body>\n</html>",
+      "data2": "<!DOCTYPE html>\n<html>\n<body>\n\n<form>\n<input type=\"button\" id=\"btn01\" value=\"OK\">\n</form>\n\n<p>Click the \"Disable\" button to disable the \"OK\" button:</p>\n\n<button onclick=\"disableElement()\">Disable</button>\n\n<script>\nfunction disableElement() {\n  document.getElementById(\"btn01\").disabled = true;\n}\n</script>\n\n</body>\n</html>",
+      "source": "W3SCHOOL",
+      "author": "",
+      "language": "htmlbars",
+      "createdBy": "",
+      "createdAt": "2022-07-31T20:33:53.7958578+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-31T20:33:53.7958592+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d22",
+      "title": "",
+      "type": 1,
+      "data1": "Paraphrasing skills will help you boost the quality and copy enhance the effectiveness of your content by making it both comprehensive and exclusive to your target audience.",
+      "data2": "Paraphrasing skills will help you boost the quality and copy enhance the effectiveness of your content by making it both comprehensive and exclusive to your target audience.",
+      "source": "www.paraphraser.io",
+      "author": "Nitish kumar",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-31T20:35:30.1551626+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-31T20:35:30.1551639+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d23",
+      "title": "Enter your name",
+      "type": 2,
+      "data1": "<body>\nEnter your name: <input type=\"text\" id=\"fname\" onblur=\"myFunction()\">\n<p>When you leave the input field, a function is triggered which transforms the input text to upper case.</p>\n</body>",
+      "data2": "",
+      "source": "w3school",
+      "author": "",
+      "language": "javascript",
+      "createdBy": "",
+      "createdAt": "2022-07-31T20:36:19.2799789+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-31T20:36:19.2799802+05:30"
+    },
+    {
+      "id": "007f0782-fd63-45a7-acda-df95562ea5d24",
+      "title": "",
+      "type": 4,
+      "data1": "Paytm Internship in Operations Associate | Apply Now",
+      "data2": "",
+      "source": "",
+      "author": "",
+      "language": "",
+      "createdBy": "",
+      "createdAt": "2022-07-31T20:37:10.9161595+05:30",
+      "updatedBy": "",
+      "updatedAt": "2022-07-31T20:37:10.9161604+05:30"
     }
   ]
 }
