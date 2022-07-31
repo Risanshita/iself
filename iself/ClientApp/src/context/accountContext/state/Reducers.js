@@ -3,7 +3,7 @@ const initialState = {
   userDetails: {},
   loading: false,
   menuDetails: [],
-  login: true,
+  login: false,
 };
 
 const types = {

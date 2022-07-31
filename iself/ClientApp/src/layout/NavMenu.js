@@ -19,9 +19,9 @@ import { AccountContext } from "../context/accountContext";
 const { Header } = Layout;
 
 const NavMenu = () => {
-  function profileClick() {
-    <NavLink tag={Link} to="/profile"></NavLink>;
-  }
+  // function profileClick() {
+  //   <NavLink tag={Link} to="/profile"></NavLink>;
+  // }
   const { pathname } = useLocation();
   const [path, setPath] = useState(pathname);
 
@@ -70,24 +70,24 @@ const NavMenu = () => {
         </NavLink>
       ),
     },
-    {
-      link: "/login",
-      label: (
-        <NavLink tag={Link} to="/login">
-          <ScheduleOutlined />
-          <span className="menu-label">Code Correction</span>
-        </NavLink>
-      ),
-    },
-    {
-      link: "/profile",
-      label: (
-        <NavLink tag={Link} to="/profile">
-          <ScheduleOutlined />
-          <span className="menu-label">Profile</span>
-        </NavLink>
-      ),
-    },
+    // {
+    //   link: "/login",
+    //   label: (
+    //     <NavLink tag={Link} to="/login">
+    //       <ScheduleOutlined />
+    //       <span className="menu-label">Code Correction</span>
+    //     </NavLink>
+    //   ),
+    // },
+    // {
+    //   link: "/profile",
+    //   label: (
+    //     <NavLink tag={Link} to="/profile">
+    //       <ScheduleOutlined />
+    //       <span className="menu-label">Profile</span>
+    //     </NavLink>
+    //   ),
+    // },
   ];
 
   return (
@@ -127,15 +127,20 @@ const NavMenu = () => {
             )}
             {
               login && (
-                <Tooltip title="profile">
+                // <Tooltip title="profile">
+                <NavLink to="/profile" tag={Link}>
                   <Button
-                    onClick={profileClick()}
-                    style={{ margin: "0px 5px", backgroundColor: "#4361EE" }}
+                    // onClick={profileClick()}
+                    style={{
+                      margin: "0px 5px",
+                      backgroundColor: "var(--ant-primary-color)",
+                    }}
                     shape="circle"
                     size="35"
                     icon={<SmileOutlined />}
                   />
-                </Tooltip>
+                </NavLink>
+                // </Tooltip>
               )
               // <NavLink onClick={logout}>
               //   <LogoutOutlined />
