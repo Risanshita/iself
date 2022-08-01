@@ -127,20 +127,6 @@
       "updatedAt": "2022-07-31T22:32:56.0605532+05:30"
     },
     {
-      "id": "007f0782-fd63-45a7-acda-df95562ea5d21",
-      "title": "HelloWorld",
-      "type": 3,
-      "data1": "namespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            System.Console.WriteLine(\"Hello World!\");\n        }\n    }\n}\nnamespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            System.Console.WriteLine(\"Hello World!\");\n        }\n    }\n}",
-      "data2": "namespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            System.Console.WriteLine(\"Hello World!\");\n        }\n    }\n}\nnamespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            System.Console.WriteLine(\"Hello World!\");\n        }\n    }\n}",
-      "source": "s",
-      "author": "",
-      "language": "csharp",
-      "createdBy": "",
-      "createdAt": "2022-07-31T22:44:11.2811985+05:30",
-      "updatedBy": "",
-      "updatedAt": "2022-07-31T22:44:11.2812002+05:30"
-    },
-    {
       "id": "007f0782-fd63-45a7-acda-df95562ea5d22",
       "title": "",
       "type": 4,
