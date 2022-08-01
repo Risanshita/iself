@@ -1,6 +1,7 @@
 import { NotificationOutlined } from "@ant-design/icons";
-import { Row, Col } from "antd";
+import { Row, Col, Image } from "antd";
 import Textfit from "../../utils/Textfit";
+import notification from "../../assets/images/notification.png";
 // sgv
 const Notification = ({ post }) => {
   return (
@@ -11,13 +12,11 @@ const Notification = ({ post }) => {
         overflowX: "hidden",
       }}
       justify="center"
-      align="middle"
+      align="top"
       className="info-byte-page"
     >
       <Row justify="center" align="top">
-        <NotificationOutlined
-          style={{ paddingRight: "10px", fontSize: "24px" }}
-        />
+        <Image width={30} preview={false} src={notification} />
         <h5>Notification</h5>
       </Row>
       <Row
