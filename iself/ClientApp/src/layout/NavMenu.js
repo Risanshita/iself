@@ -97,15 +97,15 @@ const NavMenu = () => {
         </NavLink>
       ),
     },
-    // {
-    //   link: "/login",
-    //   label: (
-    //     <NavLink tag={Link} to="/login">
-    //       <ScheduleOutlined />
-    //       <span className="menu-label">Code Correction</span>
-    //     </NavLink>
-    //   ),
-    // },
+    {
+      link: "/RateUs",
+      label: (
+        <NavLink tag={Link} to="/RateUs">
+          <ScheduleOutlined />
+          <span className="menu-label">Rate Us</span>
+        </NavLink>
+      ),
+    },
     // {
     //   link: "/profile",
     //   label: (

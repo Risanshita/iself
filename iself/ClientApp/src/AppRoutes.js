@@ -6,7 +6,9 @@ import { HomeScreen } from "./screens/homepage";
 import Login from "./screens/login";
 import NotFound from "./screens/NotFound";
 import PostScreen from "./screens/post";
+// import Rateus from "screens/RateUs";
 import { ProfileScreen } from "./screens/profile";
+import RateUs from "./screens/RateUs/RateUs";
 
 const AppRoutes = [
   {
@@ -24,6 +26,10 @@ const AppRoutes = [
   {
     path: "/paraphrase",
     element: <Counter />,
+  },
+  {
+    path: "/RateUs",
+    element: <RateUs />,
   },
   {
     path: "/fetch-data",
