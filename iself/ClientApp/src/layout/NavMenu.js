@@ -52,60 +52,60 @@ const NavMenu = () => {
         </NavLink>
       ),
     },
-    {
-      link: "/line",
-      label: (
-        <NavLink tag={Link} to="/line">
-          <Image width={17} preview={false} src={infobyte} />
-          <span className="menu-label">Line</span>
-        </NavLink>
-      ),
-    },
-    {
-      link: "/paraphrase",
-      label: (
-        <NavLink tag={Link} to="/counter">
-          <Image width={17} preview={false} src={home} />
-          <span className="menu-label">Paraphrase</span>
-        </NavLink>
-      ),
-    },
+    // {
+    //   link: "/line",
+    //   label: (
+    //     <NavLink tag={Link} to="/line">
+    //       <Image width={17} preview={false} src={infobyte} />
+    //       <span className="menu-label">Line</span>
+    //     </NavLink>
+    //   ),
+    // },
+    // {
+    //   link: "/paraphrase",
+    //   label: (
+    //     <NavLink tag={Link} to="/counter">
+    //       <Image width={17} preview={false} src={home} />
+    //       <span className="menu-label">Paraphrase</span>
+    //     </NavLink>
+    //   ),
+    // },
+    // {
+    //   link: "/fetch-data",
+    //   label: (
+    //     <NavLink tag={Link} to="/fetch-data">
+    //       <Image width={17} preview={false} src={code} />
+    //       <span className="menu-label">Code</span>
+    //     </NavLink>
+    //   ),
+    // },
+    // {
+    //   link: "/fetch-data",
+    //   label: (
+    //     <NavLink tag={Link} to="/fetch-data">
+    //       <Image width={17} preview={false} src={refactor} />
+    //       <span className="menu-label">Refactor</span>
+    //     </NavLink>
+    //   ),
+    // },
     {
       link: "/fetch-data",
       label: (
-        <NavLink tag={Link} to="/fetch-data">
-          <Image width={17} preview={false} src={code} />
-          <span className="menu-label">Code</span>
-        </NavLink>
-      ),
-    },
-    {
-      link: "/fetch-data",
-      label: (
-        <NavLink tag={Link} to="/fetch-data">
-          <Image width={17} preview={false} src={refactor} />
-          <span className="menu-label">Refactor</span>
-        </NavLink>
-      ),
-    },
-    {
-      link: "/fetch-data",
-      label: (
-        <NavLink tag={Link} to="/fetch-data">
+        <NavLink tag={Link} to="/browse">
           <Image width={17} preview={false} src={browse} />
           <span className="menu-label">Browse</span>
         </NavLink>
       ),
     },
-    // {
-    //   link: "/login",
-    //   label: (
-    //     <NavLink tag={Link} to="/login">
-    //       <ScheduleOutlined />
-    //       <span className="menu-label">Code Correction</span>
-    //     </NavLink>
-    //   ),
-    // },
+    {
+      link: "/RateUs",
+      label: (
+        <NavLink tag={Link} to="/RateUs">
+          <ScheduleOutlined />
+          <span className="menu-label">Rate Us</span>
+        </NavLink>
+      ),
+    },
     // {
     //   link: "/profile",
     //   label: (

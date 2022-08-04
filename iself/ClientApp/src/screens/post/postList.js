@@ -15,7 +15,7 @@ const PostList = ({ posts }) => {
         items={[
           {
             key: "1",
-            label: <DeleteOutlined />,
+            label: "Review",
             onClick: () => {
               deletePost(post, () => {
                 loadData();
