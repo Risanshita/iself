@@ -1,4 +1,4 @@
-import { Col, Row, Button } from "antd";
+import { Col, Row, Button, Input } from "antd";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import { FrownOutlined, MehOutlined, SmileOutlined } from "@ant-design/icons";
 import { Rate } from "antd";
@@ -21,6 +21,14 @@ const animationPics = [
 function RateUs() {
   const [ratevalue, setratevalue] = useState(5);
   const [animationUrl, setAnimationUrl] = useState(animationPics[4]);
+  const [rateText, setRateText] = useState("");
+  function onChangeText(text) {
+    setRateText(text.currentTarget.value);
+  }
+  function onClickSend() {
+    console.log("Rating value : " + ratevalue);
+    console.log("Rating Text : " + rateText);
+  }
   function Onhover(index) {
     if (index != undefined) setratevalue(index);
   }
@@ -91,25 +99,38 @@ function RateUs() {
             style={{ fontSize: 36 }}
           />
         </Row>
-        <Row justify="center" align="middle" style={{ width: "100%" }}>
-          <div
-            className="ratingtxt"
-            style={{ padding: "0px 20px", margin: "10px 0px" }}
-          >
-            Predicting a star rating or any score rating in general is a common
-            task, often used in NLP to extract user feedback from open-text
-            reviews without reading
-          </div>
+        <Row
+          justify="center"
+          align="middle"
+          style={{ width: "100%", height: "auto" }}
+        >
+          <Input.TextArea
+            onChange={onChangeText}
+            style={{ width: "90%" }}
+            placeholder="Write feedback here"
+            autoSize={{ minRows: 2, maxRows: 2 }}
+          />
         </Row>
         <Row
           justify="space-between"
           align="middle"
-          style={{ width: "100%", padding: "0px 20px" }}
+          style={{ width: "100%", padding: "5px 20px" }}
         >
-          <Button type="text" style={{}}>
+          <Button type="text" style={{ color: "#5B0EEB" }}>
             Not now
           </Button>
-          <Button type="primary">Send</Button>
+          <Button
+            type="primary"
+            onClick={onClickSend}
+            style={{
+              backgroundColor: "#5B0EEB",
+              padding: "0px 10%",
+              borderRadius: "10px",
+              border: "none",
+            }}
+          >
+            Send
+          </Button>
         </Row>
       </Col>
     </Row>
