@@ -1,27 +1,17 @@
-import { Button, Tooltip } from "antd";
+import { Button } from "antd";
 import React, { useContext, useEffect, useState } from "react";
-import { NavItem, NavLink } from "reactstrap";
+import { NavLink } from "reactstrap";
 import { Link, useLocation } from "react-router-dom";
 import { Col, Layout, Image, Row } from "antd";
-import code from "../assets/images/code.png";
 import browse from "../assets/images/browse.png";
 import home from "../assets/images/home.png";
 import eye from "../assets/images/eye.png";
 import add from "../assets/images/add.png";
-// import code from "../assets/images/infobyte.png";
-import infobyte from "../assets/images/infobyte.png";
-import refactor from "../assets/images/refactor.png";
 import signout from "../assets/images/signout.png";
 import {
   SmileOutlined,
-  HomeOutlined,
-  LoginOutlined,
   LogoutOutlined,
-  IssuesCloseOutlined,
   ScheduleOutlined,
-  ProfileOutlined,
-  InfoCircleOutlined,
-  PlusOutlined,
 } from "@ant-design/icons";
 import { AccountContext } from "../context/accountContext";
 const { Header } = Layout;
@@ -164,28 +154,29 @@ const NavMenu = () => {
                 <div className="menu-label">POST</div>
               </NavLink>
             )}
-            {
-              login && (
-                // <Tooltip title="profile">
-                <NavLink to="/profile" tag={Link}>
-                  <Button
-                    // onClick={profileClick()}
-                    style={{
-                      margin: "0px 5px",
-                      backgroundColor: "var(--ant-primary-color)",
-                    }}
-                    shape="circle"
-                    size="35"
-                    icon={<SmileOutlined />}
-                  />
-                </NavLink>
-                // </Tooltip>
-              )
-              // <NavLink onClick={logout}>
-              //   <LogoutOutlined />
-              //   <span className="menu-label">Logout</span>
-              // </NavLink>
-            }
+            {login && (
+              // <Tooltip title="profile">
+              <NavLink to="/profile" tag={Link}>
+                <Button
+                  // onClick={profileClick()}
+                  style={{
+                    margin: "0px 5px",
+                    backgroundColor: "var(--ant-primary-color)",
+                  }}
+                  shape="circle"
+                  size="35"
+                  icon={<SmileOutlined />}
+                />
+              </NavLink>
+              // </Tooltip>
+            )}
+            {login && (
+              <NavLink onClick={logout}>
+                <LogoutOutlined />
+                <span className="menu-label">Logout</span>
+              </NavLink>
+            )}
+
             {!login && (
               <NavLink tag={Link} to="/login">
                 <Row justify="center" align="middle">

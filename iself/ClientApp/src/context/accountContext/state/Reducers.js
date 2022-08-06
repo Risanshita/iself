@@ -12,6 +12,7 @@ const types = {
   SET_LOGOUT: "SET_LOGOUT",
   SET_LOADING: "SET_LOADING",
   SET_MENU: "SET_MENU",
+  SET_USER_DETAILS: "SET_USER_DETAILS",
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,14 +25,17 @@ const reducer = (state = initialState, action) => {
     case types.SET_LOGIN:
       return {
         ...state,
-        userDetails: action.payload,
         loading: false,
-        login: true,
+        login: action.payload,
       };
     case types.SET_LOGOUT:
       return {
         ...state,
         login: false,
+      };
+    case types.SET_USER_DETAILS:
+      return {
+        ...state,
         userDetails: action.payload,
       };
     case types.SET_MENU:

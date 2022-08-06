@@ -1,12 +1,11 @@
 import { Navigate } from "react-router-dom";
-import BrowseScreen from "./screens/Browse";
+import BrowseScreen from "./screens/browse";
 import { Counter } from "./screens/Counter";
 import { FetchData } from "./screens/FetchData";
 import { HomeScreen } from "./screens/homepage";
 import Login from "./screens/login";
 import NotFound from "./screens/NotFound";
 import PostScreen from "./screens/post";
-// import Rateus from "screens/RateUs";
 import { ProfileScreen } from "./screens/profile";
 import RateUs from "./screens/RateUs/RateUs";
 
@@ -18,10 +17,12 @@ const AppRoutes = [
   {
     path: "/post",
     element: <PostScreen />,
+    isProtected: true,
   },
   {
     path: "/profile",
     element: <ProfileScreen />,
+    isProtected: true,
   },
   {
     path: "/paraphrase",
@@ -53,5 +54,12 @@ const AppRoutes = [
     element: <Navigate to="/404" replace />,
   },
 ];
+
+export const Protected = ({ isLoggedIn, children }) => {
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
 
 export default AppRoutes;

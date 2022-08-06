@@ -1,5 +1,5 @@
 import { Col, Row, Button, Input } from "antd";
-import { Player, Controls } from "@lottiefiles/react-lottie-player";
+import { Player } from "@lottiefiles/react-lottie-player";
 import { FrownOutlined, MehOutlined, SmileOutlined } from "@ant-design/icons";
 import { Rate } from "antd";
 import { useEffect, useState } from "react";
@@ -30,11 +30,11 @@ function RateUs() {
     console.log("Rating Text : " + rateText);
   }
   function Onhover(index) {
-    if (index != undefined) setratevalue(index);
+    if (index !== undefined) setratevalue(index);
   }
 
   useEffect(() => {
-    if (ratevalue != undefined) {
+    if (ratevalue !== undefined) {
       setAnimationUrl(animationPics[ratevalue - 1]);
     }
   }, [ratevalue]);

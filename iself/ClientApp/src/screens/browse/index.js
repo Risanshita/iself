@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { PostProvider } from "../../context/postContext";
 import BrowseList from "./BrowsePage";
 

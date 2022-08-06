@@ -1,4 +1,4 @@
-﻿import React from "react";
+﻿import React, { useState } from "react";
 import { Button, Col, Form, Image, Row, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -12,12 +12,21 @@ const Login = () => {
   const { userDetails } = state.account;
   let navigate = useNavigate();
   const [form] = Form.useForm();
+  const [isLoginError, setLoginError] = useState(false);
 
   const onFinish = (values) => {
+    setLoginError(true);
     console.log("Received values of form: ", values);
-    login({ username: values.username, password: values.password }, () => {
-      navigate("/");
-    });
+    login(
+      { username: values.username, password: values.password },
+      (success) => {
+        if (success) {
+          navigate("/profile");
+        } else {
+          setLoginError(true);
+        }
+      }
+    );
   };
 
   return (

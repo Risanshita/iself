@@ -1,60 +1,44 @@
 import { types } from "./Reducers";
+import "firebase/compat/auth";
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 export const useActions = (state, dispatch) => {
   const logout = () => {
+    const auth = getAuth();
+    signOut(auth);
     dispatch({
       type: types.SET_LOGOUT,
       payload: { user_name: state.account.userDetails.user_name },
     });
   };
-
-  const login = ({ username, password }, callback) => {
-    dispatch({ type: types.SET_LOGIN, payload: {} });
-    // dispatch({ type: types.SET_LOADING });
-    // post(
-    //   userBaseUrl() + "/validate/login",
-    //   {
-    //     email_id: username,
-    //     password: password,
-    //   },
-    //   callback
-    // ).then((result) => {
-    //   if (result.data.status) {
-    //     var data = result.data.data[0];
-
-    //     window.localStorage.setItem("logged-user-name", data.user_name);
-    //     window.localStorage.setItem("user-details", JSON.stringify(data));
-    //     dispatch({ type: types.SET_LOGIN, payload: data });
-    //     postNotification({
-    //       type: "success",
-    //       title: "Login success",
-    //     });
-    //     loadMenu(data.user_role_id, callback);
-    //   } else {
-    //     postNotification({
-    //       type: "error",
-    //       message: result.data.message,
-    //       title: "Login failed",
-    //     });
-    //   }
-    // });
+  const setLogin = (isLogin) => {
+    dispatch({ type: types.SET_LOGIN, payload: isLogin });
   };
 
-  const loadMenu = (user_role_id, callback) => {
-    // get(userBaseUrl() + "/menu-master/list?user_fk=" + user_role_id).then(
-    //   (result) => {
-    //     console.log(result);
-    //     var list = result.data.data;
-    //     window.localStorage.setItem("user-menu", JSON.stringify(list));
-    //     dispatch({ type: types.SET_MENU, payload: list });
-    //     if (typeof callback === "function") callback();
-    //   }
-    // );
+  const login = async ({ username, password }, callback) => {
+    dispatch({ type: types.SET_LOADING });
+    const auth = getAuth();
+    // await auth.setPersistence({ type: "LOCAL" });
+    signInWithEmailAndPassword(auth, username, password)
+      .then((userCredential) => {
+        console.log(userCredential);
+        dispatch({ type: types.SET_LOGIN, payload: true });
+        if (typeof callback === "function") callback(true);
+      })
+      .catch((error) => {
+        console.log(error);
+        callback(false);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   };
+
+  const loadMenu = (user_role_id, callback) => {};
 
   return {
     login,
     logout,
     loadMenu,
+    setLogin,
   };
 };
