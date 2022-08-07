@@ -7,6 +7,10 @@ using iself.Utils;
 using System.Text.Json.Serialization;
 using FluentValidation.AspNetCore;
 using iself.Controllers.Validators;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +27,30 @@ builder.Services.AddControllersWithViews().AddFluentValidation(s =>
     options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
 });
 
+//Firebase
+//var app = FirebaseApp.Create(new AppOptions()
+//{
+//    Credential = GoogleCredential.FromFile("iself-a253a-firebase-adminsdk-vo7o4-06ed92842a.json"),
+//});
+
+var firebaseAppId = Environment.GetEnvironmentVariable("FirebaseAppId");
+//Authentication
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.Authority = "https://securetoken.google.com/"+ firebaseAppId;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = "https://securetoken.google.com/"+ firebaseAppId,
+            ValidateAudience = true,
+            ValidAudience = firebaseAppId,
+            ValidateLifetime = true
+        };
+    });
+//
+
 builder.Services.AddSingleton(new MapperConfiguration(conf =>
 {
     conf.AddProfile(new AutoMapperConfig());
@@ -33,7 +61,6 @@ builder.Services.AddSingleton<IPostService, PostService>();
 builder.Services.AddSingleton(typeof(NewPostValidator));
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -45,10 +72,13 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+    pattern: "{controller}/{action=Index}/{id?}")
+    .RequireAuthorization();
 
 app.MapFallbackToFile("index.html");
 

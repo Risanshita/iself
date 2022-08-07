@@ -3,6 +3,7 @@ using iself.Data.Models;
 using iself.Models.Request;
 using iself.Services.Interfaces;
 using iself.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -10,6 +11,7 @@ namespace iself.Controllers
 {
     [ApiController]
     [Route("posts")]
+    [Authorize]
     public class PostController : ControllerBase
     {
         private readonly NewPostValidator _validationRules;
@@ -22,6 +24,7 @@ namespace iself.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Get([FromQuery]string? createdBy, [FromQuery] PostType? type, [FromQuery] string? query, [FromQuery] int take = 20, [FromQuery] int skip = 0)
         {
             try

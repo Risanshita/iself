@@ -1,6 +1,8 @@
 import { types } from "./Reducers";
 import "firebase/compat/auth";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { message } from "antd";
+import { httpPost } from "../../../utils/HttpClient";
 
 export const useActions = (state, dispatch) => {
   const logout = () => {
@@ -11,28 +13,31 @@ export const useActions = (state, dispatch) => {
       payload: { user_name: state.account.userDetails.user_name },
     });
   };
+
   const setLogin = (isLogin) => {
-    dispatch({ type: types.SET_LOGIN, payload: isLogin });
+    if (!isLogin) logout();
+    else dispatch({ type: types.SET_LOGIN, payload: isLogin });
   };
 
   const login = async ({ username, password }, callback) => {
     dispatch({ type: types.SET_LOADING });
     const auth = getAuth();
-    // await auth.setPersistence({ type: "LOCAL" });
     signInWithEmailAndPassword(auth, username, password)
       .then((userCredential) => {
-        console.log(userCredential);
         dispatch({ type: types.SET_LOGIN, payload: true });
         if (typeof callback === "function") callback(true);
+        message.success("Login success");
       })
       .catch((error) => {
         console.log(error);
         callback(false);
-        const errorCode = error.code;
-        const errorMessage = error.message;
       });
   };
-
+  const validate = async () => {
+    httpPost("auth/validate", {})
+      .then((a) => {})
+      .catch((e) => {});
+  };
   const loadMenu = (user_role_id, callback) => {};
 
   return {
@@ -40,5 +45,6 @@ export const useActions = (state, dispatch) => {
     logout,
     loadMenu,
     setLogin,
+    validate,
   };
 };

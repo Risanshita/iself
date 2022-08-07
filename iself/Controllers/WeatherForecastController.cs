@@ -1,6 +1,5 @@
 ﻿using JsonFlatFileDataStore;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace iself.Controllers
 {
@@ -28,7 +27,7 @@ namespace iself.Controllers
             var collection = store.GetCollection<WeatherForecast>();
             var results = collection.AsQueryable().TakeLast(1).FirstOrDefault();
             var id = results != null ? results.Id + 1 : 1;
-            
+
 
             var list = collection.AsQueryable().TakeLast(20);
 

@@ -3,7 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {
+  browserLocalPersistence,
+  getAuth,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 
 import AppRoutes, { Protected } from "./AppRoutes";
@@ -14,7 +18,7 @@ import { AccountContext } from "./context/accountContext";
 const App = () => {
   const { state, actions } = useContext(AccountContext);
   const { login } = state.account;
-  const { setLogin } = actions.account;
+  const { setLogin, validate } = actions.account;
   const [isInitialLoad, setInitialLoad] = useState(true);
 
   ConfigProvider.config({
@@ -26,6 +30,10 @@ const App = () => {
       infoColor: "#1890ff",
     },
   });
+
+  useEffect(() => {
+    if (login) validate();
+  }, [login, validate]);
 
   if (isInitialLoad) {
     const firebaseConfig = {
@@ -40,40 +48,54 @@ const App = () => {
     };
 
     var app = firebase.initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    console.log(analytics);
-    setInitialLoad(false);
+    getAnalytics(app);
 
-    const auth = getAuth(app);
- 
-    onAuthStateChanged(auth, (user) => {
-      setLogin(user && user.accessToken ? true : false);
+    const auth = getAuth(app, {
+      persistence: browserLocalPersistence,
     });
+
+    onAuthStateChanged(auth, (user) => {
+      var isLogin = user && user.accessToken ? true: false;
+      console.log("auth status", isLogin);
+      setLogin(isLogin);
+      if (isLogin) localStorage.setItem("access_token", user.accessToken);
+      else localStorage.removeItem("access_token");
+
+      if (isInitialLoad) {
+        setInitialLoad(false);
+      }
+    });
+
+    setTimeout(() => {
+      setInitialLoad(false);
+    }, 5000);
   }
-  // useEffect(function () {});
 
   return (
     <ConfigProvider componentSize="large">
-      <Layout>
-        <Routes>
-          {AppRoutes.map((route, index) => {
-            const { element, isProtected, ...rest } = route;
-            return (
-              <Route
-                key={index}
-                {...rest}
-                element={
-                  isProtected ? (
-                    <Protected isLoggedIn={login} children={element} />
-                  ) : (
-                    element
-                  )
-                }
-              />
-            );
-          })}
-        </Routes>
-      </Layout>
+      {isInitialLoad && <div>Loading...</div>}
+      {!isInitialLoad && (
+        <Layout>
+          <Routes>
+            {AppRoutes.map((route, index) => {
+              const { element, isProtected, ...rest } = route;
+              return (
+                <Route
+                  key={index}
+                  {...rest}
+                  element={
+                    isProtected ? (
+                      <Protected isLoggedIn={login} children={element} />
+                    ) : (
+                      element
+                    )
+                  }
+                />
+              );
+            })}
+          </Routes>
+        </Layout>
+      )}
     </ConfigProvider>
   );
 };

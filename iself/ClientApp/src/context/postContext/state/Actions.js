@@ -1,4 +1,5 @@
 import { message } from "antd";
+import { httpGet, httpDelete, httpPost } from "../../../utils/HttpClient";
 import { types } from "./Reducers";
 
 export const useActions = (state, dispatch) => {
@@ -9,11 +10,10 @@ export const useActions = (state, dispatch) => {
     take = 100,
     skip = 0
   ) {
-    var res = await fetch(
+    var response = await httpGet(
       `posts?createdBy=${createdBy}&type=${type}&query=${q}&take=${take}&skip=${skip}`
     );
 
-    const response = await res.json();
     if (response.succeeded)
       dispatch({
         type: types.SET_HOME_DATA,
@@ -57,14 +57,8 @@ export const useActions = (state, dispatch) => {
       type: types.START_LOADING,
     });
 
-    var res = await fetch(`posts`, {
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(post),
-      method: "POST",
-    });
+    var response = await httpPost(`posts`, post);
 
-    const response = await res.json();
-    console.log(response);
     if (response.succeeded) {
       dispatch({
         type: types.START_LOADING,
@@ -81,13 +75,7 @@ export const useActions = (state, dispatch) => {
       type: types.START_LOADING,
     });
 
-    var res = await fetch(`posts/${post.id}`, {
-      headers: { "Content-Type": "application/json" },
-      method: "DELETE",
-    });
-
-    const response = await res.json();
-    console.log(response);
+    var response = await httpDelete(`posts/${post.id}`);
     if (response.succeeded) {
       dispatch({
         type: types.START_LOADING,
@@ -98,6 +86,7 @@ export const useActions = (state, dispatch) => {
       message.success(response.message);
     } else message.error(response.message);
   }
+
   return {
     loadData,
     nextPost,

@@ -18,8 +18,7 @@ function Profile() {
   const { posts } = state.post;
 
   if (isInitialLoad) {
-    loadData();
-    debugger;
+    loadData(); 
     setInitialLoad(false);
   }
 

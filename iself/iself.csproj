@@ -15,6 +15,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="FirebaseAdmin" Version="2.3.0" />
+    <PackageReference Include="FirebaseDatabase.net" Version="4.0.7" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.6" />
@@ -29,6 +31,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JsonFlatFileDataStore\JsonFlatFileDataStore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="iself-a253a-firebase-adminsdk-vo7o4-06ed92842a.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

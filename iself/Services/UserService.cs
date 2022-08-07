@@ -1,6 +1,8 @@
-﻿namespace iself.Services
+﻿using iself.Services.Interfaces;
+
+namespace iself.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
     }
 }
