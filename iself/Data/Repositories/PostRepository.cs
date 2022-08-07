@@ -14,15 +14,6 @@ namespace iself.Data.Repositories
 
         public async Task<Post?> AddPostAsync(Post post)
         {
-            try
-            {
-                await _child.PostAsync(JsonSerializer.Serialize(post));
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
             if (await _collection.InsertOneAsync(post))
                 return post;
             return null;
