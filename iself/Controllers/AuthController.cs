@@ -19,5 +19,14 @@ namespace iself.Controllers
             return Ok(new { Message = "Success" });
         }
 
+        [HttpGet("backup")]
+        public IActionResult Backup()
+        {
+            var file = System.IO.File.ReadAllBytes("./data.json");
+
+            return File(file, "application/json", "iself-backup.json");
+        }
+
+
     }
 }
