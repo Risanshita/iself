@@ -12,13 +12,13 @@ function Post({ type, onChangeType }) {
 
   const [form] = Form.useForm();
   const isData2Visible =
-    type === PostTypes.paraphase || type === PostTypes.refactor;
+    type === PostTypes.paraphrase || type === PostTypes.refactor;
   const isCode = type === PostTypes.codeTip || type === PostTypes.refactor;
 
   const getMessageForData1 = () => {
     switch (type) {
-      case PostTypes.paraphase:
-        return "Please enter Incorrect Paraphase";
+      case PostTypes.paraphrase:
+        return "Please enter Incorrect Paraphrase";
       case PostTypes.notification:
         return "Please enter Notification";
       case PostTypes.codeTip:
@@ -44,19 +44,19 @@ function Post({ type, onChangeType }) {
   );
 
   const getPlaceholderData2 = () => {
-    return type === PostTypes.paraphase
-      ? "Please enter paraphase"
+    return type === PostTypes.paraphrase
+      ? "Please enter paraphrase"
       : "Write your refactor code here ...";
   };
   const getMessageForData2 = () => {
-    return type === PostTypes.paraphase
-      ? "Please enter paraphase"
+    return type === PostTypes.paraphrase
+      ? "Please enter paraphrase"
       : "Write enter refactor code";
   };
   const getPlaceholderData1 = () => {
     switch (type) {
-      case PostTypes.paraphase:
-        return "Write your Incorrect Paraphase here .. ";
+      case PostTypes.paraphrase:
+        return "Write your Incorrect Paraphrase here .. ";
       case PostTypes.notification:
         return "Write your Notification here .. ";
       case PostTypes.codeTip:
@@ -153,10 +153,10 @@ function Post({ type, onChangeType }) {
                         Notification
                       </Option>
                       <Option
-                        key={PostTypes.paraphase}
-                        value={PostTypes.paraphase}
+                        key={PostTypes.paraphrase}
+                        value={PostTypes.paraphrase}
                       >
-                        Paraphase
+                        Paraphrase
                       </Option>
                       <Option key={PostTypes.codeTip} value={PostTypes.codeTip}>
                         Code
@@ -353,7 +353,7 @@ export default function PostNew() {
 
 export const PostTypes = {
   infoByte: "InfoByte",
-  paraphase: "Paraphase",
+  paraphrase: "Paraphrase",
   codeTip: "CodeTip",
   refactor: "Refactor",
   notification: "Notification",

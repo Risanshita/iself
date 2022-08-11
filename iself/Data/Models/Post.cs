@@ -3,7 +3,7 @@
     public enum PostType
     {
         InfoByte,
-        Paraphase,
+        Paraphrase,
         CodeTip,
         Refactor, 
         Notification

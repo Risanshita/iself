@@ -1,24 +1,21 @@
-import { Cascader, Form } from "antd";
+import { Cascader } from "antd";
 import PostList from "../post/postList";
-import { Col, Row, Button, Popover } from "antd";
-import { Dropdown, Menu, Space } from "antd";
+import { Row, Button, Popover } from "antd";
 import { FilterOutlined } from "@ant-design/icons";
 import { PostContext } from "../../context/postContext";
 import { useContext, useState } from "react";
 import ProfileHeader from "./profilehead";
-import { MultiSelect } from "../../components/select";
 import "./style.css";
-// Filtter
-//filter end
+import { PostTypes } from "../post/post";
 
 function Profile() {
   const { state, actions } = useContext(PostContext);
   const [isInitialLoad, setInitialLoad] = useState(true);
-  const { loadData, deletePost } = actions.post;
+  const { loadData } = actions.post;
   const { posts } = state.post;
 
   if (isInitialLoad) {
-    loadData(); 
+    loadData();
     setInitialLoad(false);
   }
 
@@ -32,12 +29,24 @@ function Profile() {
   };
   const options = [
     {
-      label: "Notification",
-      value: "Notification",
+      label: "Code",
+      value: PostTypes.codeTip,
     },
     {
-      label: "Bulb",
-      value: "Bulb",
+      label: "Info Byte",
+      value: PostTypes.infoByte,
+    },
+    {
+      label: "Notification",
+      value: PostTypes.notification,
+    },
+    {
+      label: "Paraphrase",
+      value: PostTypes.paraphrase,
+    },
+    {
+      label: "Code-Refactor",
+      value: PostTypes.refactor,
     },
   ];
   const { SHOW_CHILD } = Cascader;
@@ -82,7 +91,7 @@ function Profile() {
           <Button type="primary" icon={<FilterOutlined />}></Button>
         </Popover>
       </span>
-      <PostList posts={posts} />
+      <PostList posts={posts} isDeleteEnabled={true} />
     </Row>
   );
 }

@@ -53,7 +53,7 @@ export const HomePage = () => {
           {currentPost.type === PostTypes.infoByte && (
             <InfoByte post={currentPost} />
           )}
-          {currentPost.type === PostTypes.paraphase && (
+          {currentPost.type === PostTypes.paraphrase && (
             <Paraphrase post={currentPost} />
           )}
           {currentPost.type === PostTypes.codeTip && (

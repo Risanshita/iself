@@ -54,12 +54,12 @@ namespace iself.Controllers.Validators
             RuleFor(a => a)
               .Must((request) =>
               {
-                  if (request.Type == Data.Models.PostType.Paraphase)
+                  if (request.Type == Data.Models.PostType.Paraphrase)
                   {
                       return !string.IsNullOrWhiteSpace(request.Data1) && !string.IsNullOrWhiteSpace(request.Data2);
                   }
                   return true;
-              }).WithMessage("Paraphase1 and Paraphase2 line cannot be empty");
+              }).WithMessage("Paraphrase1 and Paraphrase2 line cannot be empty");
         }
     }
 }

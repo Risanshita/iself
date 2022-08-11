@@ -33,11 +33,19 @@ export const useActions = (state, dispatch) => {
         callback(false);
       });
   };
+
   const validate = async () => {
     httpPost("auth/validate", {})
       .then((a) => {})
       .catch((e) => {});
   };
+
+  const submitFeedback = async (param) => {
+    httpPost("feedbacks", param)
+      .then((a) => {})
+      .catch((e) => {});
+  };
+
   const loadMenu = (user_role_id, callback) => {};
 
   return {
@@ -46,5 +54,6 @@ export const useActions = (state, dispatch) => {
     loadMenu,
     setLogin,
     validate,
+    submitFeedback,
   };
 };

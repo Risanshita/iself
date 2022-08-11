@@ -4,25 +4,27 @@ import { Dropdown, Menu, Space } from "antd";
 import { useContext } from "react";
 import { PostContext } from "../../context/postContext";
 
-const PostList = ({ posts }) => {
+const PostList = ({ posts, isDeleteEnabled }) => {
   const { actions } = useContext(PostContext);
   const { loadData, deletePost } = actions.post;
 
   const menu = (post) => {
+    var items = [];
+    if (isDeleteEnabled)
+      items.push({
+        key: "1",
+        label: "Delete",
+        icon: <DeleteOutlined />,
+        onClick: () => {
+          deletePost(post, () => {
+            loadData();
+          });
+        },
+      });
     return (
       <Menu
         style={{ borderRadius: "5px", backgroundColor: "#3E3F47" }}
-        items={[
-          {
-            key: "1",
-            label: "Review",
-            onClick: () => {
-              deletePost(post, () => {
-                loadData();
-              });
-            },
-          },
-        ]}
+        items={items}
       />
     );
   };
@@ -52,7 +54,9 @@ const PostList = ({ posts }) => {
                 <Col>
                   <Dropdown overlay={menu(a)} placement="bottomRight">
                     <Space>
-                      <MoreOutlined style={{ color: "white" }} />
+                      <MoreOutlined
+                        style={{ color: "white", cursor: "pointer" }}
+                      />
                     </Space>
                   </Dropdown>
                 </Col>

@@ -8,7 +8,7 @@ namespace iself.Controllers
         {
             get
             {
-                var email = User.Claims.FirstOrDefault(a => a.Type == "email")?.Value;
+                var email = User.Claims.FirstOrDefault(a => a.Type.Contains("email"))?.Value;
                 return email ?? string.Empty;
             }
         }

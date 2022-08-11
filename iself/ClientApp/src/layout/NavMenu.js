@@ -122,7 +122,7 @@ const NavMenu = () => {
         align="middle"
         justify="space-between"
       >
-        <Row justify="center" align="middle">
+        <Row justify="center" align="middle" style={{ height: "100%" }}>
           <Image width={30} preview={false} src={eye} />
           <Col className="logo">ISELF</Col>
         </Row>

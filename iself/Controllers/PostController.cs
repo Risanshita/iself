@@ -86,7 +86,7 @@ namespace iself.Controllers
             try
             {
                 var post = _postService.GetPost(id);
-                if (post == null)
+                if (post == null && post?.CreatedBy?.ToLower() == CurrentUser.ToLower())
                     return "Post not found".GetErrorResponse(HttpStatusCode.NotFound);
 
                 var result = await _validationRules.ValidateAsync(new NewPostRequest
@@ -118,6 +118,10 @@ namespace iself.Controllers
         {
             try
             {
+                var post = _postService.GetPost(id);
+                if (post == null && post?.CreatedBy?.ToLower() == CurrentUser.ToLower())
+                    return "Post not found".GetErrorResponse(HttpStatusCode.NotFound);
+
                 var result = await _postService.DeletePostAsync(id);
                 return result.GetResponse();
             }

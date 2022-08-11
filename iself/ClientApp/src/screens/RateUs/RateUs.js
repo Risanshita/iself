@@ -2,7 +2,8 @@ import { Col, Row, Button, Input } from "antd";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { FrownOutlined, MehOutlined, SmileOutlined } from "@ant-design/icons";
 import { Rate } from "antd";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AccountContext } from "../../context/accountContext";
 
 const customIcons = [
   <FrownOutlined />,
@@ -19,25 +20,32 @@ const animationPics = [
   "https://assets10.lottiefiles.com/packages/lf20_Mq35jq.json",
 ];
 function RateUs() {
-  const [ratevalue, setratevalue] = useState(5);
+  const [rateValue, setRateValue] = useState(5);
   const [animationUrl, setAnimationUrl] = useState(animationPics[4]);
   const [rateText, setRateText] = useState("");
+  const [isSubmitted, setSubmit] = useState(false);
+
+  const { actions } = useContext(AccountContext);
+  const { submitFeedback } = actions.account;
+
   function onChangeText(text) {
     setRateText(text.currentTarget.value);
   }
+
   function onClickSend() {
-    console.log("Rating value : " + ratevalue);
-    console.log("Rating Text : " + rateText);
+    submitFeedback({ Rating: rateValue, FeedbackMessage: rateText });
+    setSubmit(true);
   }
+
   function Onhover(index) {
-    if (index !== undefined) setratevalue(index);
+    if (index !== undefined) setRateValue(index);
   }
 
   useEffect(() => {
-    if (ratevalue !== undefined) {
-      setAnimationUrl(animationPics[ratevalue - 1]);
+    if (rateValue !== undefined) {
+      setAnimationUrl(animationPics[rateValue - 1]);
     }
-  }, [ratevalue]);
+  }, [rateValue]);
 
   return (
     <Row
@@ -45,94 +53,112 @@ function RateUs() {
       align="middle"
       style={{ width: "100%", height: "100%" }}
     >
-      <Col
-        xs={22}
-        sm={22}
-        md={18}
-        lg={12}
-        xl={12}
-        style={{
-          backgroundColor: "#2C2C33",
-          height: "530px",
-          borderRadius: "10px",
-        }}
-      >
-        <Row
-          justify="center"
-          align="middle"
-          style={{ width: "100%", marginTop: "10px" }}
+      {isSubmitted && (
+        <Col style={{ fontSize: "40px" }}>Thanks for your time!</Col>
+      )}
+      {!isSubmitted && (
+        <Col
+          xs={22}
+          sm={22}
+          md={18}
+          lg={12}
+          xl={12}
+          style={{
+            backgroundColor: "#2C2C33",
+            height: "530px",
+            borderRadius: "10px",
+          }}
         >
-          Rate Us
-        </Row>
-        <Row justify="center" align="middle" style={{ width: "100%" }}>
-          <div
-            className="rateReaction"
-            style={{
-              //   backgroundColor: "white",
-              borderRadius: "50%",
-              height: "300px",
-              width: "300px",
-            }}
+          <Row
+            justify="center"
+            align="middle"
+            style={{ width: "100%", marginTop: "10px" }}
           >
-            <Player
-              autoplay
-              loop
-              src={animationUrl}
-              style={{ height: "300px", width: "300px" }}
+            Rate Us
+          </Row>
+          <Row justify="center" align="middle" style={{ width: "100%" }}>
+            <div
+              className="rateReaction"
+              style={{
+                //   backgroundColor: "white",
+                borderRadius: "50%",
+                height: "300px",
+                width: "300px",
+              }}
             >
-              {/* <Controls
+              <Player
+                autoplay
+                loop
+                src={animationUrl}
+                style={{ height: "300px", width: "300px" }}
+              >
+                {/* <Controls
               visible={true}
               buttons={["play", "repeat", "frame", "debug"]}
             /> */}
-            </Player>
-          </div>
-        </Row>
-        <Row
-          justify="center"
-          align="middle"
-          style={{ width: "100%", margin: "10px 0px" }}
-        >
-          <Rate
-            onHoverChange={Onhover}
-            value={ratevalue}
-            character={({ index }) => customIcons[index]}
-            style={{ fontSize: 36 }}
-          />
-        </Row>
-        <Row
-          justify="center"
-          align="middle"
-          style={{ width: "100%", height: "auto" }}
-        >
-          <Input.TextArea
-            onChange={onChangeText}
-            style={{ width: "90%" }}
-            placeholder="Write feedback here"
-            autoSize={{ minRows: 2, maxRows: 2 }}
-          />
-        </Row>
-        <Row
-          justify="space-between"
-          align="middle"
-          style={{ width: "100%", padding: "5px 20px" }}
-        >
-          <Button type="text" style={{ color: "#5B0EEB" }}>
-            Not now
-          </Button>
-          <Button
-            type="primary"
-            onClick={onClickSend}
+              </Player>
+            </div>
+          </Row>
+          <Row
+            justify="center"
+            align="middle"
             style={{
-              backgroundColor: "#5B0EEB",
-              padding: "0px 10%",
-              borderRadius: "10px",
-              border: "none",
+              width: "100%",
+              margin: "10px 0px",
+              position: "relative",
+              top: "-50px",
             }}
           >
-            Send
-          </Button>
-        </Row>
-      </Col>
+            <Rate
+              onHoverChange={Onhover}
+              value={rateValue}
+              character={({ index }) => customIcons[index]}
+              style={{ fontSize: 36 }}
+            />
+          </Row>
+          <Row
+            justify="center"
+            align="middle"
+            style={{
+              width: "100%",
+              height: "auto",
+              position: "relative",
+              top: "-50px",
+            }}
+          >
+            <Input.TextArea
+              onChange={onChangeText}
+              style={{ width: "90%" }}
+              placeholder="Write feedback here"
+              autoSize={{ minRows: 3, maxRows: 3 }}
+            />
+          </Row>
+          <Row
+            justify="space-between"
+            align="middle"
+            style={{
+              width: "100%",
+              padding: "5px 40px",
+              position: "relative",
+              top: "-40px",
+            }}
+          >
+            <Button type="text" style={{ color: "#5B0EEB" }}>
+              Not now
+            </Button>
+            <Button
+              type="primary"
+              onClick={onClickSend}
+              style={{
+                padding: "0px 30px",
+                borderRadius: "5px",
+              }}
+            >
+              Submit
+            </Button>
+          </Row>
+        </Col>
+      )}
     </Row>
   );
 }
