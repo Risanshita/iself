@@ -1,7 +1,6 @@
 ﻿using iself.Data.Models;
 using iself.Data.Repositories.Interfaces;
 using iself.Models.Request;
-using System.Text.Json;
 
 namespace iself.Data.Repositories
 {

@@ -8,7 +8,7 @@ namespace iself.Controllers
     [Route("auth")]
     [ApiController]
     [Authorize]
-    public class AuthController : ControllerBase
+    public class AuthController : BaseController
     {
 
 
@@ -16,6 +16,8 @@ namespace iself.Controllers
         [HttpPost("validate")]
         public IActionResult Post()
         {
+            if (string.IsNullOrWhiteSpace(CurrentUser))
+                return Unauthorized();
             return Ok(new { Message = "Success" });
         }
 

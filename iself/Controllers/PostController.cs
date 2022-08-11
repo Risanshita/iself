@@ -12,7 +12,7 @@ namespace iself.Controllers
     [ApiController]
     [Route("posts")]
     [Authorize]
-    public class PostController : ControllerBase
+    public class PostController : BaseController
     {
         private readonly NewPostValidator _validationRules;
         private readonly IPostService _postService;
@@ -25,10 +25,10 @@ namespace iself.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Get([FromQuery]string? createdBy, [FromQuery] PostType? type, [FromQuery] string? query, [FromQuery] int take = 20, [FromQuery] int skip = 0)
+        public IActionResult Get([FromQuery] string? createdBy, [FromQuery] PostType? type, [FromQuery] string? query, [FromQuery] int take = 20, [FromQuery] int skip = 0)
         {
             try
-            { 
+            {
                 if (type != null)
                     return _postService.GetPostByType((PostType)type, createdBy, take, skip).GetSuccessResponse();
 
@@ -64,6 +64,7 @@ namespace iself.Controllers
                 var result = await _validationRules.ValidateAsync(request);
                 if (result.IsValid)
                 {
+                    request.CreatedBy = CurrentUser;
                     var post = await _postService.AddPostAsync(request);
                     if (post != null)
                         return post.GetSuccessResponse(HttpStatusCode.Created);
@@ -97,6 +98,7 @@ namespace iself.Controllers
                     Author = request.Author,
                     Source = request.Source,
                     Title = request.Title,
+                    CreatedBy = CurrentUser
                 });
                 if (result.IsValid)
                 {

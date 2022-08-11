@@ -32,12 +32,6 @@
     <ProjectReference Include="..\JsonFlatFileDataStore\JsonFlatFileDataStore.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="iself-a253a-firebase-adminsdk-vo7o4-06ed92842a.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
