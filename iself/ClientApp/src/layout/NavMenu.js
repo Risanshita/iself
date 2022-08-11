@@ -88,9 +88,9 @@ const NavMenu = () => {
       ),
     },
     {
-      link: "/RateUs",
+      link: "/feedback",
       label: (
-        <NavLink tag={Link} to="/RateUs">
+        <NavLink tag={Link} to="/feedback">
           <ScheduleOutlined />
           <span className="menu-label">Rate Us</span>
         </NavLink>

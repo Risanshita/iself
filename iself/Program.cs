@@ -39,11 +39,11 @@ builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = "https://securetoken.google.com/"+ firebaseAppId;
+        options.Authority = "https://securetoken.google.com/" + firebaseAppId;
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
-            ValidIssuer = "https://securetoken.google.com/"+ firebaseAppId,
+            ValidIssuer = "https://securetoken.google.com/" + firebaseAppId,
             ValidateAudience = true,
             ValidAudience = firebaseAppId,
             ValidateLifetime = true
@@ -58,7 +58,16 @@ builder.Services.AddSingleton(new MapperConfiguration(conf =>
 
 builder.Services.AddSingleton<IPostRepository, PostRepository>();
 builder.Services.AddSingleton<IPostService, PostService>();
+
+builder.Services.AddSingleton<IUserRepository, UserRepository>();
+builder.Services.AddSingleton<IUserService, UserService>();
+
+builder.Services.AddSingleton<IAppFeedbackRepository, AppFeedbackRepository>();
+builder.Services.AddSingleton<IAppFeedbackService, AppFeedbackService>();
+
 builder.Services.AddSingleton(typeof(NewPostValidator));
+builder.Services.AddSingleton(typeof(NewFeedbackValidator));
+builder.Services.AddSingleton(typeof(NewUserValidator));
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

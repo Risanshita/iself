@@ -11,6 +11,12 @@ namespace iself.Utils
         {
             CreateMap<Post, NewPostRequest>().ReverseMap();
             CreateMap<Post, PostResponse>().ReverseMap();
+
+            CreateMap<AppFeedback, NewFeedbackRequest>().ReverseMap();
+            
+            CreateMap<User, NewUserRequest>().ReverseMap();
+            CreateMap<User, UserResponse>().ReverseMap();
+
         }
     }
 }

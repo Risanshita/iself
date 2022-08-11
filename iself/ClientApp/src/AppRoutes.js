@@ -29,7 +29,7 @@ const AppRoutes = [
     element: <Counter />,
   },
   {
-    path: "/RateUs",
+    path: "/feedback",
     element: <RateUs />,
   },
   {

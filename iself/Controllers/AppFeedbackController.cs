@@ -2,6 +2,7 @@
 using iself.Models.Request;
 using iself.Services.Interfaces;
 using iself.Utils;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -11,6 +12,7 @@ namespace iself.Controllers
 {
     [Route("feedbacks")]
     [ApiController]
+    [Authorize]
     public class AppFeedbackController : BaseController
     {
         private readonly NewFeedbackValidator _validationRules;
