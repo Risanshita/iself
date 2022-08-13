@@ -16,17 +16,48 @@ import { AccountContext } from "../context/accountContext";
 const { Header } = Layout;
 
 const NavMenu = () => {
-  // function profileClick() {
-  //   <NavLink tag={Link} to="/profile"></NavLink>;
-  // }
+  let screenLock = null;
   const { pathname } = useLocation();
   const [path, setPath] = useState(pathname);
   const { state } = useContext(AccountContext);
   const { login } = state.account;
 
   useEffect(() => {
+    if (pathname === "/") {
+      getScreenLock();
+    } else if (typeof screenLock !== "undefined" && screenLock != null) {
+      screenLock.release().then(() => {
+        console.log("Lock released 🎈");
+        screenLock = null;
+      });
+    }
     setPath(pathname);
   }, [pathname]);
+
+  const getScreenLock = async () => {
+    if (isScreenLockSupported()) {
+      try {
+        screenLock = await navigator.wakeLock.request("screen");
+
+        screenLock.onrelease = async () => {
+          console.log("onrelease");
+          try {
+            if (pathname === "/")
+              screenLock = await navigator.wakeLock.request("screen");
+          } catch (err) {
+            console.log(err.name, err.message);
+          }
+        };
+      } catch (err) {
+        console.log(err.name, err.message);
+      }
+      return screenLock;
+    }
+  };
+
+  const isScreenLockSupported = () => {
+    return "wakeLock" in navigator;
+  };
 
   const menuList = [
     {
@@ -48,7 +79,7 @@ const NavMenu = () => {
       ),
     },
     {
-      link: "/fetch-data",
+      link: "/browse",
       label: (
         <NavLink tag={Link} to="/browse">
           <Row>
@@ -60,14 +91,6 @@ const NavMenu = () => {
             ></Player>
             <span className="menu-label">Browse</span>
           </Row>
-        </NavLink>
-      ),
-    },
-    {
-      link: "/demoscreen",
-      label: (
-        <NavLink tag={Link} to="/demoscreen">
-          <span className="menu-label">demoscreen</span>
         </NavLink>
       ),
     },
