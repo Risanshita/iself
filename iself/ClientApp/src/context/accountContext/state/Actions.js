@@ -19,6 +19,10 @@ export const useActions = (state, dispatch) => {
     else dispatch({ type: types.SET_LOGIN, payload: isLogin });
   };
 
+  const setUserClaims = (claims) => {
+    dispatch({ type: types.SET_USER_CLAIMS, payload: claims });
+  };
+
   const login = async ({ username, password }, callback) => {
     dispatch({ type: types.SET_LOADING });
     const auth = getAuth();
@@ -47,11 +51,13 @@ export const useActions = (state, dispatch) => {
 
   const getAccountDetails = async () => {
     var response = await httpGet("users/me");
-    if (response.succeeded)
+    if (response.succeeded) {
       dispatch({
         type: types.SET_USER_DETAILS,
         payload: response.data,
       });
+      localStorage.setItem("logged-user-name", " " + response.data.fullName);
+    }
   };
 
   const updateProfileDetails = async (param, callback) => {
@@ -67,11 +73,7 @@ export const useActions = (state, dispatch) => {
 
   const newUser = async (param, callback) => {
     var response = await httpPost("users", param);
-    console.log(response);
-    if (response.succeeded) {
-      if (typeof callback === "function") callback();
-      message.success("User created!");
-    }
+    if (typeof callback === "function") callback(response);
   };
 
   return {
@@ -83,5 +85,6 @@ export const useActions = (state, dispatch) => {
     submitFeedback,
     updateProfileDetails,
     newUser,
+    setUserClaims,
   };
 };

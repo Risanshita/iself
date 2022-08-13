@@ -16,6 +16,9 @@ import { AccountContext } from "../../context/accountContext";
 import personpic from "../../assets/images/person.png";
 import profilepic from "../../assets/images/profilepic.png";
 import editlogo from "../../assets/animatedIcons/edit.json";
+import { UserRoles } from "../../context/accountContext/state/Reducers";
+import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function ProfileHeader() {
   const [isEdit, setEdit] = useState(false);
@@ -24,7 +27,7 @@ function ProfileHeader() {
   const accountContext = useContext(AccountContext);
   const { getAccountDetails, updateProfileDetails, logout } =
     accountContext.actions.account;
-  const { userDetails } = accountContext.state.account;
+  const { userDetails, userClaims } = accountContext.state.account;
 
   if (isInitialLoad) {
     getAccountDetails();
@@ -103,7 +106,20 @@ function ProfileHeader() {
               }}
             />
           )}
-
+          {!isEdit &&
+            userClaims &&
+            userClaims.user_role === UserRoles.SuperAdmin && (
+              <NavLink tag={Link} to="/signup">
+                <Button
+                  style={{
+                    border: "1px solid #4361EE",
+                    backgroundColor: "#4361EE",
+                  }}
+                  type="text"
+                  icon={<CloseOutlined />}
+                />
+              </NavLink>
+            )}
           {!isEdit && (
             <Button
               style={{ backgroundColor: "#4361EE", borderRadius: "0px" }}

@@ -18,7 +18,7 @@ import { AccountContext } from "./context/accountContext";
 const App = () => {
   const { state, actions } = useContext(AccountContext);
   const { login } = state.account;
-  const { setLogin, validate } = actions.account;
+  const { setLogin, validate, setUserClaims } = actions.account;
   const [isInitialLoad, setInitialLoad] = useState(true);
 
   ConfigProvider.config({
@@ -59,8 +59,12 @@ const App = () => {
       console.log("auth status", isLogin);
       setLogin(isLogin);
       if (isLogin) {
-        if (user.reloadUserInfo.customAttributes)
-          console.log(JSON.parse(user.reloadUserInfo.customAttributes));
+        if (user.reloadUserInfo.customAttributes) {
+          try {
+            setUserClaims(JSON.parse(user.reloadUserInfo.customAttributes));
+          } catch {}
+        }
+
         localStorage.setItem("access_token", user.accessToken);
         localStorage.setItem("user_id", user.uid);
       } else {
