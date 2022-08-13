@@ -4,13 +4,13 @@ import { NavLink } from "reactstrap";
 import { Link, useLocation } from "react-router-dom";
 import { Col, Layout, Image, Row } from "antd";
 
-import browse from "../assets/images/browse.png";
-import home from "../assets/images/home.png";
 import eye from "../assets/images/eye.png";
 import avtar from "../assets/images/avtar.jpg";
 import { Player } from "@lottiefiles/react-lottie-player";
 import postnew from "../assets/animatedIcons/postnew.json";
 import loginlogo from "../assets/animatedIcons/login.json";
+import browselogo from "../assets/animatedIcons/browse.json";
+import homelogo from "../assets/animatedIcons/home.json";
 import { AccountContext } from "../context/accountContext";
 
 const { Header } = Layout;
@@ -67,7 +67,6 @@ const NavMenu = () => {
       link: "/demoscreen",
       label: (
         <NavLink tag={Link} to="/demoscreen">
-          <ScheduleOutlined />
           <span className="menu-label">demoscreen</span>
         </NavLink>
       ),
