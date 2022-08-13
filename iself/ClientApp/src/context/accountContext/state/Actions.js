@@ -2,7 +2,7 @@ import { types } from "./Reducers";
 import "firebase/compat/auth";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { message } from "antd";
-import { httpPost } from "../../../utils/HttpClient";
+import { httpGet, httpPost, httpPut } from "../../../utils/HttpClient";
 
 export const useActions = (state, dispatch) => {
   const logout = () => {
@@ -41,19 +41,48 @@ export const useActions = (state, dispatch) => {
   };
 
   const submitFeedback = async (param) => {
-    httpPost("feedbacks", param)
+    await httpPost("feedbacks", param)
       .then((a) => {})
       .catch((e) => {});
   };
 
-  const loadMenu = (user_role_id, callback) => {};
+  const getAccountDetails = async () => {
+    var response = await httpGet("users/me");
+    if (response.succeeded)
+      dispatch({
+        type: types.SET_USER_DETAILS,
+        payload: response.data,
+      });
+  };
+
+  const updateProfileDetails = async (param, callback) => {
+    var response = await httpPut("users", param);
+    if (response.succeeded) {
+      dispatch({
+        type: types.SET_USER_DETAILS,
+        payload: response.data,
+      });
+      if (typeof callback === "function") callback();
+    }
+  };
+
+  const newUser = async (param, callback) => {
+    var response = await httpPost("users", param);
+    console.log(response);
+    if (response.succeeded) {
+      if (typeof callback === "function") callback();
+      message.success("User created!");
+    }
+  };
 
   return {
     login,
     logout,
-    loadMenu,
+    getAccountDetails,
     setLogin,
     validate,
     submitFeedback,
+    updateProfileDetails,
+    newUser,
   };
 };

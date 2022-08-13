@@ -134,18 +134,15 @@ function RateUs() {
             />
           </Row>
           <Row
-            justify="space-between"
+            justify="center"
             align="middle"
             style={{
               width: "100%",
-              padding: "5px 40px",
+              padding: "5px 0",
               position: "relative",
-              top: "-40px",
+              top: "-35px",
             }}
-          >
-            <Button type="text" style={{ color: "#5B0EEB" }}>
-              Not now
-            </Button>
+          > 
             <Button
               type="primary"
               onClick={onClickSend}

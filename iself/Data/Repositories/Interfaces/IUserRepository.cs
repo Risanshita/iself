@@ -11,5 +11,6 @@ namespace iself.Data.Repositories.Interfaces
         Task<User?> AddUserAsync(User User);
         Task<bool> DeleteUserAsync(string id);
         Task<bool> UpdateUserAsync(string id, UpdateUserRequest request);
+        List<User> GetUserByIds(List<string> ids);
     }
 }

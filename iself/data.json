@@ -9,7 +9,7 @@
       "source": "brainyquote",
       "author": "Archimedes",
       "language": "",
-      "createdBy": "",
+      "createdBy": "oc7Jn4Fw3GONNWtGCfteOQvasfq1",
       "createdAt": "2022-07-30T16:22:20.2273346+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-30T16:22:20.2273361+05:30"
@@ -23,7 +23,7 @@
       "source": "brainyquote",
       "author": "Archimedes",
       "language": "",
-      "createdBy": "",
+      "createdBy": "oc7Jn4Fw3GONNWtGCfteOQvasfq1",
       "createdAt": "2022-07-30T16:22:50.7684778+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-30T16:22:50.7684799+05:30"
@@ -37,7 +37,7 @@
       "source": "brainyquote",
       "author": "Ernest Hemingway",
       "language": "",
-      "createdBy": "",
+      "createdBy": "oc7Jn4Fw3GONNWtGCfteOQvasfq1",
       "createdAt": "2022-07-30T16:23:32.4605762+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-30T16:23:32.460578+05:30"
@@ -51,7 +51,7 @@
       "source": "brainyquote",
       "author": "Buddha",
       "language": "",
-      "createdBy": "",
+      "createdBy": "oc7Jn4Fw3GONNWtGCfteOQvasfq1",
       "createdAt": "2022-07-30T16:24:22.8772541+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-30T16:24:22.8772555+05:30"
@@ -65,7 +65,7 @@
       "source": "brainyquote",
       "author": "Buddha",
       "language": "",
-      "createdBy": "",
+      "createdBy": "oc7Jn4Fw3GONNWtGCfteOQvasfq1",
       "createdAt": "2022-07-30T16:25:08.5025414+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-30T16:25:08.5025433+05:30"
@@ -79,7 +79,7 @@
       "source": "W3SCHOOL",
       "author": "",
       "language": "vbscriptHtml (vbscript-html)",
-      "createdBy": "",
+      "createdBy": "oc7Jn4Fw3GONNWtGCfteOQvasfq1",
       "createdAt": "2022-07-31T20:32:18.3478474+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-31T20:37:14.4129441+05:30"
@@ -93,24 +93,10 @@
       "source": "GOOGLE",
       "author": "",
       "language": "csharp",
-      "createdBy": "",
+      "createdBy": "oc7Jn4Fw3GONNWtGCfteOQvasfq1",
       "createdAt": "2022-07-31T22:06:15.9156118+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-31T22:06:15.9156142+05:30"
-    },
-    {
-      "id": "007f0782-fd63-45a7-acda-df95562ea5d20",
-      "title": "Hello world",
-      "type": 3,
-      "data1": "namespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            System.Console.WriteLine(\"Hello World!\");\n        }\n    }\n}",
-      "data2": "using System;\nnamespace HelloWorld\n{\n    class Hello {         \n        static void Main(string[] args)\n        {\n            Console.WriteLine(\"Hello World!\");\n        }\n    }\n}",
-      "source": "Google",
-      "author": "",
-      "language": "csharp",
-      "createdBy": "",
-      "createdAt": "2022-07-31T22:32:56.0605478+05:30",
-      "updatedBy": "",
-      "updatedAt": "2022-07-31T22:32:56.0605532+05:30"
     },
     {
       "id": "007f0782-fd63-45a7-acda-df95562ea5d22",
@@ -121,10 +107,41 @@
       "source": "",
       "author": "",
       "language": "",
-      "createdBy": "",
+      "createdBy": "oc7Jn4Fw3GONNWtGCfteOQvasfq1",
       "createdAt": "2022-07-31T23:45:56.3845413+05:30",
       "updatedBy": "",
       "updatedAt": "2022-07-31T23:45:56.3845446+05:30"
+    }
+  ],
+  "user": [
+    {
+      "id": "oc7Jn4Fw3GONNWtGCfteOQvasfq1",
+      "fullName": "Rishi kumar",
+      "role": 2,
+      "userName": "Rishi",
+      "email": "risanshita1996@gmail.com",
+      "phoneNumber": "9631338495",
+      "createdBy": "risanshita1996@gmail.com",
+      "createdAt": "2022-08-12T22:21:01.1375833+05:30"
+    },
+    {
+      "id": "60g4cNwbS9UAPqa2wGWoVqAKin62",
+      "fullName": "Nitish kumar",
+      "role": 2,
+      "userName": "Nitish",
+      "email": "nitishr833@gmail.com",
+      "phoneNumber": "",
+      "createdBy": "oc7Jn4Fw3GONNWtGCfteOQvasfq1",
+      "createdAt": "2022-08-12T22:21:01.1375833+05:30"
+    }
+  ],
+  "appFeedback": [
+    {
+      "id": "acc7a212-2eeb-4a2d-8f10-06ae07668eae",
+      "feedbackMessage": "",
+      "rating": 5,
+      "createdBy": "oc7Jn4Fw3GONNWtGCfteOQvasfq1",
+      "createdAt": "2022-08-13T00:20:17.6151367+05:30"
     }
   ]
 }

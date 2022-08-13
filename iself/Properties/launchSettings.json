@@ -15,7 +15,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy",
-        "FirebaseAppId": "iself-a253a"
+        "FirebaseAppId": "iself-a253a",
+        "AdminEmail": "risanshita1996@gmail.com"
       }
     },
     "IIS Express": {
@@ -24,7 +25,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy",
-        "FirebaseAppId": "iself-a253a"
+        "FirebaseAppId": "iself-a253a",
+        "AdminEmail": "risanshita1996@gmail.com"
       }
     }
   }
