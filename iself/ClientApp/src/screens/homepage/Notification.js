@@ -1,8 +1,6 @@
-import { NotificationOutlined } from "@ant-design/icons";
-import { Row, Col, Image } from "antd";
+import { Row } from "antd";
 import { Player } from "@lottiefiles/react-lottie-player";
 import Textfit from "../../utils/Textfit";
-import notification from "../../assets/images/notification.png";
 import NotificationIcon from "../../assets/animatedIcons/Notification.json";
 // sgv
 const Notification = ({ post }) => {
