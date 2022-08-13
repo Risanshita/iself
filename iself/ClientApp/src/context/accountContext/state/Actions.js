@@ -26,7 +26,6 @@ export const useActions = (state, dispatch) => {
       .then((userCredential) => {
         dispatch({ type: types.SET_LOGIN, payload: true });
         if (typeof callback === "function") callback(true);
-        message.success("Login success");
       })
       .catch((error) => {
         console.log(error);

@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { Button, Col, Form, Image, Row, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -10,7 +10,7 @@ import userAnimation from "../../assets/animatedIcons/user.json";
 import invalid from "../../assets/animatedIcons/invalid.json";
 import success from "../../assets/animatedIcons/success.json";
 
-const Login = () => {
+const SignUp = () => {
   const { actions, state } = useContext(AccountContext);
   const { login } = actions.account;
   const { userDetails } = state.account;
@@ -92,11 +92,11 @@ const Login = () => {
               </Col>
             </Row>
             <div className="specing">
-              <div style={{ fontSize: 30 }}>Log In</div>
+              <div style={{ fontSize: 30 }}>Sign up</div>
               <p>Welcome back{userDetails.fullName}!</p>
             </div>
             <Form
-              name="login_form"
+              name="signup_form"
               onFinish={onFinish}
               initialValues={{}}
               size="large"
@@ -107,6 +107,17 @@ const Login = () => {
                 setLoginError(undefined);
               }}
             >
+              <Form.Item
+                name="Full Name"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your full name!",
+                  },
+                ]}
+              >
+                <Input placeholder="fullname" />
+              </Form.Item>
               <Form.Item
                 name="username"
                 rules={[
@@ -145,7 +156,7 @@ const Login = () => {
                       borderRadius: 5,
                     }}
                   >
-                    SIGN IN
+                    SIGN UP
                   </Button>
                 </Row>
               </Form.Item>
@@ -157,4 +168,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

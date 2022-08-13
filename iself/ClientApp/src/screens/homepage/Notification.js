@@ -1,7 +1,9 @@
 import { NotificationOutlined } from "@ant-design/icons";
 import { Row, Col, Image } from "antd";
+import { Player } from "@lottiefiles/react-lottie-player";
 import Textfit from "../../utils/Textfit";
 import notification from "../../assets/images/notification.png";
+import NotificationIcon from "../../assets/animatedIcons/Notification.json";
 // sgv
 const Notification = ({ post }) => {
   return (
@@ -16,7 +18,12 @@ const Notification = ({ post }) => {
       className="info-byte-page"
     >
       <Row justify="center" align="top">
-        <Image width={30} preview={false} src={notification} />
+        <Player
+          autoplay
+          loop
+          src={NotificationIcon}
+          style={{ height: "30px", width: "30px" }}
+        ></Player>
         <h5>Notification</h5>
       </Row>
       <Row

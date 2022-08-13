@@ -6,8 +6,17 @@ import { Col, Layout, Image, Row } from "antd";
 import browse from "../assets/images/browse.png";
 import home from "../assets/images/home.png";
 import eye from "../assets/images/eye.png";
+import avtar from "../assets/images/avtar.jpg";
+import { Player } from "@lottiefiles/react-lottie-player";
 import add from "../assets/images/add.png";
 import signout from "../assets/images/signout.png";
+
+import postnew from "../assets/animatedIcons/postnew.json";
+import eyelogo from "../assets/animatedIcons/eye.json";
+import homelogo from "../assets/animatedIcons/home.json";
+import browselogo from "../assets/animatedIcons/browse.json";
+import loginlogo from "../assets/animatedIcons/login.json";
+import addnewlogo from "../assets/animatedIcons/add.json";
 import {
   SmileOutlined,
   LogoutOutlined,
@@ -23,8 +32,7 @@ const NavMenu = () => {
   const { pathname } = useLocation();
   const [path, setPath] = useState(pathname);
 
-  const { state, actions } = useContext(AccountContext);
-  const { logout } = actions.account;
+  const { state } = useContext(AccountContext);
   const { login } = state.account;
 
   useEffect(() => {
@@ -38,6 +46,12 @@ const NavMenu = () => {
         <NavLink tag={Link} to="/">
           {/* <HomeOutlined /> */}
           <Image width={17} preview={false} src={home} />
+          {/* <Player
+                  autoplay
+                  loop
+                  src={homelogo}
+                  style={{ height: "17px", width: "17px" }}
+                ></Player> */}
           <span className="menu-label">Home</span>
         </NavLink>
       ),
@@ -88,23 +102,23 @@ const NavMenu = () => {
       ),
     },
     {
-      link: "/feedback",
+      link: "/signup",
       label: (
-        <NavLink tag={Link} to="/feedback">
+        <NavLink tag={Link} to="/signup">
           <ScheduleOutlined />
-          <span className="menu-label">Rate Us</span>
+          <span className="menu-label">Sign UP</span>
         </NavLink>
       ),
     },
-    // {
-    //   link: "/profile",
-    //   label: (
-    //     <NavLink tag={Link} to="/profile">
-    //       <ScheduleOutlined />
-    //       <span className="menu-label">Profile</span>
-    //     </NavLink>
-    //   ),
-    // },
+    {
+      link: "/notfound",
+      label: (
+        <NavLink tag={Link} to="/notfound">
+          <ScheduleOutlined />
+          <span className="menu-label">Not Found</span>
+        </NavLink>
+      ),
+    },
   ];
 
   return (
@@ -132,7 +146,7 @@ const NavMenu = () => {
             {menuList.map((a, index) => {
               return (
                 <Col
-                  key={"menu_item" + index}
+                  key={"menu_item_" + index}
                   className={a.link === path ? "active" : ""}
                 >
                   {a.label}
@@ -148,10 +162,25 @@ const NavMenu = () => {
                 to="/post"
                 className="custom-primary-button"
                 tag={Link}
-                style={{ backgroundColor: "#FFB800" }}
+                style={{ backgroundColor: "transparent" }}
               >
-                <Image width={17} preview={false} src={add} />
-                <div className="menu-label">POST</div>
+                <Player
+                  autoplay
+                  loop
+                  src={postnew}
+                  style={{ height: "34px", width: "70px" }}
+                ></Player>
+
+                {/* <Image width={17} preview={false} src={add} /> */}
+                {/* <Row>
+                  <Player
+                    autoplay
+                    loop
+                    src={addnewlogo}
+                    style={{ height: "25px", width: "25px" }}
+                  ></Player>
+                  <span className="menu-label">POST</span>
+                </Row> */}
               </NavLink>
             )}
             {login && (
@@ -161,27 +190,26 @@ const NavMenu = () => {
                   // onClick={profileClick()}
                   style={{
                     margin: "0px 5px",
-                    backgroundColor: "var(--ant-primary-color)",
+                    // backgroundColor: "var(--ant-primary-color)",
                   }}
                   shape="circle"
                   size="35"
-                  icon={<SmileOutlined />}
+                  icon={
+                    <Image width={30} height={30} preview={false} src={avtar} />
+                  }
                 />
               </NavLink>
               // </Tooltip>
             )}
-            {login && (
-              <NavLink onClick={logout}>
-                <LogoutOutlined />
-                <span className="menu-label">Logout</span>
-              </NavLink>
-            )}
-
             {!login && (
               <NavLink tag={Link} to="/login">
                 <Row justify="center" align="middle">
-                  <Image width={17} preview={false} src={signout} />
-                  <span className="menu-label">Login</span>
+                  <Player
+                    hover={true}
+                    loop
+                    src={loginlogo}
+                    style={{ height: "34px", width: "35px" }}
+                  ></Player>
                 </Row>
               </NavLink>
             )}

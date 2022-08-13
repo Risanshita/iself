@@ -1,13 +1,19 @@
-import { CloseOutlined, CheckOutlined, EditOutlined } from "@ant-design/icons";
-
+import {
+  CloseOutlined,
+  CheckOutlined,
+  EditOutlined,
+  LogoutOutlined,
+} from "@ant-design/icons";
+import { Player } from "@lottiefiles/react-lottie-player";
 import phone from "../../assets/images/phone.png";
 import email from "../../assets/images/email.png";
-import person from "../../assets/images/person.png";
-
-
+import person from "../../assets/images/avtar.jpg";
+import signout from "../../assets/images/signout.png";
+import editlogo from "../../assets/animatedIcons/edit.json";
 import { message, Form, Button, Input, Image } from "antd";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Col, Row } from "antd";
+import { AccountContext } from "../../context/accountContext";
 const getBase64 = (img, callback) => {
   const reader = new FileReader();
   reader.addEventListener("load", () => callback(reader.result));
@@ -32,6 +38,9 @@ const beforeUpload = (file) => {
 
 function ProfileHeader() {
   const [isEdit, setEdit] = useState(false);
+  const accountContext = useContext(AccountContext);
+  const { logout } = accountContext.actions.account;
+
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
   const [user, setuser] = useState({
@@ -110,10 +119,24 @@ function ProfileHeader() {
           align="top"
         >
           {!isEdit && (
-            <Button type="default" icon={<EditOutlined />} onClick={onEdit} />
+            <Button
+              style={{ border: "1px solid #4361EE" }}
+              type="default"
+              // icon={<EditOutlined />}
+              icon={
+                <Player
+                  hover={true}
+                  loop
+                  src={editlogo}
+                  style={{ height: "32px", width: "25px" }}
+                ></Player>
+              }
+              onClick={onEdit}
+            />
           )}
           {isEdit && (
             <Button
+              style={{ border: "1px solid #4361EE" }}
               type="link"
               icon={<CheckOutlined />}
               onClick={() => {
@@ -123,11 +146,24 @@ function ProfileHeader() {
           )}
           {isEdit && (
             <Button
+              style={{
+                border: "1px solid #4361EE",
+                backgroundColor: "#4361EE",
+              }}
               type="text"
               icon={<CloseOutlined />}
               onClick={() => {
                 setEdit(false);
               }}
+            />
+          )}
+
+          {!isEdit && (
+            <Button
+              style={{ backgroundColor: "#4361EE", borderRadius: "0px" }}
+              onClick={logout}
+              type="primary"
+              icon={<LogoutOutlined />}
             />
           )}
         </Row>
