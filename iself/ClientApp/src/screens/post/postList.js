@@ -50,7 +50,9 @@ const PostList = ({ posts, isDeleteEnabled }) => {
           >
             <Col span={24} style={{ height: "100%" }}>
               <Row justify="space-between">
-                <Col>{a.type}</Col>
+                <Row>
+                  {a.type} - {a.title}
+                </Row>
                 <Col>
                   <Dropdown overlay={menu(a)} placement="bottomRight">
                     <Space>

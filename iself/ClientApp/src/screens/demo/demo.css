@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  padding: 0px;
+  position: absolute;
+  display: block;
+  background-color: aqua;
+  right: 0;
+  top: 50%;
+  width: 60px;
+  height: 55px;
+  border-radius: 69px 0 0 69px;
+}
+
+.logodemo {
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  margin: 6px 10px 6px 6px;
+  border-radius: 50px;
+
+  background-size: 20px;
+  background-color: #fff;
+}

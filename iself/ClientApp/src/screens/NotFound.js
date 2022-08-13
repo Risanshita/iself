@@ -1,12 +1,18 @@
 import { Result } from "antd";
-
+import { Row, Col } from "antd";
+import { Player } from "@lottiefiles/react-lottie-player";
+import notfound from "../assets/animatedIcons/notfound.json";
 export default function NotFound() {
   return (
-    <Result
-      status="404"
-      title="404"
-      subTitle="Sorry, the page you visited does not exist."
-      // extra={<Button type="primary">Back Home</Button>}
-    />
+    <Row align="middle" justify="center">
+      <Col justify="center" alig="middle">
+        <Player
+          autoplay
+          loop
+          src={notfound}
+          style={{ height: "500px", width: "700px" }}
+        ></Player>
+      </Col>
+    </Row>
   );
 }

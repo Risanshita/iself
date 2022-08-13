@@ -31,7 +31,6 @@ const NavMenu = () => {
   // }
   const { pathname } = useLocation();
   const [path, setPath] = useState(pathname);
-
   const { state } = useContext(AccountContext);
   const { login } = state.account;
 
@@ -45,14 +44,16 @@ const NavMenu = () => {
       label: (
         <NavLink tag={Link} to="/">
           {/* <HomeOutlined /> */}
-          <Image width={17} preview={false} src={home} />
-          {/* <Player
-                  autoplay
-                  loop
-                  src={homelogo}
-                  style={{ height: "17px", width: "17px" }}
-                ></Player> */}
-          <span className="menu-label">Home</span>
+          {/* <Image width={17} preview={false} src={home} /> */}
+          <Row>
+            <Player
+              hover={true}
+              loop
+              src={homelogo}
+              style={{ height: "20px", width: "17px" }}
+            ></Player>
+            <span className="menu-label">Home</span>
+          </Row>
         </NavLink>
       ),
     },
@@ -96,8 +97,15 @@ const NavMenu = () => {
       link: "/fetch-data",
       label: (
         <NavLink tag={Link} to="/browse">
-          <Image width={17} preview={false} src={browse} />
-          <span className="menu-label">Browse</span>
+          <Row>
+            <Player
+              hover={true}
+              loop
+              src={browselogo}
+              style={{ height: "25px", width: "20px" }}
+            ></Player>
+            <span className="menu-label">Browse</span>
+          </Row>
         </NavLink>
       ),
     },
@@ -116,6 +124,15 @@ const NavMenu = () => {
         <NavLink tag={Link} to="/notfound">
           <ScheduleOutlined />
           <span className="menu-label">Not Found</span>
+        </NavLink>
+      ),
+    },
+    {
+      link: "/demoscreen",
+      label: (
+        <NavLink tag={Link} to="/demoscreen">
+          <ScheduleOutlined />
+          <span className="menu-label">demoscreen</span>
         </NavLink>
       ),
     },

@@ -79,6 +79,14 @@ function Profile() {
     </Row>
   );
 
+  const filterbox = (
+    <div className="filtterBoox">
+      <Popover content={content} title="Filter option" placement="left">
+        <Button type="primary" icon={<FilterOutlined />}></Button>
+      </Popover>
+    </div>
+  );
+
   return (
     <Row
       // className="postnew-page"
@@ -86,11 +94,7 @@ function Profile() {
       style={{ height: "100%", overflowY: "auto", padding: "20px" }}
     >
       <ProfileHeader />
-      <span className="filtterBoox">
-        <Popover content={content} title="Filter option" placement="left">
-          <Button type="primary" icon={<FilterOutlined />}></Button>
-        </Popover>
-      </span>
+      {filterbox}
       <PostList posts={posts} isDeleteEnabled={true} />
     </Row>
   );
