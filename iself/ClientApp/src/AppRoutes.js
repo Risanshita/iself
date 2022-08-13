@@ -5,9 +5,11 @@ import { FetchData } from "./screens/FetchData";
 import { HomeScreen } from "./screens/homepage";
 import Login from "./screens/login";
 import NotFound from "./screens/NotFound";
+import Notfound from "./screens/notfound/notfound";
 import PostScreen from "./screens/post";
 import { ProfileScreen } from "./screens/profile";
 import RateUs from "./screens/RateUs/RateUs";
+import SignUp from "./screens/signup/signup";
 
 const AppRoutes = [
   {
@@ -43,6 +45,14 @@ const AppRoutes = [
   {
     path: "/browse",
     element: <BrowseScreen />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
+  },
+  {
+    path: "/notfound",
+    element: <Notfound />,
   },
 
   {

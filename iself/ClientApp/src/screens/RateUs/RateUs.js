@@ -5,6 +5,11 @@ import { Rate } from "antd";
 import { useContext, useEffect, useState } from "react";
 import { AccountContext } from "../../context/accountContext";
 
+import rating1 from "../../assets/animatedIcons/rating1.json";
+import rating2 from "../../assets/animatedIcons/rating2.json";
+import rating3 from "../../assets/animatedIcons/rating3.json";
+import rating4 from "../../assets/animatedIcons/rating4.json";
+import rating5 from "../../assets/animatedIcons/rating5.json";
 const customIcons = [
   <FrownOutlined />,
   <FrownOutlined />,
@@ -12,13 +17,7 @@ const customIcons = [
   <SmileOutlined />,
   <SmileOutlined />,
 ];
-const animationPics = [
-  "https://assets10.lottiefiles.com/packages/lf20_lt5xlugl.json",
-  "https://assets10.lottiefiles.com/packages/lf20_NBpLbW.json",
-  "https://assets10.lottiefiles.com/packages/lf20_FyWhBU.json",
-  "https://assets10.lottiefiles.com/packages/lf20_4hzghz6e.json",
-  "https://assets10.lottiefiles.com/packages/lf20_Mq35jq.json",
-];
+const animationPics = [rating1, rating2, rating3, rating4, rating5];
 function RateUs() {
   const [rateValue, setRateValue] = useState(5);
   const [animationUrl, setAnimationUrl] = useState(animationPics[4]);
@@ -90,7 +89,7 @@ function RateUs() {
                 autoplay
                 loop
                 src={animationUrl}
-                style={{ height: "300px", width: "300px" }}
+                style={{ height: "250px", width: "250px" }}
               >
                 {/* <Controls
               visible={true}
