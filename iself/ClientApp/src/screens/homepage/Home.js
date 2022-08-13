@@ -39,7 +39,11 @@ export const HomePage = () => {
 
         screenLock.onrelease = async () => {
           console.log("Lock released 🎈");
-          screenLock = await navigator.wakeLock.request("screen");
+          try {
+            screenLock = await navigator.wakeLock.request("screen");
+          } catch (err) {
+            console.log(err.name, err.message);
+          }
         };
       } catch (err) {
         console.log(err.name, err.message);
@@ -52,9 +56,6 @@ export const HomePage = () => {
     loadData();
     setInitialLoad(false);
     getScreenLock();
-    // document.addEventListener("keypress", (e) => {
-    //   setPressedKey(e.key.toLocaleLowerCase());
-    // });
   }
 
   useEffect(() => {

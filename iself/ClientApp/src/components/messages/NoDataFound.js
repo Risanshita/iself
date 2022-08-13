@@ -1,6 +1,6 @@
 import { Row, Col } from "antd";
 import { Player } from "@lottiefiles/react-lottie-player";
-import notfound from "../../assets/animatedIcons/notfound.json";
+import notfound from "../../assets/animatedIcons/noData.json";
 function NoDataFound() {
   return (
     <Row align="middle" justify="center" style={{ width: "100%" }}>
