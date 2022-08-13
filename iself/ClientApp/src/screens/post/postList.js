@@ -6,9 +6,9 @@ import { PostContext } from "../../context/postContext";
 import PostPreview from "./preview";
 import NoDataFound from "../../components/messages/NoDataFound";
 
-const PostList = ({ posts, isDeleteEnabled }) => {
+const PostList = ({ posts, isProfile, onChange }) => {
   const { actions } = useContext(PostContext);
-  const { loadData, deletePost } = actions.post;
+  const { deletePost } = actions.post;
   const [previewPost, setPreviewPost] = useState(undefined);
 
   const menu = (post) => {
@@ -22,14 +22,14 @@ const PostList = ({ posts, isDeleteEnabled }) => {
         },
       },
     ];
-    if (isDeleteEnabled)
+    if (isProfile)
       items.push({
         key: "2",
         label: "Delete",
         icon: <DeleteOutlined />,
         onClick: () => {
           deletePost(post, () => {
-            loadData();
+            if (typeof onChange === "function") onChange();
           });
         },
       });
@@ -63,10 +63,14 @@ const PostList = ({ posts, isDeleteEnabled }) => {
           >
             <Col span={24} style={{ height: "100%" }}>
               <Row justify="space-between">
-                <Row>
-                  {a.type} - {a.title}
-                </Row>
-                <Col>
+                <Col
+                  span={23}
+                  style={{ whiteSpace: "nowrap", overflowX: "auto" }}
+                >
+                  {a.type}
+                  {a.title ? ": " + a.title : ""}
+                </Col>
+                <Col span={1}>
                   <Dropdown overlay={menu(a)} placement="bottomRight">
                     <Space>
                       <MoreOutlined
@@ -92,11 +96,9 @@ const PostList = ({ posts, isDeleteEnabled }) => {
                 {a.data1}
               </Row>
 
-              <span className="post-info createdby">{a.ownerName}</span>
               <div className="post-info source">{a.source}</div>
               <div className="post-info author">{a.author}</div>
               <span className="post-info langugae">
-                {/* <span className="language-circle"></span> */}
                 <Row justify="start" align="middle">
                   {a.language ? (
                     <div

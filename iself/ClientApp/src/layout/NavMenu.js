@@ -16,9 +16,6 @@ import { AccountContext } from "../context/accountContext";
 const { Header } = Layout;
 
 const NavMenu = () => {
-  // function profileClick() {
-  //   <NavLink tag={Link} to="/profile"></NavLink>;
-  // }
   const { pathname } = useLocation();
   const [path, setPath] = useState(pathname);
   const { state } = useContext(AccountContext);
@@ -33,8 +30,6 @@ const NavMenu = () => {
       link: "/",
       label: (
         <NavLink tag={Link} to="/">
-          {/* <HomeOutlined /> */}
-          {/* <Image width={17} preview={false} src={home} /> */}
           <Row>
             <Player
               hover={true}
@@ -60,14 +55,6 @@ const NavMenu = () => {
             ></Player>
             <span className="menu-label">Browse</span>
           </Row>
-        </NavLink>
-      ),
-    },
-    {
-      link: "/demoscreen",
-      label: (
-        <NavLink tag={Link} to="/demoscreen">
-          <span className="menu-label">demoscreen</span>
         </NavLink>
       ),
     },

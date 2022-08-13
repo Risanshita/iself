@@ -342,7 +342,6 @@ function Post({ type, onChangeType }) {
                         type="primary"
                         style={{
                           width: "100%",
-                          backgroundColor: "#FFB800",
                           border: "none",
                         }}
                         onClick={onPreview}

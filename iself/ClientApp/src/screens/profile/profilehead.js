@@ -7,15 +7,14 @@ import {
 import { Player } from "@lottiefiles/react-lottie-player";
 import phone from "../../assets/images/phone.png";
 import email from "../../assets/images/email.png";
-// import person from "../../assets/images/person.png";
 
 import { Form, Button, Input, Image } from "antd";
 import React, { useContext, useState } from "react";
 import { Col, Row } from "antd";
 import { AccountContext } from "../../context/accountContext";
 
-import person from "../../assets/images/avtar.jpg";
-import signout from "../../assets/images/signout.png";
+import personpic from "../../assets/images/person.png";
+import profilepic from "../../assets/images/profilepic.png";
 import editlogo from "../../assets/animatedIcons/edit.json";
 
 function ProfileHeader() {
@@ -32,13 +31,6 @@ function ProfileHeader() {
     setInitialLoad(false);
   }
 
-  // const [loading, setLoading] = useState(false);
-  // const [imageUrl, setImageUrl] = useState();
-  // const [user, setuser] = useState({
-  //   name: "Nitish kumar",
-  //   email: "Nitishr833@gmail.com",
-  //   number: "7033161175",
-  // });
   const [form] = Form.useForm();
 
   const onEdit = () => {
@@ -126,17 +118,17 @@ function ProfileHeader() {
             <div
               className="profile-image"
               style={{
-                padding: "20px",
+                border: "5px solid var(--ant-primary-color)",
                 backgroundColor: "gray",
                 borderRadius: "50%",
                 marginRight: "10px",
               }}
             >
               <Image
-                width={100}
+                width={120}
                 preview={false}
                 className="profile-image"
-                src={person}
+                src={profilepic}
               />
             </div>
           </Col>
@@ -163,7 +155,7 @@ function ProfileHeader() {
                       width={20}
                       preview={false}
                       className="profile-image"
-                      src={person}
+                      src={personpic}
                     />
                   </Col>
 

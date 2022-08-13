@@ -95,7 +95,7 @@ function Profile() {
     >
       <ProfileHeader />
       {filterbox}
-      <PostList posts={posts} isDeleteEnabled={true} />
+      <PostList posts={posts} isProfile={true} onChange={onChange} />
     </Row>
   );
 }

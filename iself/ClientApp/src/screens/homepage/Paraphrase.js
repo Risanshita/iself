@@ -48,7 +48,7 @@ const Paraphrase = ({ post }) => {
           height: "50%",
           width: "100%",
           overflowX: "hidden",
-          fontSize: fontSize,
+          fontSize: fontSize - 10,
         }}
         justify="center"
         align="middle"
