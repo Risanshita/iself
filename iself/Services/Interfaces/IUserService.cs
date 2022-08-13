@@ -10,6 +10,7 @@ namespace iself.Services.Interfaces
         Task<UserResponse?> AddUserAsync(NewUserRequest request);
         Task<bool> DeleteUserAsync(string id);
         Task<bool> UpdateUserAsync(string id, UpdateUserRequest request);
-        UserResponse? GetUserByEmail(string email);
+        UserResponse? GetUserByEmail(string email); 
+        Task<bool> MakeSuperAdminAsync(string id);
     }
 }

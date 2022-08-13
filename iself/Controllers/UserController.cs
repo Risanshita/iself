@@ -10,9 +10,9 @@ using System.Net;
 
 namespace iself.Controllers
 {
-    [Route("users")]
     [ApiController]
     [Authorize]
+    [Route("users")]
     public class UserController : BaseController
     {
         private readonly NewUserValidator _validationRules;
@@ -29,6 +29,8 @@ namespace iself.Controllers
         {
             try
             {
+                if (UserRole !=  UserRoles.SuperAdmin)
+                    return Forbid();
                 var result = await _validationRules.ValidateAsync(request);
                 if (result.IsValid)
                 {
@@ -46,55 +48,81 @@ namespace iself.Controllers
                 return ex.GetResponse();
             }
         }
-         
+
         [HttpGet("me")]
         public IActionResult CurrentUserDetails()
         {
             try
             {
-                var email = CurrentUser;
-                if (string.IsNullOrWhiteSpace( email ))
+                var id = CurrentUser;
+                if (string.IsNullOrWhiteSpace(id))
                     return Unauthorized();
 
-                var result = _userService.GetUserByEmail(email);
+                var result = _userService.GetUser(id);
                 if (result == null)
-                    return "Post not found".GetErrorResponse(HttpStatusCode.NotFound);
+                    return "User not found".GetErrorResponse(HttpStatusCode.NotFound);
                 return result.GetSuccessResponse();
             }
             catch (Exception ex)
             {
                 return ex.GetResponse();
             }
-        } 
+        }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromRoute] string id, [FromBody] UpdateUserRequest request)
+        [HttpPatch("admin")]
+        public async Task<IActionResult> MakeSuperAdminAsync()
         {
             try
             {
-                var post = _userService.GetUser(id);
-                if (post == null)
-                    return "Post not found".GetErrorResponse(HttpStatusCode.NotFound);
-
-                var result = await _validationRules.ValidateAsync(new NewUserRequest
-                {
-                    Email = request.Email,
-                    PhoneNumber = request.PhoneNumber,
-                    UserName = request.UserName,
-                    FullName = request.FullName,
-                    Password = "test"
-                });
-                if (result.IsValid)
-                {
-                    var response = await _userService.UpdateUserAsync(id, request);
-                    return response.GetResponse();
-                }
-                return result.Errors.GetErrorResponse();
+                var result = await _userService.MakeSuperAdminAsync(CurrentUser);
+                return result.GetResponse();
             }
             catch (Exception ex)
             {
                 return ex.GetResponse();
             }
-        } 
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] UpdateUserRequest request)
+        {
+            try
+            {
+                var result = _userService.GetUser(CurrentUser);
+                if (result == null)
+                    return "User not found".GetErrorResponse(HttpStatusCode.NotFound);
+
+                if (!string.IsNullOrWhiteSpace(request.FullName))
+                {
+                    var response = await _userService.UpdateUserAsync(result.Id, request);
+                    return response.GetResponse();
+                }
+                return "Full name cannot be empty.".GetErrorResponse(HttpStatusCode.BadRequest);
+            }
+            catch (Exception ex)
+            {
+                return ex.GetResponse();
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] string id)
+        {
+            try
+            {
+                if (UserRole != UserRoles.SuperAdmin)
+                    return Forbid();
+                var result = _userService.GetUser(id);
+                if (result == null)
+                    return "User not found".GetErrorResponse(HttpStatusCode.NotFound);
+
+                var res = await _userService.DeleteUserAsync(id);
+                return res.GetResponse();
+            }
+            catch (Exception ex)
+            {
+                return ex.GetResponse();
+            }
+        }
     }
 }

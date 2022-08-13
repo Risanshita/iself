@@ -1,18 +1,30 @@
 import { Col, Row } from "antd";
-import { MoreOutlined, DeleteOutlined } from "@ant-design/icons";
+import { MoreOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space } from "antd";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PostContext } from "../../context/postContext";
+import PostPreview from "./preview";
+import NoDataFound from "../../components/messages/NoDataFound";
 
 const PostList = ({ posts, isDeleteEnabled }) => {
   const { actions } = useContext(PostContext);
   const { loadData, deletePost } = actions.post;
+  const [previewPost, setPreviewPost] = useState(undefined);
 
   const menu = (post) => {
-    var items = [];
+    var items = [
+      {
+        key: "1",
+        label: "View",
+        icon: <EyeOutlined />,
+        onClick: () => {
+          setPreviewPost(post);
+        },
+      },
+    ];
     if (isDeleteEnabled)
       items.push({
-        key: "1",
+        key: "2",
         label: "Delete",
         icon: <DeleteOutlined />,
         onClick: () => {
@@ -33,12 +45,13 @@ const PostList = ({ posts, isDeleteEnabled }) => {
     <Row style={{ width: "100%" }}>
       {posts.map((a) => (
         <Col
-          xs={12}
+          xs={24}
           sm={12}
           md={8}
           lg={6}
           xl={6}
           style={{ height: 248, padding: 7 }}
+          key={a.id}
         >
           <Row
             style={{
@@ -72,14 +85,14 @@ const PostList = ({ posts, isDeleteEnabled }) => {
                 style={{
                   height: "80%",
                   padding: "10px 0px",
-                  fontSize: "20px",
+                  fontSize: "16px",
                   overflowY: "auto",
                 }}
               >
                 {a.data1}
               </Row>
 
-              <span className="post-info createdby">{a.createdBy}</span>
+              <span className="post-info createdby">{a.ownerName}</span>
               <div className="post-info source">{a.source}</div>
               <div className="post-info author">{a.author}</div>
               <span className="post-info langugae">
@@ -106,7 +119,11 @@ const PostList = ({ posts, isDeleteEnabled }) => {
           </Row>
         </Col>
       ))}
-      {posts.length == 0 && <Col span={4}>No post</Col>}
+      {posts.length === 0 && <NoDataFound />}
+      <PostPreview
+        post={previewPost}
+        afterClose={() => setPreviewPost(undefined)}
+      />
     </Row>
   );
 };

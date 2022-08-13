@@ -6,7 +6,6 @@ import { FetchData } from "./screens/FetchData";
 import { HomeScreen } from "./screens/homepage";
 import Login from "./screens/login";
 import NotFound from "./screens/NotFound";
-import Notfound from "./screens/notfound/notfound";
 import PostScreen from "./screens/post";
 import { ProfileScreen } from "./screens/profile";
 import RateUs from "./screens/RateUs/RateUs";
@@ -55,11 +54,6 @@ const AppRoutes = [
     path: "/signup",
     element: <SignUp />,
   },
-  {
-    path: "/notfound",
-    element: <Notfound />,
-  },
-
   {
     path: "404",
     element: <NotFound />,

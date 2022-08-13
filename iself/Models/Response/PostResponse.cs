@@ -12,6 +12,7 @@ namespace iself.Models.Response
         public string? Source { get; set; }
         public string? Author { get; set; }
         public string? Language { get; set; }
+        public string? OwnerName { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedAt { get; set; }
         public string? UpdatedBy { get; set; }

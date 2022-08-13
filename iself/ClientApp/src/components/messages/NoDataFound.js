@@ -1,19 +1,19 @@
 import { Row, Col } from "antd";
 import { Player } from "@lottiefiles/react-lottie-player";
 import notfound from "../../assets/animatedIcons/notfound.json";
-function Notfound() {
+function NoDataFound() {
   return (
-    <Row align="middle" justify="center">
-      <Col justify="center" alig="middle">
+    <Row align="middle" justify="center" style={{ width: "100%" }}>
+      <Col>
         <Player
           autoplay
           loop
           src={notfound}
-          style={{ height: "400px", width: "400px" }}
+          style={{ height: "200px", width: "200px" }}
         ></Player>
-        <p>Post Not Found</p>
+        <Row justify="center">No post found.</Row>
       </Col>
     </Row>
   );
 }
-export default Notfound;
+export default NoDataFound;

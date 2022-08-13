@@ -28,10 +28,10 @@ builder.Services.AddControllersWithViews().AddFluentValidation(s =>
 });
 
 //Firebase
-//var app = FirebaseApp.Create(new AppOptions()
-//{
-//    Credential = GoogleCredential.FromFile("iself-a253a-firebase-adminsdk-vo7o4-06ed92842a.json"),
-//});
+_ = FirebaseApp.Create(new AppOptions()
+{
+    Credential = GoogleCredential.FromFile("firebase-key.json"),
+});
 
 var firebaseAppId = Environment.GetEnvironmentVariable("FirebaseAppId");
 //Authentication

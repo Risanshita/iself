@@ -57,6 +57,12 @@
   border-radius: 3px;
 }
 
+.header .header-wrapper {
+  padding: 0;
+  padding-left: 10px;
+  padding-right: 5px;
+}
+
 @media (min-width: 768px) {
   .ant-layout .header .menu-label {
     display: inline-flex;
@@ -74,5 +80,9 @@
   .ant-layout .body {
     height: calc(100% - 70px);
     overflow-y: hidden;
+  }
+
+  .header .header-wrapper {
+    padding: "0px 10px";
   }
 }

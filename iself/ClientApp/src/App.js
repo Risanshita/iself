@@ -55,11 +55,17 @@ const App = () => {
     });
 
     onAuthStateChanged(auth, (user) => {
-      var isLogin = user && user.accessToken ? true: false;
+      var isLogin = user && user.accessToken ? true : false;
       console.log("auth status", isLogin);
       setLogin(isLogin);
-      if (isLogin) localStorage.setItem("access_token", user.accessToken);
-      else localStorage.removeItem("access_token");
+      if (isLogin) {
+        console.log(JSON.parse(user.reloadUserInfo.customAttributes));
+        localStorage.setItem("access_token", user.accessToken);
+        localStorage.setItem("user_id", user.uid);
+      } else {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("user_id");
+      }
 
       if (isInitialLoad) {
         setInitialLoad(false);

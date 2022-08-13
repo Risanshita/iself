@@ -1,5 +1,6 @@
 import { Col, Row } from "antd";
 import React, { useContext, useEffect, useState } from "react";
+import NoDataFound from "../../components/messages/NoDataFound";
 import { PostContext } from "../../context/postContext";
 import { PostTypes } from "../post/post";
 import CodeRefactor from "./CodeRefactor";
@@ -14,6 +15,7 @@ export const HomePage = () => {
   const { currentPost, posts } = state.post;
   const [isInitialLoad, setInitialLoad] = useState(true);
   const [pressedKey, setPressedKey] = useState(true);
+  let screenLock = null;
 
   useEffect(() => {
     setTimeout(
@@ -26,10 +28,30 @@ export const HomePage = () => {
     );
   }, [currentPost, posts, nextPost]);
 
+  const isScreenLockSupported = () => {
+    return "wakeLock" in navigator;
+  };
+
+  const getScreenLock = async () => {
+    if (isScreenLockSupported()) {
+      try {
+        screenLock = await navigator.wakeLock.request("screen");
+
+        screenLock.onrelease = async () => {
+          console.log("Lock released 🎈");
+          screenLock = await navigator.wakeLock.request("screen");
+        };
+      } catch (err) {
+        console.log(err.name, err.message);
+      }
+      return screenLock;
+    }
+  };
+
   if (isInitialLoad) {
     loadData();
     setInitialLoad(false);
-
+    getScreenLock();
     // document.addEventListener("keypress", (e) => {
     //   setPressedKey(e.key.toLocaleLowerCase());
     // });
@@ -45,6 +67,10 @@ export const HomePage = () => {
     }
     setPressedKey(undefined);
   }, [pressedKey]);
+
+  document.addEventListener("visibilitychange", async (a) => {
+    console.log("Visibilitychange 🎈", a);
+  });
 
   return (
     <Row style={{ height: "100%" }} className="prevent-select">
@@ -67,7 +93,7 @@ export const HomePage = () => {
           )}
         </Col>
       )}
-      {!currentPost && <Col>No post available</Col>}
+      {!currentPost && <NoDataFound />}
     </Row>
   );
 };

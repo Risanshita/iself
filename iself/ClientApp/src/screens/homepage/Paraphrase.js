@@ -92,7 +92,7 @@ const Paraphrase = ({ post }) => {
           </Textfit>
         )}
       </Row>
-      <span className="post-info by">{post.createdBy}</span>
+      <span className="post-info by">{post.ownerName}</span>
       <span className="post-info source">
         <div className="author">{" " + post.source}</div>
         <div className="author">{post.author}</div>

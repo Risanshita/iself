@@ -11,12 +11,15 @@ namespace iself.Services
     {
         private readonly IMapper _mapper;
         private readonly IPostRepository _postRepository;
+        private readonly IUserRepository _userRepository;
 
-        public PostService(IPostRepository postRepository, IMapper mapper)
+        public PostService(IPostRepository postRepository, IMapper mapper, IUserRepository userRepository)
         {
             _mapper = mapper;
             _postRepository = postRepository;
+            _userRepository = userRepository;
         }
+
         public async Task<PostResponse?> AddPostAsync(NewPostRequest request)
         {
             return _mapper.Map<PostResponse>(await _postRepository.AddPostAsync(_mapper.Map<Post>(request)));
@@ -34,22 +37,34 @@ namespace iself.Services
 
         public List<PostResponse> GetPostByOwner(string createdBy, int take = 20, int skip = 0)
         {
-            return _mapper.Map<List<PostResponse>>(_postRepository.GetPostByOwner(createdBy, take, skip));
+            return UpdateOwnerName(_mapper.Map<List<PostResponse>>(_postRepository.GetPostByOwner(createdBy, take, skip)));
         }
 
         public List<PostResponse> GetPostByType(PostType type, string? createdBy, int take = 20, int skip = 0)
         {
-            return _mapper.Map<List<PostResponse>>(_postRepository.GetPostByType(type, createdBy, take, skip));
+            return UpdateOwnerName(_mapper.Map<List<PostResponse>>(_postRepository.GetPostByType(type, createdBy, take, skip)));
         }
 
         public List<PostResponse> GetPosts(string query, string? createdBy, int take = 20, int skip = 0)
         {
-            return _mapper.Map<List<PostResponse>>(_postRepository.GetPosts(query, createdBy, take, skip));
+            return UpdateOwnerName(_mapper.Map<List<PostResponse>>(_postRepository.GetPosts(query, createdBy, take, skip)));
         }
 
         public async Task<bool> UpdatePostAsync(string id, PostUpdateRequest post)
         {
             return await _postRepository.UpdatePostAsync(id, post);
+        }
+
+        public List<PostResponse> UpdateOwnerName(List<PostResponse> postResponses)
+        {
+            var userIds = postResponses.Select(a => a.CreatedBy).Distinct().ToList();
+            var userDetails = _userRepository.GetUserByIds(userIds).ToDictionary(a => a.Id, a => a.FullName);
+            postResponses.ForEach(postResponse =>
+            {
+                if (!string.IsNullOrWhiteSpace(postResponse.CreatedBy) && userDetails.TryGetValue(postResponse.CreatedBy, out string? name))
+                    postResponse.OwnerName = name;
+            });
+            return postResponses;
         }
     }
 }

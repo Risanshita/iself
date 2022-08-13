@@ -29,6 +29,15 @@ namespace iself.Data.Repositories
                     .AsQueryable()
                     .FirstOrDefault(p => p.Id == id);
         }
+
+        public List<User> GetUserByIds(List<string> ids)
+        {
+            return _collection
+                    .AsQueryable()
+                    .Where(p => ids.Contains(p.Id))
+                    .ToList();
+        }
+
         public User? GetUserByEmail(string email)
         {
             return _collection
@@ -62,9 +71,7 @@ namespace iself.Data.Repositories
             if (user == null) return false;
 
             user.FullName = request.FullName;
-            user.Email = request.Email;
             user.PhoneNumber = request.PhoneNumber;
-            user.UserName = request.UserName;
             
             return await _collection.UpdateOneAsync(e => e.Id == id, request);
         }

@@ -3,12 +3,14 @@ import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { PostContext } from "../../context/postContext";
 import LanguageList from "../../utils/LanguageList";
+import PostPreview from "./preview";
 import "./style.css";
 
 const { Option } = Select;
 function Post({ type, onChangeType }) {
   const { actions } = useContext(PostContext);
   const { createPost } = actions.post;
+  const [previewPost, setPreviewPost] = useState(undefined);
 
   const [form] = Form.useForm();
   const isData2Visible =
@@ -29,6 +31,7 @@ function Post({ type, onChangeType }) {
         return "Please enter Info Byte";
     }
   };
+
   useEffect(
     function () {
       form.setFieldsValue({
@@ -48,11 +51,25 @@ function Post({ type, onChangeType }) {
       ? "Please enter paraphrase"
       : "Write your refactor code here ...";
   };
+
   const getMessageForData2 = () => {
     return type === PostTypes.paraphrase
       ? "Please enter paraphrase"
       : "Write enter refactor code";
   };
+
+  const onPreview = () => {
+    setPreviewPost({
+      source: form.getFieldValue("source"),
+      author: form.getFieldValue("author"),
+      language: form.getFieldValue("language"),
+      data1: form.getFieldValue("data1"),
+      data2: form.getFieldValue("data2"),
+      title: form.getFieldValue("title"),
+      type: form.getFieldValue("type"),
+    });
+  };
+
   const getPlaceholderData1 = () => {
     switch (type) {
       case PostTypes.paraphrase:
@@ -67,6 +84,7 @@ function Post({ type, onChangeType }) {
         return "Write your Info Byte here .. ";
     }
   };
+
   const onFinish = (values) => {
     console.log("Success:", values);
     createPost(values, () => {
@@ -77,6 +95,7 @@ function Post({ type, onChangeType }) {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
   return (
     <Row
       className="postnew-page"
@@ -326,6 +345,7 @@ function Post({ type, onChangeType }) {
                           backgroundColor: "#FFB800",
                           border: "none",
                         }}
+                        onClick={onPreview}
                       >
                         Preview
                       </Button>
@@ -337,6 +357,10 @@ function Post({ type, onChangeType }) {
           </Row>
         </Form>
       </Col>
+      <PostPreview
+        post={previewPost}
+        afterClose={() => setPreviewPost(undefined)}
+      />
     </Row>
   );
 }

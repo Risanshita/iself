@@ -381,6 +381,12 @@ namespace JsonFlatFileDataStore
 
         private dynamic GetNextIdValue(List<T> data, T item = default(T))
         {
+            dynamic id = GetFieldValue(item, _idField);
+            if (!string.IsNullOrWhiteSpace(id) && (!data.Any() || !data.Any(a => GetFieldValue(a, _idField) == id)))
+                return id;
+            if (!string.IsNullOrWhiteSpace(id) && data.Any() && data.Any(a => GetFieldValue(a, _idField) == id))
+                throw new ArgumentOutOfRangeException("Id already exist");
+
             if (!data.Any())
             {
                 if (item != null)

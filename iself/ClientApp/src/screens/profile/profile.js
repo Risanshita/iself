@@ -13,18 +13,18 @@ function Profile() {
   const [isInitialLoad, setInitialLoad] = useState(true);
   const { loadData } = actions.post;
   const { posts } = state.post;
-
+  const userId = localStorage.getItem("user_id");
   if (isInitialLoad) {
-    loadData();
+    loadData(userId);
     setInitialLoad(false);
   }
 
   const onChange = (values) => {
     // values = values[0];
     if (Array.isArray(values) && values.length > 0) {
-      loadData("", "", values[0]);
+      loadData(userId, "", values[0]);
     } else {
-      loadData();
+      loadData(userId);
     }
   };
   const options = [
