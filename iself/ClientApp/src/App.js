@@ -59,6 +59,7 @@ const App = () => {
       console.log("auth status", isLogin);
       setLogin(isLogin);
       if (isLogin) {
+        console.log(JSON.parse(user.reloadUserInfo.customAttributes));
         localStorage.setItem("access_token", user.accessToken);
         localStorage.setItem("user_id", user.uid);
       } else {

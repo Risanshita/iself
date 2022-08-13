@@ -23,9 +23,9 @@ function ProfileHeader() {
   const [isInitialLoad, setInitialLoad] = useState(true);
 
   const accountContext = useContext(AccountContext);
-  const { getAccountDetails, updateProfileDetails } =
+  const { getAccountDetails, updateProfileDetails, logout } =
     accountContext.actions.account;
-  const { userDetails, logout } = accountContext.state.account;
+  const { userDetails } = accountContext.state.account;
 
   if (isInitialLoad) {
     getAccountDetails();

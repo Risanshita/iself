@@ -6,19 +6,22 @@ import Notification from "../homepage/Notification";
 import Paraphrase from "../homepage/Paraphrase";
 import { PostTypes } from "./post";
 
-const PostPreview = ({ post, afterClose }) => {
+const PostPreview = ({ post, afterClose, isPreview }) => {
   return (
     <div>
       <Modal
         width={window.innerWidth}
-        style={{ height: window.innerHeight - 60 }}
         centered
         visible={post && post.data1 ? true : false}
         footer={null}
         afterClose={afterClose}
         onCancel={afterClose}
+        title={isPreview ? <Row justify="center">Preview</Row> : null}
       >
-        <Row style={{ height: "100%" }} className="prevent-select">
+        <Row
+          style={{ height: window.innerHeight - 160 }}
+          className="prevent-select"
+        >
           {post && (
             <Col span={24} style={{ height: "100%", padding: 20 }}>
               {post.type === PostTypes.infoByte && <InfoByte post={post} />}

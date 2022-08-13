@@ -4,6 +4,7 @@ import { Dropdown, Menu, Space } from "antd";
 import { useContext, useState } from "react";
 import { PostContext } from "../../context/postContext";
 import PostPreview from "./preview";
+import NoDataFound from "../../components/messages/NoDataFound";
 
 const PostList = ({ posts, isDeleteEnabled }) => {
   const { actions } = useContext(PostContext);
@@ -14,7 +15,7 @@ const PostList = ({ posts, isDeleteEnabled }) => {
     var items = [
       {
         key: "1",
-        label: "Preview",
+        label: "View",
         icon: <EyeOutlined />,
         onClick: () => {
           setPreviewPost(post);
@@ -44,7 +45,7 @@ const PostList = ({ posts, isDeleteEnabled }) => {
     <Row style={{ width: "100%" }}>
       {posts.map((a) => (
         <Col
-          xs={12}
+          xs={24}
           sm={12}
           md={8}
           lg={6}
@@ -116,7 +117,7 @@ const PostList = ({ posts, isDeleteEnabled }) => {
           </Row>
         </Col>
       ))}
-      {posts.length === 0 && <Col span={4}>No post</Col>}
+      {posts.length === 0 && <NoDataFound />}
       <PostPreview
         post={previewPost}
         afterClose={() => setPreviewPost(undefined)}

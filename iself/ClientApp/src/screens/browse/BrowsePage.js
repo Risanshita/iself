@@ -9,21 +9,16 @@ function BrowseList() {
   const { loadData } = actions.post;
   const { posts } = state.post;
 
-  function onSelectType() {}
   if (isInitialLoad) {
     loadData();
     setInitialLoad(false);
   }
 
-  onSelectType = (e, { value }) => {
-    loadData("", "", value);
-  };
-
   return (
     <Row
-      // className="postnew-page"
       justify="center"
       style={{ height: "100%", overflowY: "auto", padding: "20px" }}
+      align="top"
     >
       <PostList posts={posts} />
     </Row>
