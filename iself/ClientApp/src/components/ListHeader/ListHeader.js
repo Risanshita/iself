@@ -2,7 +2,7 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import { Button, Col, Row } from "antd";
 import { Link, NavLink } from "react-router-dom";
 import ExpendableSearchBox from "../searchBox";
-import settinglogo from "../../assets/animatedIcons/setting.json";
+import addusers from "../../assets/animatedIcons/adduser.json";
 export default function ListHeader({ pagination, onSubmitSearch }) {
   return (
     <Row
@@ -33,9 +33,10 @@ export default function ListHeader({ pagination, onSubmitSearch }) {
               type="text"
               icon={
                 <Player
-                  hover={true}
+                  // hover={true}
+                  autoplay
                   loop
-                  src={settinglogo}
+                  src={addusers}
                   style={{ height: "32px", width: "35px" }}
                 />
               }

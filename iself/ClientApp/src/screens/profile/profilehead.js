@@ -18,6 +18,7 @@ import profilepic from "../../assets/images/profilepic.png";
 import editlogo from "../../assets/animatedIcons/edit.json";
 import { UserRoles } from "../../context/accountContext/state/Reducers";
 import settinglogo from "../../assets/animatedIcons/setting.json";
+import addusers from "../../assets/animatedIcons/adduser.json";
 
 function ProfileHeader() {
   const [isEdit, setEdit] = useState(false);
@@ -119,7 +120,7 @@ function ProfileHeader() {
                       hover={true}
                       loop
                       src={settinglogo}
-                      style={{ height: "32px", width: "35px" }}
+                      style={{ height: "30px", width: "35px" }}
                     />
                   }
                 />
