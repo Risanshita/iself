@@ -27,9 +27,6 @@ export default function ListHeader({ pagination, onSubmitSearch }) {
           />
           <NavLink tag={Link} to="/signup">
             <Button
-              style={{
-                border: "1px solid #4361EE",
-              }}
               type="text"
               icon={
                 <Player
