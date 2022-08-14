@@ -109,7 +109,7 @@ function ProfileHeader() {
           {!isEdit &&
             userClaims &&
             userClaims.user_role === UserRoles.SuperAdmin && (
-              <NavLink tag={Link} to="/users">
+              <NavLink tag={Link} to="/settings">
                 <Button
                   style={{
                     border: "1px solid #4361EE",

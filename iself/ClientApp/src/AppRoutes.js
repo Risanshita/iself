@@ -27,7 +27,7 @@ const AppRoutes = [
     isProtected: true,
   },
   {
-    path: "/users",
+    path: "/settings",
     element: <UsersList />,
     isProtected: true,
   },
