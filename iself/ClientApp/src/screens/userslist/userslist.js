@@ -2,6 +2,7 @@ import { Col, Row, Space, Table, Tag } from "antd";
 import React, { useContext, useState } from "react";
 import { AccountContext } from "../../context/accountContext";
 import ListHeader from "./../../components/ListHeader";
+
 import "./Style.css";
 
 const UsersList = () => {
@@ -66,73 +67,73 @@ const UsersList = () => {
   const data = [
     {
       key: "1",
-      name: "Rishi Kumar",
+      fullName: "Rishi Kumar",
       email: "Rishikumar@gmail.com",
       role: "SuperAdmin",
     },
     {
       key: "2",
-      name: "Nitish kumar",
+      fullName: "Nitish kumar",
       email: "Nitishr833@gmail.com",
       role: "User",
     },
     {
       key: "3",
-      name: "Vikash kumar",
+      fullName: "Vikash kumar",
       email: "Nitishr833@gmail.com",
       role: "Admin",
     },
     {
       key: "1",
-      name: "Rishi Kumar",
+      fullName: "Rishi Kumar",
       email: "Rishikumar@gmail.com",
       role: "User",
     },
     {
       key: "2",
-      name: "Nitish kumar",
+      fullName: "Nitish kumar",
       email: "Nitishr833@gmail.com",
       role: "User",
     },
     {
       key: "3",
-      name: "Vikash kumar",
+      fullName: "Vikash kumar",
       email: "Nitishr833@gmail.com",
       role: "User",
     },
     {
       key: "1",
-      name: "Rishi Kumar",
+      fullName: "Rishi Kumar",
       email: "Rishikumar@gmail.com",
       role: "User",
     },
     {
       key: "2",
-      name: "Nitish kumar",
+      fullName: "Nitish kumar",
       email: "Nitishr833@gmail.com",
       role: "User",
     },
     {
       key: "3",
-      name: "Vikash kumar",
+      fullName: "Vikash kumar",
       email: "Nitishr833@gmail.com",
       role: "User",
     },
     {
       key: "1",
-      name: "Rishi Kumar",
+      fullName: "Rishi Kumar",
       email: "Rishikumar@gmail.com",
       role: "User",
     },
     {
       key: "2",
-      name: "Nitish kumar",
+      fullName: "Nitish kumar",
       email: "Nitishr833@gmail.com",
       role: "User",
     },
     {
       key: "3",
-      name: "Vikash kumar",
+      fullName: "Vikash kumar",
       email: "Nitishr833@gmail.com",
       role: "User",
     },
