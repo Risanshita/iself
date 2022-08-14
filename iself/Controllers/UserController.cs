@@ -24,13 +24,29 @@ namespace iself.Controllers
             _userService = UserService;
         }
 
+
+        [HttpGet]
+        public IActionResult Get([FromQuery] string query, [FromQuery] int take = 20, [FromQuery] int skip = 0)
+        {
+            try
+            {
+                return _userService.GetUsers(query, take, skip).GetSuccessResponse();
+            }
+            catch (Exception ex)
+            {
+                return ex.GetResponse();
+            }
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] NewUserRequest request)
         {
             try
             {
-                if (UserRole !=  UserRoles.SuperAdmin)
+                if (UserRole != UserRoles.SuperAdmin)
                     return Forbid();
+
                 var result = await _validationRules.ValidateAsync(request);
                 if (result.IsValid)
                 {
@@ -112,6 +128,7 @@ namespace iself.Controllers
             {
                 if (UserRole != UserRoles.SuperAdmin)
                     return Forbid();
+
                 var result = _userService.GetUser(id);
                 if (result == null)
                     return "User not found".GetErrorResponse(HttpStatusCode.NotFound);
