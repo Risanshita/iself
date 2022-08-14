@@ -11,28 +11,25 @@ import invalid from "../../assets/animatedIcons/invalid.json";
 import success from "../../assets/animatedIcons/success.json";
 
 const SignUp = () => {
-  const { actions, state } = useContext(AccountContext);
-  const { login } = actions.account;
-  const { userDetails } = state.account;
+  const { actions } = useContext(AccountContext);
+  const { newUser } = actions.account;
   let navigate = useNavigate();
   const [form] = Form.useForm();
-  const [isLoginError, setLoginError] = useState(undefined);
+  const [isSignupError, setSignupError] = useState(undefined);
+  const [signupErrorMessage, setSignupErrorMessage] = useState("");
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-    login(
-      { username: values.username, password: values.password },
-      (success) => {
-        if (success) {
-          setLoginError(false);
-          setTimeout(() => {
-            navigate("/profile");
-          }, 1500);
-        } else {
-          setLoginError(true);
-        }
+    newUser(values, (response) => {
+      if (response.succeeded) {
+        setSignupError(false);
+        setTimeout(() => {
+          navigate("/profile");
+        }, 1500);
+      } else {
+        setSignupError(true);
+        setSignupErrorMessage(response.message);
       }
-    );
+    });
   };
 
   return (
@@ -66,14 +63,14 @@ const SignUp = () => {
             <Row align="middle" justify="center">
               <Col>
                 <div className="loginAnimation">
-                  {isLoginError === false ? (
+                  {isSignupError === false ? (
                     <Player
                       autoplay
                       loop
                       src={success}
                       style={{ height: "180px", width: "180px" }}
                     ></Player>
-                  ) : isLoginError === true ? (
+                  ) : isSignupError === true ? (
                     <Player
                       autoplay
                       loop
@@ -93,7 +90,6 @@ const SignUp = () => {
             </Row>
             <div className="specing">
               <div style={{ fontSize: 30 }}>Sign up</div>
-              <p>Welcome back{userDetails.fullName}!</p>
             </div>
             <Form
               name="signup_form"
@@ -104,11 +100,11 @@ const SignUp = () => {
               layout={"vertical"}
               form={form}
               onChange={(a) => {
-                setLoginError(undefined);
+                setSignupError(undefined);
               }}
             >
               <Form.Item
-                name="Full Name"
+                name="fullName"
                 rules={[
                   {
                     required: true,
@@ -116,25 +112,25 @@ const SignUp = () => {
                   },
                 ]}
               >
-                <Input placeholder="fullname" />
+                <Input placeholder="Full name" />
               </Form.Item>
               <Form.Item
-                name="username"
+                name="email"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your username!",
+                    message: "Please input user email!",
                   },
                 ]}
               >
-                <Input placeholder="Username" />
+                <Input placeholder="Email" />
               </Form.Item>
               <Form.Item
                 name="password"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your password!",
+                    message: "Please input password!",
                   },
                 ]}
                 style={{ marginTop: 10 }}
@@ -142,7 +138,7 @@ const SignUp = () => {
                 <Input.Password placeholder="Password" />
               </Form.Item>
               <Row style={{ color: "red" }}>
-                {isLoginError && "Invalid Username and Password "}
+                {isSignupError === true ? signupErrorMessage : null}
               </Row>
               <Form.Item style={{ marginTop: 20 }}>
                 <Row justify="center">

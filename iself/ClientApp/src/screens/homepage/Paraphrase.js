@@ -12,6 +12,13 @@ const Paraphrase = ({ post }) => {
     setFontSize(0);
   }, [post]);
 
+  const getHtml = (data) => {
+    var temp = data.replaceAll("\n", " <br /> 1   line");
+    var count = temp.split("<br />").length;
+    if (count < 10) temp += " <br /> <br />";
+    return temp;
+  };
+
   return (
     <Row
       style={{
@@ -48,7 +55,7 @@ const Paraphrase = ({ post }) => {
           height: "50%",
           width: "100%",
           overflowX: "hidden",
-          fontSize: fontSize - 10,
+          fontSize: fontSize,
         }}
         justify="center"
         align="middle"
@@ -88,7 +95,11 @@ const Paraphrase = ({ post }) => {
               setFontSize(fontSize);
             }}
           >
-            {post.data2}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: getHtml(post.data2),
+              }}
+            />
           </Textfit>
         )}
       </Row>

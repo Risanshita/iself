@@ -16,7 +16,6 @@ import { AccountContext } from "../context/accountContext";
 const { Header } = Layout;
 
 const NavMenu = () => {
-  let screenLock = null;
   const { pathname } = useLocation();
   const [path, setPath] = useState(pathname);
   const { state } = useContext(AccountContext);
@@ -25,10 +24,12 @@ const NavMenu = () => {
   useEffect(() => {
     if (pathname === "/") {
       getScreenLock();
-    } else if (typeof screenLock !== "undefined" && screenLock != null) {
-      screenLock.release().then(() => {
-        console.log("Lock released 🎈");
-        screenLock = null;
+    } else if (
+      typeof window.screenLock !== "undefined" &&
+      window.screenLock != null
+    ) {
+      window.screenLock.release().then(() => {
+        window.screenLock = null;
       });
     }
     setPath(pathname);
@@ -37,13 +38,13 @@ const NavMenu = () => {
   const getScreenLock = async () => {
     if (isScreenLockSupported()) {
       try {
-        screenLock = await navigator.wakeLock.request("screen");
+        window.screenLock = await navigator.wakeLock.request("screen");
 
-        screenLock.onrelease = async () => {
+        window.screenLock.onrelease = async () => {
           console.log("onrelease");
           try {
             if (pathname === "/")
-              screenLock = await navigator.wakeLock.request("screen");
+              window.screenLock = await navigator.wakeLock.request("screen");
           } catch (err) {
             console.log(err.name, err.message);
           }
@@ -51,7 +52,6 @@ const NavMenu = () => {
       } catch (err) {
         console.log(err.name, err.message);
       }
-      return screenLock;
     }
   };
 
@@ -69,7 +69,7 @@ const NavMenu = () => {
               hover={true}
               loop
               src={homelogo}
-              style={{ height: "20px", width: "17px" }}
+              style={{ height: "25px", width: "17px" }}
             ></Player>
             <span className="menu-label">Home</span>
           </Row>

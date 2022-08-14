@@ -3,6 +3,7 @@ const initialState = {
   userDetails: {},
   loading: false,
   menuDetails: [],
+  userClaims: [],
   login: false,
 };
 
@@ -13,6 +14,13 @@ const types = {
   SET_LOADING: "SET_LOADING",
   SET_MENU: "SET_MENU",
   SET_USER_DETAILS: "SET_USER_DETAILS",
+  SET_USER_CLAIMS: "SET_USER_CLAIMS",
+};
+
+export const UserRoles = {
+  SuperAdmin: "SuperAdmin",
+  Admin: "Admin",
+  User: "User",
 };
 
 const reducer = (state = initialState, action) => {
@@ -42,6 +50,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         menuDetails: action.payload,
+      };
+    case types.SET_USER_CLAIMS:
+      return {
+        ...state,
+        userClaims: action.payload,
       };
     default:
       return state;
