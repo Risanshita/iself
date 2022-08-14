@@ -7,15 +7,16 @@ import {
 import { Player } from "@lottiefiles/react-lottie-player";
 import phone from "../../assets/images/phone.png";
 import email from "../../assets/images/email.png";
-
+import { NavLink } from "reactstrap";
 import { Form, Button, Input, Image } from "antd";
 import React, { useContext, useState } from "react";
 import { Col, Row } from "antd";
 import { AccountContext } from "../../context/accountContext";
-
+import { Link } from "react-router-dom";
 import personpic from "../../assets/images/person.png";
 import profilepic from "../../assets/images/profilepic.png";
 import editlogo from "../../assets/animatedIcons/edit.json";
+import settinglogo from "../../assets/animatedIcons/setting.json";
 
 function ProfileHeader() {
   const [isEdit, setEdit] = useState(false);

@@ -9,6 +9,7 @@ import PostScreen from "./screens/post";
 import { ProfileScreen } from "./screens/profile";
 import RateUs from "./screens/RateUs/RateUs";
 import SignUp from "./screens/signup/signup";
+import UsersList from "./screens/userslist/userslist";
 
 const AppRoutes = [
   {
@@ -28,6 +29,10 @@ const AppRoutes = [
   {
     path: "/paraphrase",
     element: <Counter />,
+  },
+  {
+    path: "/users",
+    element: <UsersList />,
   },
   {
     path: "/feedback",

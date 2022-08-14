@@ -92,6 +92,22 @@ const NavMenu = () => {
         </NavLink>
       ),
     },
+    {
+      link: "/users",
+      label: (
+        <NavLink tag={Link} to="/users">
+          <Row>
+            <Player
+              hover={true}
+              loop
+              src={browselogo}
+              style={{ height: "25px", width: "20px" }}
+            ></Player>
+            <span className="menu-label">userslist</span>
+          </Row>
+        </NavLink>
+      ),
+    },
   ];
 
   return (
