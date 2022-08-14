@@ -26,11 +26,11 @@ namespace iself.Controllers
 
 
         [HttpGet]
-        public IActionResult Get([FromQuery] string query, [FromQuery] int take = 20, [FromQuery] int skip = 0)
+        public IActionResult Get([FromQuery] string? query, [FromQuery] int take = 20, [FromQuery] int skip = 0)
         {
             try
             {
-                return _userService.GetUsers(query, take, skip).GetSuccessResponse();
+                return _userService.GetUsers(query ?? string.Empty, take, skip).GetSuccessResponse();
             }
             catch (Exception ex)
             {
