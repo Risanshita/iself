@@ -52,10 +52,10 @@ namespace iself.Data.Repositories
                 return _collection.AsQueryable().OrderBy(a => a.FullName).Skip(skip).Take(take).ToList();
             }
             query = query.ToLower();
-            return _collection.AsQueryable().Where(a => a.FullName.ToLower().Contains(query)
-                    || a.UserName.ToLower().Contains(query)
-                    || a.Email.ToLower().Contains(query)
-                    || a.PhoneNumber.ToLower().Contains(query)
+            return _collection.AsQueryable().Where(a => (a.FullName != null && a.FullName.ToLower().Contains(query))
+                    || (a.UserName != null && a.UserName.ToLower().Contains(query))
+                    || (a.Email != null && a.Email.ToLower().Contains(query))
+                    || (a.PhoneNumber != null && a.PhoneNumber.ToLower().Contains(query))
                     )
                 .OrderBy(a => a.FullName)
                 .Skip(skip)
@@ -72,7 +72,7 @@ namespace iself.Data.Repositories
 
             user.FullName = request.FullName;
             user.PhoneNumber = request.PhoneNumber;
-            
+
             return await _collection.UpdateOneAsync(e => e.Id == id, request);
         }
     }

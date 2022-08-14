@@ -1,23 +1,22 @@
 import {
   CloseOutlined,
   CheckOutlined,
-  EditOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
 import { Player } from "@lottiefiles/react-lottie-player";
-import phone from "../../assets/images/phone.png";
-import email from "../../assets/images/email.png";
-import { NavLink } from "reactstrap";
+import { Col, Row } from "antd";
+import { Link, NavLink } from "react-router-dom";
 import { Form, Button, Input, Image } from "antd";
 import React, { useContext, useState } from "react";
-import { Col, Row } from "antd";
+
+import phone from "../../assets/images/phone.png";
+import email from "../../assets/images/email.png";
+
 import { AccountContext } from "../../context/accountContext";
-import { Link } from "react-router-dom";
 import personpic from "../../assets/images/person.png";
 import profilepic from "../../assets/images/profilepic.png";
 import editlogo from "../../assets/animatedIcons/edit.json";
 import { UserRoles } from "../../context/accountContext/state/Reducers";
-import { NavLink } from "react-router-dom";
 import settinglogo from "../../assets/animatedIcons/setting.json";
 
 function ProfileHeader() {
@@ -109,14 +108,20 @@ function ProfileHeader() {
           {!isEdit &&
             userClaims &&
             userClaims.user_role === UserRoles.SuperAdmin && (
-              <NavLink tag={Link} to="/signup">
+              <NavLink tag={Link} to="/users">
                 <Button
                   style={{
                     border: "1px solid #4361EE",
-                    backgroundColor: "#4361EE",
                   }}
                   type="text"
-                  icon={<CloseOutlined />}
+                  icon={
+                    <Player
+                      hover={true}
+                      loop
+                      src={settinglogo}
+                      style={{ height: "32px", width: "35px" }}
+                    />
+                  }
                 />
               </NavLink>
             )}

@@ -2,6 +2,7 @@ import { types } from "./Reducers";
 import "firebase/compat/auth";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { httpGet, httpPost, httpPut } from "../../../utils/HttpClient";
+import { message } from "antd";
 
 export const useActions = (state, dispatch) => {
   const logout = () => {
@@ -75,6 +76,15 @@ export const useActions = (state, dispatch) => {
     if (typeof callback === "function") callback(response);
   };
 
+  const userList = async (q, callback) => {
+    var response = await httpGet(`users?query=${q}&take=1000&skip=0`);
+    if (response.succeeded) {
+      if (typeof callback === "function") callback(response.data);
+    } else {
+      message.error(response.message);
+    }
+  };
+
   return {
     login,
     logout,
@@ -85,5 +95,6 @@ export const useActions = (state, dispatch) => {
     updateProfileDetails,
     newUser,
     setUserClaims,
+    userList,
   };
 };

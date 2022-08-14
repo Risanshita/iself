@@ -27,33 +27,27 @@ const AppRoutes = [
     isProtected: true,
   },
   {
-    path: "/paraphrase",
-    element: <Counter />,
-  },
-  {
     path: "/users",
     element: <UsersList />,
+    isProtected: true,
   },
   {
     path: "/feedback",
     element: <RateUs />,
+    isProtected: true,
   },
   {
-    path: "/fetch-data",
-    element: <FetchData />,
+    path: "/signup",
+    element: <SignUp />,
+    isProtected: true,
   },
   {
     path: "login",
     element: <Login />,
   },
-
   {
     path: "/browse",
     element: <BrowseScreen />,
-  },
-  {
-    path: "/signup",
-    element: <SignUp />,
   },
   {
     path: "404",
