@@ -21,10 +21,7 @@ export default function ListHeader({ pagination, onSubmitSearch }) {
       )}
       <Col span={18}>
         <Row align="middle" justify="end">
-          <ExpendableSearchBox
-            onSubmit={onSubmitSearch}
-            style={{ borderColor: "#fc6820" }}
-          />
+          <ExpendableSearchBox onSubmit={onSubmitSearch} />
           <NavLink tag={Link} to="/signup">
             <Button
               type="text"

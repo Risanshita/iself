@@ -11,7 +11,7 @@ const { confirm } = Modal;
 
 const UsersList = () => {
   const [isInitialLoad, setInitialLoad] = useState(true);
-  const [users, setUsers] = useState([]);
+  const [userDetails, setUsers] = useState([]);
   // const [color, setColor] = useState("green");
   const { actions } = useContext(AccountContext);
   const { userList } = actions.account;
@@ -117,82 +117,7 @@ const UsersList = () => {
       ),
     },
   ];
-
-  const data = [
-    {
-      key: "1",
-      fullName: "Rishi Kumar",
-      email: "Rishikumar@gmail.com",
-      role: "SuperAdmin",
-    },
-    {
-      key: "2",
-      fullName: "Nitish kumar",
-      email: "Nitishr833@gmail.com",
-      role: "User",
-    },
-    {
-      key: "3",
-      fullName: "Vikash kumar",
-      email: "Nitishr833@gmail.com",
-      role: "Admin",
-    },
-    {
-      key: "1",
-      fullName: "Rishi Kumar",
-      email: "Rishikumar@gmail.com",
-      role: "User",
-    },
-    {
-      key: "2",
-      fullName: "Nitish kumar",
-      email: "Nitishr833@gmail.com",
-      role: "User",
-    },
-    {
-      key: "3",
-      fullName: "Vikash kumar",
-      email: "Nitishr833@gmail.com",
-      role: "User",
-    },
-    {
-      key: "1",
-      fullName: "Rishi Kumar",
-      email: "Rishikumar@gmail.com",
-      role: "User",
-    },
-    {
-      key: "2",
-      fullName: "Nitish kumar",
-      email: "Nitishr833@gmail.com",
-      role: "User",
-    },
-    {
-      key: "3",
-      fullName: "Vikash kumar",
-      email: "Nitishr833@gmail.com",
-      role: "User",
-    },
-    {
-      key: "1",
-      fullName: "Rishi Kumar",
-      email: "Rishikumar@gmail.com",
-      role: "User",
-    },
-    {
-      key: "2",
-      fullName: "Nitish kumar",
-      email: "Nitishr833@gmail.com",
-      role: "User",
-    },
-    {
-      key: "3",
-      fullName: "Vikash kumar",
-      email: "Nitishr833@gmail.com",
-      role: "User",
-    },
-  ];
-
+ 
   const showDeleteConfirm = () => {
     confirm({
       title: "Do you Want to delete these items?",
@@ -212,7 +137,7 @@ const UsersList = () => {
       <Col span={24} style={{ overflowX: "auto" }}>
         <Table
           columns={columns}
-          dataSource={data}
+          dataSource={userDetails.data}
           pagination={false}
           scroll={{ y: window.innerHeight - 180 }}
         />
