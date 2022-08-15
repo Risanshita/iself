@@ -20,9 +20,14 @@ namespace iself.Controllers.Validators
                     return userRepository.GetUserByEmail(a) == null;
                 })
                 .WithMessage("Email already in use");
+
             RuleFor(a => a.Password)
                 .NotNull()
                 .WithMessage("Please enter password");
+
+            RuleFor(a => a.Password)
+               .Length(4, 20)
+               .WithMessage("Password length must be between 4 to 20");
         }
     }
 }
