@@ -14,10 +14,11 @@ namespace iself.Controllers.Validators
             RuleFor(a => a.Email)
                 .NotNull()
                 .WithMessage("Please enter email");
-            RuleFor(a => a.Email)
-                .Must(a =>
+            RuleFor(a => a)
+                .MustAsync(async (request, cancellation) =>
                 {
-                    return userRepository.GetUserByEmail(a) == null;
+                    var res = await userRepository.GetUserByEmail(request.Email);
+                    return res == null;
                 })
                 .WithMessage("Email already in use");
             RuleFor(a => a.Password)
