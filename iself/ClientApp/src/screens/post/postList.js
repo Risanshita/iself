@@ -144,7 +144,14 @@ const PostList = ({ postDetails, isProfile, onChange, onLoadMore }) => {
             postDetails.data &&
             postDetails.data.length > 0 &&
             !postDetails.isLast &&
-            !loading && <Button onClick={onLoadMore}>Load more</Button>}
+            !loading && (
+              <Button
+                style={{ borderRadius: "10px", border: "1px solid white" }}
+                onClick={onLoadMore}
+              >
+                Load more
+              </Button>
+            )}
           {(!postDetails ||
             !postDetails.data ||
             postDetails.data.length === 0) &&
