@@ -5,8 +5,8 @@ import { useContext } from "react";
 import { Player } from "@lottiefiles/react-lottie-player";
 import image from "../../assets/images/login-image.png";
 import { AccountContext } from "../../context/accountContext";
-import "./Style.css";
 import userAnimation from "../../assets/animatedIcons/user.json";
+import "./Style.css";
 import invalid from "../../assets/animatedIcons/invalid.json";
 import success from "../../assets/animatedIcons/success.json";
 
@@ -63,7 +63,11 @@ const Login = () => {
           style={{ height: "100%" }}
         >
           <Col xs={22} sm={22} md={18} lg={12} xl={12}>
-            <Row align="middle" justify="center">
+            <Row
+              align="middle"
+              justify="center"
+              className="login-animation-wrapper"
+            >
               <Col>
                 <div className="loginAnimation">
                   {isLoginError === false ? (

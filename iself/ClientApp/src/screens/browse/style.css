@@ -18,3 +18,8 @@
   top: 30%;
   z-index: 1;
 } */
+.filter {
+  position: absolute;
+  right: 0;
+  top: 15%;
+}
