@@ -51,8 +51,7 @@ export const useActions = (state, dispatch) => {
         a.createdDate = new Date(a.createdAt).toDateString();
         return a;
       });
-      console.log(response.data.data);
-
+      
       response.data.data = [...data, ...response.data.data];
       dispatch({
         type: types.SET_POST_DATA,

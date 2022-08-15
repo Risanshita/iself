@@ -97,7 +97,7 @@ const Login = () => {
             </Row>
             <div className="specing">
               <div style={{ fontSize: 30 }}>Log In</div>
-              <p>Welcome back{userDetails.fullName}!</p>
+              <p>Welcome back {userDetails.fullName}!</p>
             </div>
             <Form
               name="login_form"

@@ -158,9 +158,6 @@ function ProfileHeader() {
             {userDetails && (
               <Form
                 name="profile_edit_form"
-                initialValues={{
-                  remember: false,
-                }}
                 onFinish={onFinish}
                 autoComplete="off"
                 form={form}
@@ -241,7 +238,19 @@ function ProfileHeader() {
                   <Col>
                     {isEdit === true ? (
                       <Form.Item name="phoneNumber" style={{ marginBottom: 0 }}>
-                        <Input placeholder="Mobile number" />
+                        <Input
+                          placeholder="Mobile number"
+                          rules={[
+                            {
+                              max: 10,
+                              message: "Invalid mobile number!",
+                            },
+                            {
+                              min: 10,
+                              message: "Invalid mobile number!",
+                            },
+                          ]}
+                        />
                       </Form.Item>
                     ) : userDetails.phoneNumber ? (
                       userDetails.phoneNumber

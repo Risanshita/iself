@@ -27,8 +27,8 @@ namespace iself.Controllers.Validators
                 .WithMessage("Please enter password");
 
             RuleFor(a => a.Password)
-               .Length(4, 20)
-               .WithMessage("Password length must be between 4 to 20");
+               .Length(6, 20)
+               .WithMessage("Password length must be between 6 to 20");
         }
     }
 }

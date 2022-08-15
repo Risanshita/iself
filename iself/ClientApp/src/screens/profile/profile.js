@@ -12,6 +12,7 @@ function Profile() {
   const { state, actions } = useContext(PostContext);
   const [isInitialLoad, setInitialLoad] = useState(true);
   const { loadData } = actions.post;
+  const [filterData, setFilter] = useState({ type: "" });
   const { postDetails } = state.post;
   const userId = localStorage.getItem("user_id");
   if (isInitialLoad) {
@@ -20,14 +21,26 @@ function Profile() {
   }
 
   const onChange = (values) => {
-    // values = values[0];
     if (Array.isArray(values) && values.length > 0) {
-      loadData({ createdBy: userId, q: "", type: values[0] });
+      var filter = { ...filterData, type: values[0] };
+      loadData(filter);
+      setFilter(filter);
     } else {
-      loadData({ createdBy: userId });
+      filter = { ...filterData, type: "" };
+      setFilter(filter);
+      loadData(userId);
     }
   };
+
+  const onLoadMore = () => {
+    loadData(filterData, true);
+  };
+
   const options = [
+    {
+      label: "All",
+      value: "",
+    },
     {
       label: "Code",
       value: PostTypes.codeTip,
@@ -49,6 +62,7 @@ function Profile() {
       value: PostTypes.refactor,
     },
   ];
+
   const { SHOW_CHILD } = Cascader;
 
   const content = (
@@ -62,14 +76,15 @@ function Profile() {
         multiple={false}
         maxTagCount="responsive"
         showCheckedStrategy={SHOW_CHILD}
-        defaultValue={[["All"]]}
+        defaultValue={[[""]]}
+        value={[[filterData.type]]}
       />
     </Row>
   );
 
   const filterbox = (
     <div className="filtterBoox">
-      <Popover content={content} title="Filter option" placement="left">
+      <Popover content={content} title="Post type" placement="left">
         <Button type="primary" icon={<FilterOutlined />}></Button>
       </Popover>
     </div>
@@ -86,6 +101,7 @@ function Profile() {
         postDetails={postDetails}
         isProfile={true}
         onChange={onChange}
+        onLoadMore={onLoadMore}
       />
     </Row>
   );

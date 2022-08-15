@@ -12,9 +12,9 @@ const { confirm } = Modal;
 const UsersList = () => {
   const [isInitialLoad, setInitialLoad] = useState(true);
   const [userDetails, setUsers] = useState([]);
-  // const [color, setColor] = useState("green");
+  const [searchKeyword, setSearchKeyword] = useState("");
   const { actions } = useContext(AccountContext);
-  const { userList } = actions.account;
+  const { userList, deleteUser } = actions.account;
 
   if (isInitialLoad) {
     userList("", (a) => {
@@ -26,6 +26,7 @@ const UsersList = () => {
     userList(val ? val : "", (a) => {
       setUsers(a);
     });
+    setSearchKeyword(val ? val : "");
   };
 
   const sortString = (a, b, column) => {
@@ -36,10 +37,10 @@ const UsersList = () => {
     return res;
   };
 
-  const menu = (
+  const menu = (record) => (
     <Menu
       onClick={(e) => {
-        if (e.key === "Delete") showDeleteConfirm();
+        if (e.key === "Delete") showDeleteConfirm(record);
       }}
       items={[
         {
@@ -107,7 +108,7 @@ const UsersList = () => {
         <Space size="middle">
           <Dropdown.Button
             icon={<DownOutlined />}
-            overlay={menu}
+            overlay={menu(record)}
             trigger={["click"]}
             onClick={(e) => e.preventDefault()}
           >
@@ -117,15 +118,17 @@ const UsersList = () => {
       ),
     },
   ];
- 
-  const showDeleteConfirm = () => {
-    confirm({
-      title: "Do you Want to delete these items?",
-      icon: <ExclamationCircleOutlined />,
-      content: "Some descriptions",
 
+  const showDeleteConfirm = (record) => {
+    confirm({
+      title: "Once deleted the user cannot be recovered.",
+      icon: <ExclamationCircleOutlined />,
       onOk() {
-        console.log("OK");
+        deleteUser(record.id, () => {
+          userList(searchKeyword, (a) => {
+            setUsers(a);
+          });
+        });
       },
 
       onCancel() {},

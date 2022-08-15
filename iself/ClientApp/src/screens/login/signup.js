@@ -23,7 +23,7 @@ const SignUp = () => {
       if (response.succeeded) {
         setSignupError(false);
         setTimeout(() => {
-          navigate("/profile");
+          navigate("/settings");
         }, 1500);
       } else {
         setSignupError(true);
@@ -112,7 +112,7 @@ const SignUp = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input your full name!",
+                    message: "Please input your full name",
                   },
                 ]}
               >
@@ -123,7 +123,7 @@ const SignUp = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input user email!",
+                    message: "Please input user email",
                   },
                 ]}
               >
@@ -134,7 +134,11 @@ const SignUp = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input password!",
+                    message: "Please choose password",
+                  },
+                  {
+                    min: 6,
+                    message: "Password length must be between 6 to 20",
                   },
                 ]}
                 style={{ marginTop: 10 }}

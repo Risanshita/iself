@@ -9,7 +9,7 @@ import { PostTypes } from "../post/post";
 function BrowseList() {
   const { state, actions } = useContext(PostContext);
   const [isInitialLoad, setInitialLoad] = useState(true);
-  const [filterData, setFilter] = useState({});
+  const [filterData, setFilter] = useState({ type: "" });
   const { loadData } = actions.post;
   const { postDetails } = state.post;
 
@@ -26,7 +26,7 @@ function BrowseList() {
       loadData(filter);
       setFilter(filter);
     } else {
-      var filter = { ...filterData, type: "" };
+      filter = { ...filterData, type: "" };
       setFilter(filter);
       loadData(userId);
     }
@@ -37,6 +37,10 @@ function BrowseList() {
   };
 
   const options = [
+    {
+      label: "All",
+      value: "",
+    },
     {
       label: "Code",
       value: PostTypes.codeTip,
@@ -71,14 +75,15 @@ function BrowseList() {
         multiple={false}
         maxTagCount="responsive"
         showCheckedStrategy={SHOW_CHILD}
-        defaultValue={[["All"]]}
+        defaultValue={[[""]]}
+        value={[[filterData.type]]}
       />
     </Row>
   );
 
   const filterbox = (
     <div className="filtterBoox">
-      <Popover content={content} title="Filter option" placement="left">
+      <Popover content={content} title="Post type" placement="left">
         <Button type="primary" icon={<FilterOutlined />}></Button>
       </Popover>
     </div>

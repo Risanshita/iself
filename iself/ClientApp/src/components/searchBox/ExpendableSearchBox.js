@@ -55,7 +55,6 @@ export default function ExpendableSearchBox({
             onChange(e.target.value);
           }
         }}
-        onClear={onComplete}
         allowClear
       />
     </div>

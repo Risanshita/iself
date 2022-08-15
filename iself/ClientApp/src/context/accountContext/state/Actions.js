@@ -1,7 +1,12 @@
 import { types } from "./Reducers";
 import "firebase/compat/auth";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { httpGet, httpPost, httpPut } from "../../../utils/HttpClient";
+import {
+  httpGet,
+  httpDelete,
+  httpPost,
+  httpPut,
+} from "../../../utils/HttpClient";
 import { message } from "antd";
 
 export const useActions = (state, dispatch) => {
@@ -85,7 +90,18 @@ export const useActions = (state, dispatch) => {
     }
   };
 
+  const deleteUser = async (id, callback) => {
+    var response = await httpDelete(`users/${id}`);
+    if (response.succeeded) {
+      message.success(response.message);
+      if (typeof callback === "function") callback();
+    } else {
+      message.error(response.message);
+    }
+  };
+
   return {
+    deleteUser,
     login,
     logout,
     getAccountDetails,
