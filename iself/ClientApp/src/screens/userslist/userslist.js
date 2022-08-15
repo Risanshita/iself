@@ -1,10 +1,13 @@
-import { Col, Row, Space, Table, Tag } from "antd";
+import { Col, Modal, Row, Space, Table, Tag } from "antd";
 import React, { useContext, useState } from "react";
 import { AccountContext } from "../../context/accountContext";
 import ListHeader from "./../../components/ListHeader";
 import { Dropdown, Menu } from "antd";
-import { DownOutlined } from "@ant-design/icons";
+import { DownOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import "./Style.css";
+import { UserRoles } from "../../context/accountContext/state/Reducers";
+
+const { confirm } = Modal;
 
 const UsersList = () => {
   const [isInitialLoad, setInitialLoad] = useState(true);
@@ -12,21 +15,6 @@ const UsersList = () => {
   // const [color, setColor] = useState("green");
   const { actions } = useContext(AccountContext);
   const { userList } = actions.account;
-
-  const enterLoading = (index) => {
-    setLoadings((state) => {
-      const newLoadings = [...state];
-      newLoadings[index] = true;
-      return newLoadings;
-    });
-    setTimeout(() => {
-      setLoadings((state) => {
-        const newLoadings = [...state];
-        newLoadings[index] = false;
-        return newLoadings;
-      });
-    }, 6000);
-  };
 
   if (isInitialLoad) {
     userList("", (a) => {
@@ -42,22 +30,25 @@ const UsersList = () => {
 
   const menu = (
     <Menu
+      onClick={(e) => {
+        if (e.key === "Delete") showDeleteConfirm();
+      }}
       items={[
         {
           label: "Reset",
-          key: "1",
+          key: "Reset",
         },
         {
           label: "Delete",
-          key: "2",
+          key: "Delete",
         },
         {
           label: "Activate",
-          key: "3",
+          key: "Activate",
         },
         {
           label: "Deactivate",
-          key: "4",
+          key: "Deactivate",
         },
       ]}
     />
@@ -69,20 +60,28 @@ const UsersList = () => {
       dataIndex: "fullName",
       key: "name",
       render: (text) => <a>{text}</a>,
+      sorter: (a, b) => a.fullName - b.fullName,
     },
     {
-      title: "Email Id",
+      title: "Email",
       dataIndex: "email",
       key: "email",
+    },
+    {
+      title: "Phone number",
+      dataIndex: "phoneNumber",
+      key: "phoneNumber",
     },
     {
       title: "Role",
       key: "tags",
       dataIndex: "role",
       render: (_, { role }) => {
-        let color = role.length > 5 ? "user" : "green";
-        if (role === "super admin") {
-          color = "volcano";
+        let color = "green";
+        if (role === UserRoles.SuperAdmin) {
+          color = "red";
+        } else if (role === UserRoles.Admin) {
+          color = "blue";
         }
         return (
           <Tag color={color} key={role}>
@@ -102,7 +101,7 @@ const UsersList = () => {
             trigger={["click"]}
             onClick={(e) => e.preventDefault()}
           >
-            Action
+            Edit
           </Dropdown.Button>
         </Space>
       ),
@@ -184,8 +183,19 @@ const UsersList = () => {
     },
   ];
 
-  const [loadings, setLoadings] = useState([]);
+  const showDeleteConfirm = () => {
+    confirm({
+      title: "Do you Want to delete these items?",
+      icon: <ExclamationCircleOutlined />,
+      content: "Some descriptions",
 
+      onOk() {
+        console.log("OK");
+      },
+
+      onCancel() {},
+    });
+  };
   return (
     <Row className="usermanage-page">
       <ListHeader pagination={{}} onSubmitSearch={onSearch} />
