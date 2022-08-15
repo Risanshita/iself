@@ -77,7 +77,7 @@ export const useActions = (state, dispatch) => {
   };
 
   const userList = async (q, callback) => {
-    var response = await httpGet(`users?query=${q}&take=1000&skip=0`);
+    var response = await httpGet(`users?query=${q}&take=50&skip=0`);
     if (response.succeeded) {
       if (typeof callback === "function") callback(response.data);
     } else {

@@ -1,4 +1,4 @@
-import { Col, Row } from "antd";
+import { Button, Col, Row } from "antd";
 import { MoreOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space } from "antd";
 import { useContext, useState } from "react";
@@ -6,7 +6,7 @@ import { PostContext } from "../../context/postContext";
 import PostPreview from "./preview";
 import NoDataFound from "../../components/messages/NoDataFound";
 
-const PostList = ({ posts, isProfile, onChange }) => {
+const PostList = ({ postDetails, isProfile, onChange }) => {
   const { actions } = useContext(PostContext);
   const { deletePost } = actions.post;
   const [previewPost, setPreviewPost] = useState(undefined);
@@ -43,85 +43,95 @@ const PostList = ({ posts, isProfile, onChange }) => {
 
   return (
     <Row style={{ width: "100%" }}>
-      {posts.map((a) => (
-        <Col
-          xs={24}
-          sm={12}
-          md={8}
-          lg={6}
-          xl={6}
-          style={{ height: 248, padding: 7 }}
-          key={a.id}
-        >
-          <Row
-            style={{
-              padding: "10px",
-              height: "100%",
-              backgroundColor: "#3E3F47",
-              borderRadius: 5,
-            }}
+      {postDetails &&
+        postDetails.data &&
+        postDetails.data.length > 0 &&
+        postDetails.data.map((a) => (
+          <Col
+            xs={24}
+            sm={12}
+            md={8}
+            lg={6}
+            xl={6}
+            style={{ height: 248, padding: 7 }}
+            key={a.id}
           >
-            <Col span={24} style={{ height: "100%" }}>
-              <Row justify="space-between">
-                <Col
-                  span={23}
-                  style={{ whiteSpace: "nowrap", overflowX: "auto" }}
-                >
-                  {a.type}
-                  {a.title ? ": " + a.title : ""}
-                </Col>
-                <Col span={1}>
-                  <Dropdown overlay={menu(a)} placement="bottomRight">
-                    <Space>
-                      <MoreOutlined
-                        style={{ color: "white", cursor: "pointer" }}
-                      />
-                    </Space>
-                  </Dropdown>
-                </Col>
-              </Row>
-              {/* <span className="post-info post-type"></span>
-            <span className="post-info more-option"></span> */}
-              <Row
-                className="post-data"
-                align="middle"
-                justify="center"
-                style={{
-                  height: "80%",
-                  padding: "10px 0px",
-                  fontSize: "16px",
-                  overflowY: "auto",
-                }}
-              >
-                {a.data1}
-              </Row>
-
-              <div className="post-info source">{a.source}</div>
-              <div className="post-info author">{a.author}</div>
-              <span className="post-info langugae">
-                <Row justify="start" align="middle">
-                  {a.language ? (
-                    <div
-                      style={{
-                        width: 10,
-                        height: 10,
-                        borderRadius: "50%",
-                        backgroundColor:
-                          "#" + (((1 << 24) * Math.random()) | 0).toString(16),
-                        marginRight: 5,
-                      }}
-                    />
-                  ) : (
-                    ""
-                  )}
-                  {a.language}
+            <Row
+              style={{
+                padding: "10px",
+                height: "100%",
+                backgroundColor: "#3E3F47",
+                borderRadius: 5,
+              }}
+            >
+              <Col span={24} style={{ height: "100%" }}>
+                <Row justify="space-between">
+                  <Col
+                    span={23}
+                    style={{ whiteSpace: "nowrap", overflowX: "auto" }}
+                  >
+                    {a.type}
+                    {a.title ? ": " + a.title : ""}
+                  </Col>
+                  <Col span={1}>
+                    <Dropdown overlay={menu(a)} placement="bottomRight">
+                      <Space>
+                        <MoreOutlined
+                          style={{ color: "white", cursor: "pointer" }}
+                        />
+                      </Space>
+                    </Dropdown>
+                  </Col>
                 </Row>
-              </span>
-            </Col>
-          </Row>
-        </Col>
-      ))}
-      {posts.length === 0 && <NoDataFound />}
+                {/* <span className="post-info post-type"></span>
+            <span className="post-info more-option"></span> */}
+                <Row
+                  className="post-data"
+                  align="middle"
+                  justify="center"
+                  style={{
+                    height: "80%",
+                    padding: "10px 0px",
+                    fontSize: "16px",
+                    overflowY: "auto",
+                  }}
+                >
+                  {a.data1}
+                </Row>
+
+                <div className="post-info source">{a.source}</div>
+                <div className="post-info author">{a.author}</div>
+                <span className="post-info langugae">
+                  <Row justify="start" align="middle">
+                    {a.language ? (
+                      <div
+                        style={{
+                          width: 10,
+                          height: 10,
+                          borderRadius: "50%",
+                          backgroundColor:
+                            "#" +
+                            (((1 << 24) * Math.random()) | 0).toString(16),
+                          marginRight: 5,
+                        }}
+                      />
+                    ) : (
+                      ""
+                    )}
+                    {a.language}
+                  </Row>
+                </span>
+              </Col>
+            </Row>
+          </Col>
+        ))}
+      {postDetails &&
+        postDetails.data &&
+        postDetails.data.length > 0 &&
+        !postDetails.isLast && <Button>Load more...</Button>}
+      {(!postDetails || !postDetails.data || postDetails.data.length === 0) && (
+        <NoDataFound />
+      )}
       <PostPreview
         post={previewPost}
         afterClose={() => setPreviewPost(undefined)}

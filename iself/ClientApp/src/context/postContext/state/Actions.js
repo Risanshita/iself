@@ -3,7 +3,7 @@ import { httpGet, httpDelete, httpPost } from "../../../utils/HttpClient";
 import { types } from "./Reducers";
 
 export const useActions = (state, dispatch) => {
-  async function loadData(
+  async function loadHomeData(
     createdBy = "",
     q = "",
     type = "",
@@ -16,7 +16,26 @@ export const useActions = (state, dispatch) => {
 
     if (response.succeeded)
       dispatch({
-        type: types.SET_HOME_DATA,
+        type: types.SET_POST_DATA,
+        payload: response.data,
+      });
+  }
+
+  async function loadData(
+    { createdBy = "", q = "", type = "" } = { createdBy: "", q: "", type: "" },
+    isLoadMore = false
+  ) {
+    const { skip, take } = isLoadMore
+      ? state.post.postDetails
+      : { skip: 0, take: 20 };
+
+    var response = await httpGet(
+      `posts?createdBy=${createdBy}&type=${type}&query=${q}&take=${take}&skip=${skip}`
+    );
+
+    if (response.succeeded)
+      dispatch({
+        type: types.SET_POST_DATA,
         payload: response.data,
       });
   }
@@ -30,7 +49,8 @@ export const useActions = (state, dispatch) => {
   };
 
   const changePost = (isPrevious = false) => {
-    const { currentPost, posts } = state.post;
+    const { currentPost, postDetails } = state.post;
+    var posts = postDetails ? postDetails.data : [];
     if (Array.isArray(posts) && posts.length > 0) {
       var currentIndex = currentPost
         ? posts.findIndex((a) => a.id === currentPost.id) +
@@ -88,6 +108,7 @@ export const useActions = (state, dispatch) => {
   }
 
   return {
+    loadHomeData,
     loadData,
     nextPost,
     deletePost,

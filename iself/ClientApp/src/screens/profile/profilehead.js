@@ -18,7 +18,7 @@ import profilepic from "../../assets/images/profilepic.png";
 import editlogo from "../../assets/animatedIcons/edit.json";
 import { UserRoles } from "../../context/accountContext/state/Reducers";
 import settinglogo from "../../assets/animatedIcons/setting.json";
-import addusers from "../../assets/animatedIcons/adduser.json";
+// import addusers from "../../assets/animatedIcons/adduser.json";
 
 function ProfileHeader() {
   const [isEdit, setEdit] = useState(false);

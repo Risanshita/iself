@@ -1,4 +1,7 @@
-﻿namespace iself.Models.Request
+﻿using iself.Utils;
+using System.Text.Json.Serialization;
+
+namespace iself.Models.Request
 {
     public class NewUserRequest
     {
@@ -8,5 +11,7 @@
         public string? PhoneNumber { get; set; }
         public string? Password { get; set; }
         public string? CreatedBy { get; set; }
+        [JsonIgnore]
+        public UserRoles Role { get; set; } = UserRoles.User;
     }
 }

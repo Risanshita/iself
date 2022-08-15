@@ -1,7 +1,10 @@
-﻿namespace iself.Data.Models
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace iself.Data.Models
 {
     public class AppFeedback
     {
+        [BsonId]
         public string Id { get; set; } = Guid.NewGuid().ToString();
         public string FeedbackMessage { get; set; } = string.Empty;
         public int Rating { get; set; } = 1;

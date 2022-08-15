@@ -1,4 +1,7 @@
-﻿namespace iself.Data.Models
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace iself.Data.Models
 {
     public enum PostType
     {
@@ -11,8 +14,10 @@
 
     public class Post
     {
+        [BsonId]
         public string Id { get; set; } = Guid.NewGuid().ToString();
         public string Title { get; set; } = string.Empty;
+        [BsonRepresentation(BsonType.String)]
         public PostType Type { get; set; }
         public string Data1 { get; set; } = string.Empty;
         public string Data2 { get; set; } = string.Empty;

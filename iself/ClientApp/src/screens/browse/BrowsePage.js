@@ -1,6 +1,6 @@
 import { Row, Popover, Button } from "antd";
 import { PostContext } from "../../context/postContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./style.css";
 import { FilterOutlined } from "@ant-design/icons";
 import PostList from "../post/postList";
@@ -12,7 +12,7 @@ function BrowseList() {
   const { state, actions } = useContext(PostContext);
   const [isInitialLoad, setInitialLoad] = useState(true);
   const { loadData } = actions.post;
-  const { posts } = state.post;
+  const { postDetails } = state.post;
 
   const userId = localStorage.getItem("user_id");
   if (isInitialLoad) {
@@ -84,14 +84,8 @@ function BrowseList() {
       style={{ height: "100%", overflowY: "auto", padding: "20px" }}
       align="top"
     >
-      <div className="filter"> {filterbox}</div>
-      <PostList posts={posts} />
-      <Player
-        autoplay
-        loop
-        src={loading}
-        style={{ height: "100px", width: "100px" }}
-      ></Player>
+     <div className="filter"> {filterbox}</div>
+      <PostList postDetails={postDetails} />
     </Row>
   );
 }

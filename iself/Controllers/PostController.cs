@@ -25,14 +25,14 @@ namespace iself.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Get([FromQuery] string? createdBy, [FromQuery] PostType? type, [FromQuery] string? query, [FromQuery] int take = 20, [FromQuery] int skip = 0)
+        public async Task<IActionResult> Get([FromQuery] string? createdBy, [FromQuery] PostType? type, [FromQuery] string? query, [FromQuery] int take = 20, [FromQuery] int skip = 0)
         {
             try
             {
                 if (type != null)
-                    return _postService.GetPostByType((PostType)type, createdBy, take, skip).GetSuccessResponse();
+                    return (await _postService.GetPostByType((PostType)type, createdBy, take, skip)).GetSuccessResponse();
 
-                return _postService.GetPosts(query, createdBy, take, skip).GetSuccessResponse();
+                return (await _postService.GetPosts(query, createdBy, take, skip)).GetSuccessResponse();
             }
             catch (Exception ex)
             {
@@ -41,11 +41,11 @@ namespace iself.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get([FromRoute] string id)
+        public async Task<IActionResult> Get([FromRoute] string id)
         {
             try
             {
-                var result = _postService.GetPost(id);
+                var result = await _postService.GetPost(id);
                 if (result == null)
                     return "Post not found".GetErrorResponse(HttpStatusCode.NotFound);
                 return result.GetSuccessResponse();
@@ -85,7 +85,7 @@ namespace iself.Controllers
 
             try
             {
-                var post = _postService.GetPost(id);
+                var post = await _postService.GetPost(id);
                 if (post == null || post?.CreatedBy != CurrentUser)
                     return "Post not found".GetErrorResponse(HttpStatusCode.NotFound);
 
@@ -118,7 +118,7 @@ namespace iself.Controllers
         {
             try
             {
-                var post = _postService.GetPost(id);
+                var post = await _postService.GetPost(id);
                 if (post == null || post?.CreatedBy != CurrentUser)
                     return "Post not found".GetErrorResponse(HttpStatusCode.NotFound);
 
