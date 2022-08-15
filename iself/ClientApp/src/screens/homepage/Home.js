@@ -83,7 +83,7 @@ export const HomePage = () => {
       className="prevent-select"
       id="home_page_post"
     >
-      {currentPost ? (
+      {currentPost && (
         <Col span={24} style={{ height: "100%", padding: 20 }}>
           {currentPost.type === PostTypes.infoByte && (
             <InfoByte post={currentPost} />
@@ -101,9 +101,7 @@ export const HomePage = () => {
             <Notification post={currentPost} />
           )}
         </Col>
-      ) : !loading ? (
-        <NoDataFound />
-      ) : null}
+      )}
       {loading && (
         <Row
           style={{ height: "100%", width: "100%" }}
@@ -113,7 +111,7 @@ export const HomePage = () => {
           <Loader />
         </Row>
       )}
-      {}
+      {!currentPost && !loading && <NoDataFound />}
     </Row>
   );
 };
