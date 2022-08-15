@@ -1,79 +1,88 @@
 ﻿using iself.Data.Models;
 using iself.Data.Repositories.Interfaces;
 using iself.Models.Request;
+using MongoDB.Driver;
+using static iself.Models.ApiResponse;
 
 namespace iself.Data.Repositories
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        public UserRepository() : base()
+        private static bool IsIndexCreated { get; set; }
+        public UserRepository(MongoDbContext<User> dbContex) : base(dbContex)
         {
+            if (!IsIndexCreated)
+            {
+                var indexOptions = new CreateIndexOptions();
+                var indexKeys = Builders<User>.IndexKeys.Ascending(i => i.Id);
+                var indexModel = new CreateIndexModel<User>(indexKeys, indexOptions);
+                _collection.Indexes.CreateOneAsync(indexModel);
 
+                indexOptions = new CreateIndexOptions();
+                indexKeys = Builders<User>.IndexKeys.Ascending(i => i.Email);
+                indexModel = new CreateIndexModel<User>(indexKeys, indexOptions);
+
+                _collection.Indexes.CreateOneAsync(indexModel);
+
+                IsIndexCreated = true;
+            }
         }
 
         public async Task<User?> AddUserAsync(User user)
         {
-            if (await _collection.InsertOneAsync(user))
-                return user;
-            return null;
+            await Create(user);
+            return user;
         }
 
         public async Task<bool> DeleteUserAsync(string id)
         {
-            return await _collection.DeleteOneAsync(id);
+            return await DeleteAsync(a => a.Id == id);
         }
 
-        public User? GetUser(string id)
+        public async Task<User?> GetUser(string id)
         {
-            return _collection
-                    .AsQueryable()
-                    .FirstOrDefault(p => p.Id == id);
+            return (await _collection.FindAsync(p => p.Id == id))
+                      .FirstOrDefault();
         }
 
-        public List<User> GetUserByIds(List<string> ids)
+        public async Task<List<User>> GetUserByIds(List<string> ids)
         {
-            return _collection
-                    .AsQueryable()
-                    .Where(p => ids.Contains(p.Id))
+            return (await _collection.FindAsync(p => ids.Contains(p.Id)))
                     .ToList();
         }
 
-        public User? GetUserByEmail(string email)
+        public async Task<User?> GetUserByEmail(string email)
         {
-            return _collection
-                    .AsQueryable()
-                    .FirstOrDefault(p => p.Email.ToLower() == email.ToLower());
+            return await _collection.Find(p => p.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
         }
 
-        public List<User> GetUsers(string query, int take = 20, int skip = 0)
+        public async Task<PaginatedResponse<User>> GetUsers(string query, int take = 20, int skip = 0)
         {
-            if (string.IsNullOrWhiteSpace(query))
-            {
-                return _collection.AsQueryable().OrderBy(a => a.FullName).Skip(skip).Take(take).ToList();
-            }
             query = query.ToLower();
-            return _collection.AsQueryable().Where(a => (a.FullName != null && a.FullName.ToLower().Contains(query))
-                    || (a.UserName != null && a.UserName.ToLower().Contains(query))
-                    || (a.Email != null && a.Email.ToLower().Contains(query))
-                    || (a.PhoneNumber != null && a.PhoneNumber.ToLower().Contains(query))
-                    )
-                .OrderBy(a => a.FullName)
-                .Skip(skip)
-                .Take(take)
-                .ToList();
+
+            var combind = new List<FilterDefinition<User>>();
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+
+                combind.Add(Builders<User>.Filter.Where(a => (a.FullName != null && a.FullName.ToLower().Contains(query))));
+                combind.Add(Builders<User>.Filter.Where(a => (a.UserName != null && a.UserName.ToLower().Contains(query))));
+                combind.Add(Builders<User>.Filter.Where(a => (a.Email != null && a.Email.ToLower().Contains(query))));
+                combind.Add(Builders<User>.Filter.Where(a => (a.PhoneNumber != null && a.PhoneNumber.ToLower().Contains(query))));
+            }
+
+
+            var fullCondition = combind.Count == 0 ? Builders<User>.Filter.Empty : Builders<User>.Filter.Or(combind);
+
+            return await GetFilterResultWithPagingAsync(fullCondition, skip, take, nameof(User.FullName));
         }
 
         public async Task<bool> UpdateUserAsync(string id, UpdateUserRequest request)
         {
-            var user = _collection
-                    .AsQueryable()
-                    .FirstOrDefault(p => p.Id == id);
-            if (user == null) return false;
+            var update = Builders<User>.Update
+                .Set(nameof(User.FullName), request.FullName)
+                .Set(nameof(User.PhoneNumber), request.PhoneNumber);
 
-            user.FullName = request.FullName;
-            user.PhoneNumber = request.PhoneNumber;
-
-            return await _collection.UpdateOneAsync(e => e.Id == id, request);
+            return await UpdateAsync(a => a.Id == id, update);
         }
     }
 }

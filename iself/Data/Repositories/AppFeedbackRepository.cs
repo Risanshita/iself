@@ -1,13 +1,33 @@
 ﻿using iself.Data.Models;
-using iself.Data.Repositories.Interfaces; 
+using iself.Data.Repositories.Interfaces;
+using MongoDB.Driver;
 
 namespace iself.Data.Repositories
 {
     public class AppFeedbackRepository : BaseRepository<AppFeedback>, IAppFeedbackRepository
     {
-        public AppFeedbackRepository() : base()
+        private static bool IsIndexCreated { get; set; }
+        public AppFeedbackRepository(MongoDbContext<AppFeedback> dbContex) : base(dbContex)
         {
+            if (!IsIndexCreated)
+            {
+                var indexOptions = new CreateIndexOptions();
+                var indexKeys = Builders<AppFeedback>.IndexKeys.Ascending(i => i.Id);
+                var indexModel = new CreateIndexModel<AppFeedback>(indexKeys, indexOptions);
+                _collection.Indexes.CreateOneAsync(indexModel);
 
+                indexOptions = new CreateIndexOptions();
+                indexKeys = Builders<AppFeedback>.IndexKeys.Ascending(i => i.Rating);
+                indexModel = new CreateIndexModel<AppFeedback>(indexKeys, indexOptions);
+
+                indexOptions = new CreateIndexOptions();
+                indexKeys = Builders<AppFeedback>.IndexKeys.Ascending(i => i.CreatedBy);
+                indexModel = new CreateIndexModel<AppFeedback>(indexKeys, indexOptions);
+
+                _collection.Indexes.CreateOneAsync(indexModel);
+
+                IsIndexCreated = true;
+            }
         }
 
         public async Task<bool> AddOrUpdateAsync(AppFeedback appFeedback)
@@ -17,12 +37,16 @@ namespace iself.Data.Repositories
                     .FirstOrDefault(p => p.CreatedBy == appFeedback.CreatedBy);
 
             if (feedback == null)
-                return await _collection.InsertOneAsync(appFeedback);
-            
-            feedback.Rating = appFeedback.Rating;
-            feedback.FeedbackMessage = appFeedback.FeedbackMessage;
+            {
+                await Create(appFeedback);
+                    return true;
+            }
 
-            return await _collection.UpdateOneAsync(e => e.Id == feedback.Id, feedback);
+            var update = Builders<AppFeedback>.Update
+                .Set(nameof(AppFeedback.Rating), appFeedback.Rating)
+                .Set(nameof(AppFeedback.FeedbackMessage), appFeedback.FeedbackMessage);
+
+            return await UpdateAsync(e => e.Id == feedback.Id, update);
         }
     }
 }

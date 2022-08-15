@@ -14,6 +14,7 @@
         {
             public int Skip { get; set; }
             public int Take { get; set; }
+            public bool IsLast { get; set; }
             public List<TRecord> Data { get; }
 
             PaginatedResponse()
@@ -22,11 +23,12 @@
                 Data = new List<TRecord>();
             }
 
-            public PaginatedResponse(List<TRecord> data, int take, int skip = 0)
+            public PaginatedResponse(List<TRecord> data, int take, int skip = 0, bool isLast = false)
             {
                 Data = data;
                 Take = take;
                 Skip = skip;
+                IsLast = isLast;
             }
 
         }

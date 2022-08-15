@@ -5,35 +5,49 @@ using iself.Services;
 using iself.Services.Interfaces;
 using iself.Utils;
 using System.Text.Json.Serialization;
-using FluentValidation.AspNetCore;
 using iself.Controllers.Validators;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
+using FluentValidation.AspNetCore;
+using iself.Logger;
+using iself.Data;
+using iself.Config;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+ConfigureLogger.ConfigureSerilog();
 
-builder.Services.AddControllersWithViews().AddFluentValidation(s =>
+// Add services to the container.
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        options.JsonSerializerOptions.Converters.Add(new TrimmingJsonConverter());
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+    });
+
+builder.Services.AddFluentValidationAutoValidation(s =>
 {
     s.DisableDataAnnotationsValidation = true;
-    s.AutomaticValidationEnabled = false;
-}).AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-    options.JsonSerializerOptions.Converters.Add(new TrimmingJsonConverter());
-    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-});
+}).AddFluentValidationClientsideAdapters();
 
 //Firebase
+
+FireBaseAdminConfig fireBaseAdminConfig = new();
+
+builder.Configuration.GetSection(FireBaseAdminConfig.Option).Bind(fireBaseAdminConfig);
+
+var json = JsonSerializer.Serialize(fireBaseAdminConfig);
+
 _ = FirebaseApp.Create(new AppOptions()
 {
-    Credential = GoogleCredential.FromFile("firebase-key.json"),
+    Credential = GoogleCredential.FromJson(json),
 });
 
-var firebaseAppId = Environment.GetEnvironmentVariable("FirebaseAppId");
+var firebaseAppId = builder.Configuration.GetValue<string>("FirebaseAppId");
 //Authentication
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -69,6 +83,11 @@ builder.Services.AddSingleton(typeof(NewPostValidator));
 builder.Services.AddSingleton(typeof(NewFeedbackValidator));
 builder.Services.AddSingleton(typeof(NewUserValidator));
 
+//Database settings
+
+builder.Services.AddSingleton(typeof(MongoDbContext<>));
+builder.Services.Configure<MongoDbConfigs>(builder.Configuration.GetSection(MongoDbConfigs.Option));
+
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -91,4 +110,5 @@ app.MapControllerRoute(
 
 app.MapFallbackToFile("index.html");
 
+await SeedRepository.StartSeeding(app.Services, builder.Configuration);
 app.Run();

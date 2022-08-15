@@ -12,19 +12,19 @@ function Profile() {
   const { state, actions } = useContext(PostContext);
   const [isInitialLoad, setInitialLoad] = useState(true);
   const { loadData } = actions.post;
-  const { posts } = state.post;
+  const { postDetails } = state.post;
   const userId = localStorage.getItem("user_id");
   if (isInitialLoad) {
-    loadData(userId);
+    loadData({ createdBy: userId });
     setInitialLoad(false);
   }
 
   const onChange = (values) => {
     // values = values[0];
     if (Array.isArray(values) && values.length > 0) {
-      loadData(userId, "", values[0]);
+      loadData({ createdBy: userId, q: "", type: values[0] });
     } else {
-      loadData(userId);
+      loadData({ createdBy: userId });
     }
   };
   const options = [
@@ -53,18 +53,6 @@ function Profile() {
 
   const content = (
     <Row style={{ width: 200 }}>
-      {/* <Form layout="horizontal" style={{ width: "100%" }}>
-        <MultiSelect
-          dataSource={{
-            data: options,
-            labelField: "label",
-            valueField: "value",
-          }}
-          placeholder="Post type"
-          noMargin={true}
-          onChange={onChange}
-        />
-      </Form> */}
       <Cascader
         style={{
           width: "100%",
@@ -89,13 +77,16 @@ function Profile() {
 
   return (
     <Row
-      // className="postnew-page"
       justify="end"
       style={{ height: "100%", overflowY: "auto", padding: "20px" }}
     >
       <ProfileHeader />
       {filterbox}
-      <PostList posts={posts} isProfile={true} onChange={onChange} />
+      <PostList
+        postDetails={postDetails}
+        isProfile={true}
+        onChange={onChange}
+      />
     </Row>
   );
 }

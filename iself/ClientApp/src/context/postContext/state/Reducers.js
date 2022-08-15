@@ -1,13 +1,13 @@
 const initialState = {
   theme: "light",
-  posts: [],
+  postDetails: { data: [] },
   loading: false,
   currentPost: undefined,
   postIndex: undefined,
 };
 
 const types = {
-  SET_HOME_DATA: "SET_HOME_DATA",
+  SET_POST_DATA: "SET_POST_DATA",
   SET_CURRENT_POST: "SET_CURRENT_POST",
   STOP_LOADING: "STOP_LOADING",
   START_LOADING: "START_LOADING",
@@ -25,10 +25,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         loading: false,
       };
-    case types.SET_HOME_DATA:
+    case types.SET_POST_DATA:
       return {
         ...state,
-        posts: action.payload,
+        postDetails: action.payload,
         loading: false,
       };
     case types.SET_CURRENT_POST:

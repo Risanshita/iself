@@ -1,84 +1,115 @@
 ﻿using iself.Data.Models;
 using iself.Data.Repositories.Interfaces;
 using iself.Models.Request;
+using MongoDB.Driver;
+using static iself.Models.ApiResponse;
 
 namespace iself.Data.Repositories
 {
     public class PostRepository : BaseRepository<Post>, IPostRepository
     {
-        public PostRepository() : base()
+        private static bool IsIndexCreated { get; set; }
+        public PostRepository(MongoDbContext<Post> dbContex) : base(dbContex)
         {
+            if (!IsIndexCreated)
+            {
+                var indexOptions = new CreateIndexOptions();
+                var indexKeys = Builders<Post>.IndexKeys.Ascending(i => i.Id);
+                var indexModel = new CreateIndexModel<Post>(indexKeys, indexOptions);
+                _collection.Indexes.CreateOneAsync(indexModel);
 
+                indexOptions = new CreateIndexOptions();
+                indexKeys = Builders<Post>.IndexKeys.Ascending(i => i.CreatedBy);
+                indexModel = new CreateIndexModel<Post>(indexKeys, indexOptions);
+
+                _collection.Indexes.CreateOneAsync(indexModel);
+
+                IsIndexCreated = true;
+            }
         }
 
         public async Task<Post?> AddPostAsync(Post post)
         {
-            if (await _collection.InsertOneAsync(post))
-                return post;
-            return null;
+            await Create(post);
+            return post;
         }
 
         public async Task<bool> DeletePostAsync(string id)
         {
-            return await _collection.DeleteOneAsync(id);
+            return await DeleteAsync(a => a.Id == id);
         }
 
-        public Post? GetPost(string id)
+        public async Task<Post?> GetPost(string id)
         {
-            return _collection
-                    .AsQueryable()
-                    .FirstOrDefault(p => p.Id == id);
+            return (await _collection.FindAsync(p => p.Id == id)).FirstOrDefault();
         }
 
-        public List<Post> GetPostByOwner(string createdBy, int take = 20, int skip = 0)
+        public async Task<PaginatedResponse<Post>> GetPostByOwner(string createdBy, int take = 20, int skip = 0)
         {
-            return _collection
-                    .AsQueryable().OrderByDescending(a => a.UpdatedAt).Where(a => a.CreatedBy == createdBy).Skip(skip).Take(take).ToList();
+
+            var combind = new List<FilterDefinition<Post>>() { };
+            combind.Add(Builders<Post>.Filter.Where(a => a.CreatedBy == createdBy));
+            var fullCondition = Builders<Post>.Filter.Or(combind);
+            return await GetFilterResultWithPagingAsync(fullCondition, skip, take, nameof(Post.CreatedAt), false);
         }
 
-        public List<Post> GetPostByType(PostType type, string? createdBy = null, int take = 20, int skip = 0)
+        public async Task<PaginatedResponse<Post>> GetPostByType(PostType type, string? createdBy = null, int take = 20, int skip = 0)
         {
-            if (string.IsNullOrWhiteSpace(createdBy))
-                return _collection
-                        .AsQueryable().Where(a => a.Type == type).OrderByDescending(a => a.UpdatedAt).Skip(skip).Take(take).ToList();
 
-            return _collection
-                    .AsQueryable().Where(a => a.Type == type && a.CreatedBy == createdBy).OrderByDescending(a => a.UpdatedAt).Skip(skip).Take(take).ToList();
+            var combind = new List<FilterDefinition<Post>>() { };
+
+            combind.Add(Builders<Post>.Filter.Where(a => a.Type == type));
+            if (!string.IsNullOrWhiteSpace(createdBy))
+                combind.Add(Builders<Post>.Filter.Where(a => a.CreatedBy == createdBy));
+
+            var fullCondition = combind.Count == 0 ? Builders<Post>.Filter.Empty : Builders<Post>.Filter.And(combind);
+
+            return await GetFilterResultWithPagingAsync(fullCondition, skip, take, nameof(Post.CreatedAt), false);
         }
 
-        public List<Post> GetPosts(string query, string? createdBy, int take = 20, int skip = 0)
+        public async Task<PaginatedResponse<Post>> GetPosts(string query, string? createdBy, int take = 20, int skip = 0)
         {
-            if (string.IsNullOrWhiteSpace(query))
+            var combind = new List<FilterDefinition<Post>>() { };
+
+            if (!string.IsNullOrWhiteSpace(query))
             {
-                if (!string.IsNullOrWhiteSpace(createdBy))
-                    return _collection
-                    .AsQueryable().Where(a => a.CreatedBy == createdBy).OrderByDescending(a => a.UpdatedAt).OrderByDescending(a => a.UpdatedAt).Skip(skip).Take(take).ToList();
-                return _collection.AsQueryable().OrderByDescending(a => a.UpdatedAt).Skip(skip).Take(take).ToList();
+                combind.Add(Builders<Post>.Filter.Where(a => a.Type.ToString().ToLower() == query));
+                combind.Add(Builders<Post>.Filter.Where(a => a.Source.ToLower().Contains(query)));
+                combind.Add(Builders<Post>.Filter.Where(a => a.Title.ToLower().Contains(query)));
+                combind.Add(Builders<Post>.Filter.Where(a => a.Author.ToLower().Contains(query)));
+                combind.Add(Builders<Post>.Filter.Where(a => a.Data1.ToLower().Contains(query)));
+                combind.Add(Builders<Post>.Filter.Where(a => a.Data2.ToLower().Contains(query)));
             }
 
-            return !string.IsNullOrWhiteSpace(createdBy) ?
+            var combindCreatedBy = new List<FilterDefinition<Post>>() { };
+            if (!string.IsNullOrWhiteSpace(createdBy))
+            {
+                combindCreatedBy.Add(Builders<Post>.Filter.Where(a => a.CreatedBy == createdBy));
+            }
 
-                _collection.AsQueryable().Where(a => a.CreatedBy == createdBy && (a.Language.ToLower() == query
-                    || a.Type.ToString().ToLower() == query
-                    || a.Source.ToLower().Contains(query)
-                    || a.Title.ToLower().Contains(query)
-                    || a.Author.ToLower().Contains(query)
-                    || a.Data1.ToLower().Contains(query)
-                    || a.Data2.ToLower().Contains(query)))
-                .OrderByDescending(a => a.UpdatedAt).Skip(skip).Take(take).ToList() :
-                    _collection.AsQueryable().Where(a => a.Language.ToLower() == query
-                    || a.Type.ToString().ToLower() == query
-                    || a.Source.ToLower().Contains(query)
-                    || a.Title.ToLower().Contains(query)
-                    || a.Author.ToLower().Contains(query)
-                    || a.Data1.ToLower().Contains(query)
-                    || a.Data2.ToLower().Contains(query))
-                .OrderByDescending(a => a.UpdatedAt).Skip(skip).Take(take).ToList();
+            var fullCondition = combind.Count == 0 ? Builders<Post>.Filter.Empty : Builders<Post>.Filter.Or(combind);
+            if (combind.Count > 0 && combindCreatedBy.Count > 0)
+                combindCreatedBy.Add(fullCondition);
+
+            fullCondition = combindCreatedBy.Count == 0 ? fullCondition : Builders<Post>.Filter.And(combindCreatedBy);
+
+            return await GetFilterResultWithPagingAsync(fullCondition, skip, take, nameof(Post.CreatedAt), false);
         }
 
         public async Task<bool> UpdatePostAsync(string id, PostUpdateRequest post)
         {
-            return await _collection.UpdateOneAsync(e => e.Id == id, post);
+            var update = Builders<Post>.Update
+                .Set(nameof(Post.Title), post.Title)
+                .Set(nameof(Post.Language), post.Language)
+                .Set(nameof(Post.Data2), post.Data2)
+                .Set(nameof(Post.Language), post.Language)
+                .Set(nameof(Post.Data1), post.Data1)
+                .Set(nameof(Post.Source), post.Source)
+                .Set(nameof(Post.Type), post.Type)
+                .Set(nameof(Post.UpdatedAt), post.UpdatedAt)
+                .Set(nameof(Post.UpdatedBy), post.UpdatedBy);
+
+            return await UpdateAsync(e => e.Id == id, update);
         }
     }
 }

@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace iself.Controllers
 {
     [ApiController]
@@ -26,11 +24,11 @@ namespace iself.Controllers
 
 
         [HttpGet]
-        public IActionResult Get([FromQuery] string? query, [FromQuery] int take = 20, [FromQuery] int skip = 0)
+        public async Task<IActionResult> Get([FromQuery] string? query, [FromQuery] int take = 20, [FromQuery] int skip = 0)
         {
             try
             {
-                return _userService.GetUsers(query ?? string.Empty, take, skip).GetSuccessResponse();
+                return (await _userService.GetUsers(query ?? string.Empty, take, skip)).GetSuccessResponse();
             }
             catch (Exception ex)
             {
@@ -66,7 +64,7 @@ namespace iself.Controllers
         }
 
         [HttpGet("me")]
-        public IActionResult CurrentUserDetails()
+        public async Task<IActionResult> CurrentUserDetails()
         {
             try
             {
@@ -74,7 +72,7 @@ namespace iself.Controllers
                 if (string.IsNullOrWhiteSpace(id))
                     return Unauthorized();
 
-                var result = _userService.GetUser(id);
+                var result = await _userService.GetUser(id);
                 if (result == null)
                     return "User not found".GetErrorResponse(HttpStatusCode.NotFound);
                 return result.GetSuccessResponse();
@@ -104,7 +102,7 @@ namespace iself.Controllers
         {
             try
             {
-                var result = _userService.GetUser(CurrentUser);
+                var result = await _userService.GetUser(CurrentUser);
                 if (result == null)
                     return "User not found".GetErrorResponse(HttpStatusCode.NotFound);
 
@@ -129,7 +127,7 @@ namespace iself.Controllers
                 if (UserRole != UserRoles.SuperAdmin)
                     return Forbid();
 
-                var result = _userService.GetUser(id);
+                var result = await _userService.GetUser(id);
                 if (result == null)
                     return "User not found".GetErrorResponse(HttpStatusCode.NotFound);
 

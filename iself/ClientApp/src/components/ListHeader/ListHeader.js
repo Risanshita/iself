@@ -30,7 +30,7 @@ export default function ListHeader({ pagination, onSubmitSearch }) {
               type="text"
               icon={
                 <Player
-                  // hover={true}
+                  hover={true}
                   autoplay
                   loop
                   src={addusers}

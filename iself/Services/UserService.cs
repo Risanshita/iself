@@ -6,23 +6,24 @@ using iself.Models.Request;
 using iself.Models.Response;
 using iself.Services.Interfaces;
 using iself.Utils;
+using static iself.Models.ApiResponse;
 
 namespace iself.Services
 {
-    public class UserService : IUserService
+    public class UserService : BaseService, IUserService
     {
-        private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
         private readonly IUserRepository _userRepository;
 
-        public UserService(IUserRepository userRepository, IMapper mapper)
+        public UserService(IUserRepository userRepository, IMapper mapper, IConfiguration configuration) : base(mapper)
         {
-            _mapper = mapper;
+            _configuration = configuration;
             _userRepository = userRepository;
         }
 
         public async Task<UserResponse?> AddUserAsync(NewUserRequest request)
         {
-            var user = _mapper.Map<User>(request);
+            var user = MappedResult<NewUserRequest, User>(request);
 
             var args = new UserRecordArgs()
             {
@@ -37,11 +38,11 @@ namespace iself.Services
             var claims = new Dictionary<string, object>()
                             {
                                 { "user_email", user.Email},
-                                {"user_role", UserRoles.User.ToString()},
+                                {"user_role", request.Role.ToString()},
                             };
             user.Id = response.Uid;
             await FirebaseAuth.DefaultInstance.SetCustomUserClaimsAsync(user.Id, claims);
-            return _mapper.Map<UserResponse>(await _userRepository.AddUserAsync(user));
+            return MappedResult<User, UserResponse>(await _userRepository.AddUserAsync(user));
         }
 
         public async Task<bool> DeleteUserAsync(string id)
@@ -50,19 +51,19 @@ namespace iself.Services
             return await _userRepository.DeleteUserAsync(id);
         }
 
-        public UserResponse? GetUser(string id)
+        public async Task<UserResponse?> GetUser(string id)
         {
-            return _mapper.Map<UserResponse>(_userRepository.GetUser(id));
+            return MappedResult<User, UserResponse>(await _userRepository.GetUser(id));
         }
 
-        public UserResponse? GetUserByEmail(string email)
+        public async Task<UserResponse?> GetUserByEmail(string email)
         {
-            return _mapper.Map<UserResponse>(_userRepository.GetUserByEmail(email));
+            return MappedResult<User, UserResponse>(await _userRepository.GetUserByEmail(email));
         }
 
-        public List<UserResponse> GetUsers(string query, int take = 20, int skip = 0)
+        public async Task<PaginatedResponse<UserResponse>> GetUsers(string query, int take = 20, int skip = 0)
         {
-            return _mapper.Map<List<UserResponse>>(_userRepository.GetUsers(query, take, skip));
+            return MappedResult<User, UserResponse>(await _userRepository.GetUsers(query, take, skip));
         }
 
         public async Task<bool> UpdateUserAsync(string id, UpdateUserRequest request)
@@ -72,15 +73,15 @@ namespace iself.Services
 
         public async Task<bool> MakeSuperAdminAsync(string id)
         {
-            var user = _userRepository.GetUser(id);
-            if (user == null || user.Email != Environment.GetEnvironmentVariable("AdminEmail"))
+            var user = await _userRepository.GetUser(id);
+            if (user == null || user.Email != _configuration.GetValue<string>("AdminUserConfig:Email"))
                 return false;
 
             var claims = new Dictionary<string, object>()
                         {
                             {"user_role", UserRoles.SuperAdmin.ToString()},
                             {"user_email", user.Email},
-                        }; 
+                        };
 
             await FirebaseAuth.DefaultInstance.SetCustomUserClaimsAsync(id, claims);
             return true;

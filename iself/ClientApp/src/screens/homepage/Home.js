@@ -11,8 +11,8 @@ import Paraphrase from "./Paraphrase";
 
 export const HomePage = () => {
   const { state, actions } = useContext(PostContext);
-  const { loadData, nextPost } = actions.post;
-  const { currentPost, posts } = state.post;
+  const { loadHomeData, nextPost } = actions.post;
+  const { currentPost, postDetails } = state.post;
   const [isInitialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
@@ -20,14 +20,18 @@ export const HomePage = () => {
       () => {
         nextPost();
       },
-      posts && Array.isArray(posts) && posts.length > 0 && currentPost
+      postDetails &&
+        postDetails.data &&
+        Array.isArray(postDetails.data) &&
+        postDetails.data.length > 0 &&
+        currentPost
         ? process.env.REACT_APP_POST_CHANGE_DELAY * 1000
         : 100
     );
-  }, [currentPost, posts, nextPost]);
+  }, [currentPost, postDetails, nextPost]);
 
   if (isInitialLoad) {
-    loadData();
+    loadHomeData();
     setInitialLoad(false);
 
     setTimeout(() => {
