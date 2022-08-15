@@ -6,6 +6,8 @@ import { FilterOutlined } from "@ant-design/icons";
 import PostList from "../post/postList";
 import { Cascader } from "antd";
 import { PostTypes } from "../post/post";
+import { Player } from "@lottiefiles/react-lottie-player";
+import loading from "../../assets/animatedIcons/loading.json";
 function BrowseList() {
   const { state, actions } = useContext(PostContext);
   const [isInitialLoad, setInitialLoad] = useState(true);
@@ -82,8 +84,14 @@ function BrowseList() {
       style={{ height: "100%", overflowY: "auto", padding: "20px" }}
       align="top"
     >
-     <div className="filter"> {filterbox}</div>
+      <div className="filter"> {filterbox}</div>
       <PostList posts={posts} />
+      <Player
+        autoplay
+        loop
+        src={loading}
+        style={{ height: "100px", width: "100px" }}
+      ></Player>
     </Row>
   );
 }
