@@ -26,7 +26,7 @@ const CodeTip = ({ post }) => {
           autoResize={true}
           max={50}
           forceSingleModeWidth={false}
-          style={{ height: "100%", width: "100%" }}
+          style={{ height: "100%", width: "100%", color: "#FFB800" }}
         >
           {post.title}
         </Textfit>

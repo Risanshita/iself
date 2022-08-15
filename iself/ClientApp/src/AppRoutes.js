@@ -3,13 +3,13 @@ import BrowseScreen from "./screens/browse";
 import { Counter } from "./screens/Counter";
 import { FetchData } from "./screens/FetchData";
 import { HomeScreen } from "./screens/homepage";
-import Login from "./screens/login";
 import NotFound from "./screens/NotFound";
 import PostScreen from "./screens/post";
 import { ProfileScreen } from "./screens/profile";
 import RateUs from "./screens/RateUs/RateUs";
-import SignUp from "./screens/signup/signup";
+import SignUp from "./screens/login/signup";
 import UsersList from "./screens/userslist/userslist";
+import Login from "./screens/login/login";
 
 const AppRoutes = [
   {

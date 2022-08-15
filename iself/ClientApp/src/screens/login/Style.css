@@ -22,7 +22,9 @@
 .specing {
   margin-bottom: 25px;
 }
-
+.login-animation-wrapper {
+  display: none !important;
+}
 @media (min-width: 768px) {
   .intro {
     background-color: var(--ant-primary-8);
@@ -43,6 +45,10 @@
 
   .form-body {
     align-items: center;
+  }
+
+  .login-animation-wrapper {
+    display: flex !important;
   }
 }
 
