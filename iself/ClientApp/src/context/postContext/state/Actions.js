@@ -10,6 +10,9 @@ export const useActions = (state, dispatch) => {
     take = 100,
     skip = 0
   ) {
+    dispatch({
+      type: types.START_LOADING,
+    });
     var response = await httpGet(
       `posts?createdBy=${createdBy}&type=${type}&query=${q}&take=${take}&skip=${skip}`
     );
@@ -25,19 +28,37 @@ export const useActions = (state, dispatch) => {
     { createdBy = "", q = "", type = "" } = { createdBy: "", q: "", type: "" },
     isLoadMore = false
   ) {
+    dispatch({
+      type: types.START_LOADING,
+    });
     const { skip, take } = isLoadMore
       ? state.post.postDetails
       : { skip: 0, take: 20 };
 
     var response = await httpGet(
-      `posts?createdBy=${createdBy}&type=${type}&query=${q}&take=${take}&skip=${skip}`
+      `posts?createdBy=${createdBy}&type=${type}&query=${q}&take=${1}&skip=${skip}`
     );
 
-    if (response.succeeded)
+    if (response.succeeded) {
+      var data =
+        isLoadMore &&
+        state.post.postDetails &&
+        state.post.postDetails.data &&
+        state.post.postDetails.data.length > 0
+          ? state.post.postDetails.data
+          : [];
+      response.data.data = response.data.data.map((a) => {
+        a.createdDate = new Date(a.createdAt).toDateString();
+        return a;
+      });
+      console.log(response.data.data);
+
+      response.data.data = [...data, ...response.data.data];
       dispatch({
         type: types.SET_POST_DATA,
         payload: response.data,
       });
+    }
   }
 
   const nextPost = () => {

@@ -9,26 +9,33 @@ import { PostTypes } from "../post/post";
 function BrowseList() {
   const { state, actions } = useContext(PostContext);
   const [isInitialLoad, setInitialLoad] = useState(true);
+  const [filterData, setFilter] = useState({});
   const { loadData } = actions.post;
   const { postDetails } = state.post;
 
   const userId = localStorage.getItem("user_id");
-  if (isInitialLoad) {
-    loadData(userId);
-    setInitialLoad(false);
-  }
+
   if (isInitialLoad) {
     loadData();
     setInitialLoad(false);
   }
+
   const onChange = (values) => {
-    // values = values[0];
     if (Array.isArray(values) && values.length > 0) {
-      loadData(userId, "", values[0]);
+      var filter = { ...filterData, type: values[0] };
+      loadData(filter);
+      setFilter(filter);
     } else {
+      var filter = { ...filterData, type: "" };
+      setFilter(filter);
       loadData(userId);
     }
   };
+
+  const onLoadMore = () => {
+    loadData(filterData, true);
+  };
+
   const options = [
     {
       label: "Code",
@@ -82,8 +89,8 @@ function BrowseList() {
       style={{ height: "100%", overflowY: "auto", padding: "20px" }}
       align="top"
     >
-     <div className="filter"> {filterbox}</div>
-      <PostList postDetails={postDetails} />
+      <div className="filter"> {filterbox}</div>
+      <PostList postDetails={postDetails} onLoadMore={onLoadMore} />
     </Row>
   );
 }

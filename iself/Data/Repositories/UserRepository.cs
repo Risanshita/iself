@@ -53,7 +53,8 @@ namespace iself.Data.Repositories
 
         public async Task<User?> GetUserByEmail(string email)
         {
-            return await _collection.Find(p => p.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
+            var res = await _collection.Find(p => p.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
+            return res;
         }
 
         public async Task<PaginatedResponse<User>> GetUsers(string query, int take = 20, int skip = 0)

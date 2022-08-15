@@ -2,13 +2,18 @@ import { Button, Col, Row } from "antd";
 import { MoreOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space } from "antd";
 import { useContext, useState } from "react";
+import { Player } from "@lottiefiles/react-lottie-player";
+
 import { PostContext } from "../../context/postContext";
 import PostPreview from "./preview";
 import NoDataFound from "../../components/messages/NoDataFound";
+import loadingIcon from "../../assets/animatedIcons/loading.json";
 
-const PostList = ({ postDetails, isProfile, onChange }) => {
-  const { actions } = useContext(PostContext);
+const PostList = ({ postDetails, isProfile, onChange, onLoadMore }) => {
+  const { actions, state } = useContext(PostContext);
   const { deletePost } = actions.post;
+  const { loading } = state.post;
+
   const [previewPost, setPreviewPost] = useState(undefined);
 
   const menu = (post) => {
@@ -125,13 +130,27 @@ const PostList = ({ postDetails, isProfile, onChange }) => {
             </Row>
           </Col>
         ))}
-      {postDetails &&
-        postDetails.data &&
-        postDetails.data.length > 0 &&
-        !postDetails.isLast && <Button>Load more...</Button>}
-      {(!postDetails || !postDetails.data || postDetails.data.length === 0) && (
-        <NoDataFound />
-      )}
+      <Col span={24}>
+        <Row justify="center">
+          {loading && (
+            <Player
+              autoplay
+              loop
+              src={loadingIcon}
+              style={{ height: "100px", width: "100px" }}
+            />
+          )}
+          {postDetails &&
+            postDetails.data &&
+            postDetails.data.length > 0 &&
+            !postDetails.isLast &&
+            !loading && <Button onClick={onLoadMore}>Load more</Button>}
+          {(!postDetails ||
+            !postDetails.data ||
+            postDetails.data.length === 0) &&
+            !loading && <NoDataFound />}
+        </Row>
+      </Col>
       <PostPreview
         post={previewPost}
         afterClose={() => setPreviewPost(undefined)}
