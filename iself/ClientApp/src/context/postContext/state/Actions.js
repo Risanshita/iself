@@ -36,7 +36,7 @@ export const useActions = (state, dispatch) => {
       : { skip: 0, take: 20 };
 
     var response = await httpGet(
-      `posts?createdBy=${createdBy}&type=${type}&query=${q}&take=${1}&skip=${skip}`
+      `posts?createdBy=${createdBy}&type=${type}&query=${q}&take=${take}&skip=${skip}`
     );
 
     if (response.succeeded) {
@@ -51,7 +51,7 @@ export const useActions = (state, dispatch) => {
         a.createdDate = new Date(a.createdAt).toDateString();
         return a;
       });
-      
+
       response.data.data = [...data, ...response.data.data];
       dispatch({
         type: types.SET_POST_DATA,

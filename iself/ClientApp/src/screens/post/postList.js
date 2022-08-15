@@ -2,12 +2,11 @@ import { Button, Col, Row } from "antd";
 import { MoreOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, Space } from "antd";
 import { useContext, useState } from "react";
-import { Player } from "@lottiefiles/react-lottie-player";
 
 import { PostContext } from "../../context/postContext";
 import PostPreview from "./preview";
 import NoDataFound from "../../components/messages/NoDataFound";
-import loadingIcon from "../../assets/animatedIcons/loading.json";
+import Loader from "../../components/messages/Loader";
 
 const PostList = ({ postDetails, isProfile, onChange, onLoadMore }) => {
   const { actions, state } = useContext(PostContext);
@@ -132,23 +131,13 @@ const PostList = ({ postDetails, isProfile, onChange, onLoadMore }) => {
         ))}
       <Col span={24}>
         <Row justify="center">
-          {loading && (
-            <Player
-              autoplay
-              loop
-              src={loadingIcon}
-              style={{ height: "100px", width: "100px" }}
-            />
-          )}
+          {loading && <Loader />}
           {postDetails &&
             postDetails.data &&
             postDetails.data.length > 0 &&
             !postDetails.isLast &&
             !loading && (
-              <Button
-                style={{ borderRadius: "10px", border: "1px solid white" }}
-                onClick={onLoadMore}
-              >
+              <Button style={{ borderRadius: "5px" }} onClick={onLoadMore} type="dashed">
                 Load more
               </Button>
             )}

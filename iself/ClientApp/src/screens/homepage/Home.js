@@ -1,5 +1,6 @@
 import { Col, Row } from "antd";
 import React, { useContext, useEffect, useState } from "react";
+import Loader from "../../components/messages/Loader";
 import NoDataFound from "../../components/messages/NoDataFound";
 import { PostContext } from "../../context/postContext";
 import { PostTypes } from "../post/post";
@@ -12,7 +13,7 @@ import Paraphrase from "./Paraphrase";
 export const HomePage = () => {
   const { state, actions } = useContext(PostContext);
   const { loadHomeData, nextPost } = actions.post;
-  const { currentPost, postDetails } = state.post;
+  const { currentPost, postDetails, loading } = state.post;
   const [isInitialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
@@ -101,7 +102,16 @@ export const HomePage = () => {
           )}
         </Col>
       )}
-      {!currentPost && <NoDataFound />}
+      {loading && (
+        <Row
+          style={{ height: "100%", width: "100%" }}
+          justify="center"
+          align="middle"
+        >
+          <Loader />
+        </Row>
+      )}
+      {!currentPost && !loading && <NoDataFound />}
     </Row>
   );
 };
