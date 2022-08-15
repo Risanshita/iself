@@ -22,8 +22,15 @@
 .specing {
   margin-bottom: 25px;
 }
+.login-animation-wrapper {
+  display: none !important;
+}
 
 @media (min-width: 768px) {
+  .login-animation-wrapper {
+    display: flex !important;
+  }
+
   .intro {
     background-color: var(--ant-primary-8);
     height: 100%;

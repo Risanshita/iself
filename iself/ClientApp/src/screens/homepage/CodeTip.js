@@ -20,6 +20,17 @@ const CodeTip = ({ post }) => {
       align="middle"
       className="info-byte-page"
     >
+      <Col span={24} style={{ height: 40 }}>
+        <Textfit
+          mode="single"
+          autoResize={true}
+          max={50}
+          forceSingleModeWidth={false}
+          style={{ height: "100%", width: "100%" }}
+        >
+          {post.title}
+        </Textfit>
+      </Col>
       {!isReady && (
         <Textfit
           mode="multi"
@@ -29,7 +40,7 @@ const CodeTip = ({ post }) => {
           onReady={() => {
             setReady(true);
           }}
-          style={{ height: "100%", width: "100%" }}
+          style={{ height: "calc(100% - 40px)", width: "100%" }}
           callback={(fontSize) => {
             setFontSize(fontSize);
           }}
@@ -62,7 +73,6 @@ const CodeTip = ({ post }) => {
         <div className="author">{post.source}</div>
         <div className="author">{post.author}</div>
       </span>
-      <span className="post-info by">{post.title}</span>
     </Row>
   );
 };

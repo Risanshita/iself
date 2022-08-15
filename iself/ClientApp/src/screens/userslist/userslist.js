@@ -28,6 +28,14 @@ const UsersList = () => {
     });
   };
 
+  const sortString = (a, b, column) => {
+    a[column] = a[column] ? a[column] : "";
+    b[column] = b[column] ? b[column] : "";
+
+    var res = a[column].localeCompare(b.column);
+    return res;
+  };
+
   const menu = (
     <Menu
       onClick={(e) => {
@@ -58,9 +66,11 @@ const UsersList = () => {
     {
       title: "Full Name",
       dataIndex: "fullName",
-      key: "name",
-      render: (text) => <a>{text}</a>,
-      sorter: (a, b) => a.fullName - b.fullName,
+      key: "fullName",
+      // render: (text) => <a>{text}</a>,
+      sorter: (a, b) => sortString(a, b, "fullName"),
+      sortDirections: ["descend", "ascend"],
+      showSorterTooltip: false,
     },
     {
       title: "Email",

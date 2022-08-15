@@ -27,10 +27,21 @@ const CodeRefactor = ({ post }) => {
       align="middle"
       className="info-byte-page"
     >
+      <Col span={24} style={{ height: 40 }}>
+        <Textfit
+          mode="single"
+          autoResize={true}
+          max={50}
+          forceSingleModeWidth={false}
+          style={{ height: "100%", width: "100%" }}
+        >
+          {post.title}
+        </Textfit>
+      </Col>
       <Col
         span={12}
         style={{
-          height: "100%",
+          height: "calc(100% - 40px)",
           fontSize: firstFontSize,
           textAlign: "left",
           textDecoration: "line-through dashed 1px",
@@ -75,7 +86,7 @@ const CodeRefactor = ({ post }) => {
       <Col
         span={12}
         style={{
-          height: "100%",
+          height: "calc(100% - 40px)",
           fontSize: firstFontSize,
           textAlign: "left",
         }}
