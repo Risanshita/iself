@@ -17,11 +17,17 @@ export const useActions = (state, dispatch) => {
       `posts?createdBy=${createdBy}&type=${type}&query=${q}&take=${take}&skip=${skip}`
     );
 
-    if (response.succeeded)
+      if (response.succeeded) {
+
+          response.data.data = response.data.data.map((a) => {
+              a.createdDate = new Date(a.createdAt).toDateString();
+              return a;
+          });
       dispatch({
         type: types.SET_POST_DATA,
         payload: response.data,
       });
+      }
   }
 
   async function loadData(
