@@ -42,7 +42,7 @@ function Profile() {
       value: "",
     },
     {
-      label: "Code",
+      label: "CodeTip",
       value: PostTypes.codeTip,
     },
     {

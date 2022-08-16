@@ -42,7 +42,7 @@ function BrowseList() {
       value: "",
     },
     {
-      label: "Code",
+      label: "CodeTip",
       value: PostTypes.codeTip,
     },
     {

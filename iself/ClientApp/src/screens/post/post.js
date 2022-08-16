@@ -178,7 +178,7 @@ function Post({ type, onChangeType }) {
                         Paraphrase
                       </Option>
                       <Option key={PostTypes.codeTip} value={PostTypes.codeTip}>
-                        Code
+                        CodeTip
                       </Option>
                       <Option
                         key={PostTypes.refactor}
