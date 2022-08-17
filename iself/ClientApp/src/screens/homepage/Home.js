@@ -9,13 +9,17 @@ import CodeTip from "./CodeTip";
 import InfoByte from "./InfoByte";
 import Notification from "./Notification";
 import Paraphrase from "./Paraphrase";
-
+const DEFAULT_DELAY = "5";
 export const HomePage = () => {
   const { state, actions } = useContext(PostContext);
   const { loadHomeData, nextPost } = actions.post;
   const { currentPost, postDetails, loading } = state.post;
   const [isInitialLoad, setInitialLoad] = useState(true);
-
+  const delay = Number.parseInt(
+    localStorage.getItem("slide_delay")
+      ? localStorage.getItem("slide_delay")
+      : DEFAULT_DELAY
+  );
   useEffect(() => {
     setTimeout(
       () => {
@@ -26,12 +30,15 @@ export const HomePage = () => {
         Array.isArray(postDetails.data) &&
         postDetails.data.length > 0 &&
         currentPost
-        ? process.env.REACT_APP_POST_CHANGE_DELAY * 1000
+        ? delay * 1000
         : 100
     );
   }, [currentPost, postDetails, nextPost]);
 
   if (isInitialLoad) {
+    if (!localStorage.getItem("slide_delay")) {
+      localStorage.setItem("slide_delay", DEFAULT_DELAY);
+    }
     loadHomeData();
     setInitialLoad(false);
 
