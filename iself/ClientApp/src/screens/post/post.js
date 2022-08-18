@@ -284,7 +284,7 @@ function Post({ type, onChangeType }) {
                     <Input.TextArea
                       showCount
                       placeholder={getPlaceholderData1()}
-                      maxLength={process.env.REACT_APP_MAX_LENGTH}
+                      maxLength={500}
                       autoSize={{ minRows: 10, maxRows: 10 }}
                     />
                   </Form.Item>
@@ -310,7 +310,7 @@ function Post({ type, onChangeType }) {
                       <Input.TextArea
                         showCount
                         placeholder={getPlaceholderData2()}
-                        maxLength={process.env.REACT_APP_MAX_LENGTH}
+                        maxLength={500}
                         autoSize={{ minRows: 10, maxRows: 10 }}
                       />
                     </Form.Item>

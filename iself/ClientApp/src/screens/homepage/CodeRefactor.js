@@ -16,7 +16,8 @@ const CodeRefactor = ({ post }) => {
   const getHtml = (data) => {
     var temp = data.replaceAll("\n", " <br /> 1   line");
     var count = temp.split("<br />").length;
-    if (count < 10) temp += " <br /> <br /> <br /> <br /> <br />";
+    if (count < 10)
+      temp += " <br /> <br /> <br /> <div><div><br /> <br /> <div><div>";
     return temp;
   };
 
