@@ -10,7 +10,7 @@ import { PostTypes } from "../post/post";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
-import settinglogo from "../../assets/animatedIcons/setting.json";
+import start from "../../assets/animatedIcons/start.json";
 
 function Profile() {
   const { state, actions } = useContext(PostContext);
@@ -110,10 +110,11 @@ function Profile() {
       <Row justify="center" align="middle">
         <NavLink tag={Link} to="/feedback" className="floating-feedback-button">
           <Player
-            hover={true}
+            // hover={true}
+            autoplay
             loop
-            src={settinglogo}
-            style={{ height: "34px", width: "35px" }}
+            src={start}
+            style={{ height: "40px", width: "40px" }}
           />
         </NavLink>
       </Row>
