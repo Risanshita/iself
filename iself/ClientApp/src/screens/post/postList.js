@@ -137,7 +137,11 @@ const PostList = ({ postDetails, isProfile, onChange, onLoadMore }) => {
             postDetails.data.length > 0 &&
             !postDetails.isLast &&
             !loading && (
-              <Button style={{ borderRadius: "5px" }} onClick={onLoadMore} type="dashed">
+              <Button
+                style={{ borderRadius: "5px" }}
+                onClick={onLoadMore}
+                type="dashed"
+              >
                 Load more
               </Button>
             )}
@@ -147,10 +151,12 @@ const PostList = ({ postDetails, isProfile, onChange, onLoadMore }) => {
             !loading && <NoDataFound />}
         </Row>
       </Col>
-      <PostPreview
-        post={previewPost}
-        afterClose={() => setPreviewPost(undefined)}
-      />
+      {previewPost ? (
+        <PostPreview
+          post={previewPost}
+          afterClose={() => setPreviewPost(undefined)}
+        />
+      ) : null}
     </Row>
   );
 };
