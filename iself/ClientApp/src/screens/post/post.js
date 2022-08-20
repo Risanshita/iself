@@ -110,7 +110,6 @@ function Post({ type, onChangeType }) {
         lg={!isData2Visible ? 12 : 16}
         xl={!isData2Visible ? 12 : 16}
         style={{
-          height: "100%",
           padding: 20,
           transition: "width 2s linear 1s",
           WebkitTransition: "width 2s linear 1s",

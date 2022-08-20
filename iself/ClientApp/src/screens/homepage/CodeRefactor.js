@@ -17,7 +17,7 @@ const CodeRefactor = ({ post }) => {
     var temp = data.replaceAll("\n", " <br /> 1   line");
     var count = temp.split("<br />").length;
     if (count < 10)
-      temp += " <br /> <br /> <br /> <div><div><br /> <br /> <div><div>";
+      temp += " <br /> <br /> <br /> <div><div><br /> <br /> <div>s<div>";
     return temp;
   };
 
@@ -64,7 +64,7 @@ const CodeRefactor = ({ post }) => {
         )}
         {!isFirstReady && (
           <Textfit
-            mode="multi"
+            mode="single"
             autoResize={true}
             max={800}
             forceSingleModeWidth={false}

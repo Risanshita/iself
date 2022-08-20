@@ -109,15 +109,17 @@ const NavMenu = () => {
         justify="space-between"
         className="header-wrapper"
       >
-        <Row
-          justify="center"
-          align="middle"
-          style={{ height: "100%" }}
-          className="prevent-select"
-        >
-          <Image width={30} preview={false} src={eye} />
-          <Col className="logo">ISELF</Col>
-        </Row>
+        <NavLink tag={Link} to="/">
+          <Row
+            justify="center"
+            align="middle"
+            style={{ height: "100%" }}
+            className="prevent-select"
+          >
+            <Image width={30} preview={false} src={eye} />
+            <Col className="logo">ISELF</Col>
+          </Row>
+        </NavLink>
 
         <Col>
           <Row className="menu-list" align="middle">

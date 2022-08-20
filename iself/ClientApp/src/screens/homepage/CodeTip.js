@@ -12,6 +12,14 @@ const CodeTip = ({ post }) => {
     setReady(false);
     setFontSize(0);
   }, [post]);
+  
+  const getHtml = (data) => {
+    var temp = data.replaceAll("\n", " <br /> 1   line");
+    var count = temp.split("<br />").length;
+    if (count < 10)
+      temp += " <br />  <div>aaaa<div><br /> <br /> <div>s<div>";
+    return temp;
+  };
 
   return (
     <Row
@@ -33,7 +41,7 @@ const CodeTip = ({ post }) => {
       </Col>
       {!isReady && (
         <Textfit
-          mode="multi"
+          mode="single"
           autoResize={true}
           max={800}
           forceSingleModeWidth={false}
@@ -47,7 +55,7 @@ const CodeTip = ({ post }) => {
         >
           <div
             dangerouslySetInnerHTML={{
-              __html: post.data1.replaceAll("\n", "<br />1   line"),
+              __html: getHtml(post.data1),
             }}
           />
         </Textfit>

@@ -86,17 +86,17 @@ export const useActions = (state, dispatch) => {
     if (response.succeeded) {
       if (typeof callback === "function") callback(response.data);
     } else {
-      message.error(response.message);
+      message.error(response.message, 2);
     }
   };
 
   const deleteUser = async (id, callback) => {
     var response = await httpDelete(`users/${id}`);
     if (response.succeeded) {
-      message.success(response.message);
+      message.success(response.message, 2);
       if (typeof callback === "function") callback();
     } else {
-      message.error(response.message);
+      message.error(response.message, 2);
     }
   };
 

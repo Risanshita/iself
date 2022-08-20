@@ -9,7 +9,7 @@ import CodeTip from "./CodeTip";
 import InfoByte from "./InfoByte";
 import Notification from "./Notification";
 import Paraphrase from "./Paraphrase";
-const DEFAULT_DELAY = "5";
+const DEFAULT_DELAY = "60";
 export const HomePage = () => {
   const { state, actions } = useContext(PostContext);
   const { loadHomeData, nextPost } = actions.post;

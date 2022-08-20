@@ -7,6 +7,10 @@ import { useContext, useState } from "react";
 import ProfileHeader from "./profilehead";
 import "./style.css";
 import { PostTypes } from "../post/post";
+import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Player } from "@lottiefiles/react-lottie-player";
+import settinglogo from "../../assets/animatedIcons/setting.json";
 
 function Profile() {
   const { state, actions } = useContext(PostContext);
@@ -103,6 +107,16 @@ function Profile() {
         onChange={onChange}
         onLoadMore={onLoadMore}
       />
+      <Row justify="center" align="middle">
+        <NavLink tag={Link} to="/feedback" className="floating-feedback-button">
+          <Player
+            hover={true}
+            loop
+            src={settinglogo}
+            style={{ height: "34px", width: "35px" }}
+          />
+        </NavLink>
+      </Row>
     </Row>
   );
 }
