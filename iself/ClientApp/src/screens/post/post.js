@@ -37,7 +37,7 @@ function Post({ type, onChangeType }) {
       form.setFieldsValue({
         source: "",
         author: "",
-        language: "",
+        language: undefined,
         data1: "",
         data2: "",
         title: "",
@@ -48,14 +48,14 @@ function Post({ type, onChangeType }) {
 
   const getPlaceholderData2 = () => {
     return type === PostTypes.paraphrase
-      ? "Please enter paraphrase"
-      : "Write your refactor code here ...";
+      ? "Correct Paraphrase"
+      : "Refactored code";
   };
 
   const getMessageForData2 = () => {
     return type === PostTypes.paraphrase
       ? "Please enter paraphrase"
-      : "Write enter refactor code";
+      : "Please enter refactored code";
   };
 
   const onPreview = () => {
@@ -73,15 +73,15 @@ function Post({ type, onChangeType }) {
   const getPlaceholderData1 = () => {
     switch (type) {
       case PostTypes.paraphrase:
-        return "Write your Incorrect Paraphrase here .. ";
+        return "Incorrect Paraphrase";
       case PostTypes.notification:
-        return "Write your Notification here .. ";
+        return "Notification";
       case PostTypes.codeTip:
-        return "Write your code here .. ";
+        return "Code";
       case PostTypes.refactor:
-        return "Write your code here ...";
+        return "Code";
       default:
-        return "Write your Info Byte here .. ";
+        return "Info Byte";
     }
   };
 
@@ -154,7 +154,7 @@ function Post({ type, onChangeType }) {
                   >
                     <Select
                       style={{ width: "100%" }}
-                      placeholder="Select Type ...."
+                      placeholder="Select Type"
                       onChange={onChangeType}
                       value={type}
                     >
@@ -231,7 +231,7 @@ function Post({ type, onChangeType }) {
                       >
                         <Select
                           style={{ width: "100%" }}
-                          placeholder="Select Language...."
+                          placeholder="Select Language"
                           showSearch={true}
                         >
                           {LanguageList.map((a) => (
@@ -257,7 +257,7 @@ function Post({ type, onChangeType }) {
                         },
                       ]}
                     >
-                      <Input placeholder="Enter title...."></Input>
+                      <Input placeholder="Post title"></Input>
                     </Form.Item>
                   </Col>
                 </Row>
