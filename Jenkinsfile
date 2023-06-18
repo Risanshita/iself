@@ -14,6 +14,10 @@ pipeline {
                     }
                 }
                 stage('deploy to prod') {
+                    input {
+                        message 'Approve for prod?'
+                        ok 'Approve'
+                    }
                     steps {
                         echo 'prod deployment done'
                     }
