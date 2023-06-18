@@ -11,9 +11,8 @@ pipeline {
 
         stage('QA') {
             steps {
-                input {
-                    message "Proceed with deploying to QA environment?"
-                    ok "Deploy"
+                script {
+                    input(message: "Proceed with deploying to QA environment?", ok: "Deploy")
                 }
 
                 sleep(time: 60, unit: 'SECONDS')
@@ -25,9 +24,8 @@ pipeline {
 
         stage('Staging') {
             steps {
-                input {
-                    message "Proceed with deploying to Staging environment?"
-                    ok "Deploy"
+                script {
+                    input(message: "Proceed with deploying to Staging environment?", ok: "Deploy")
                 }
 
                 sleep(time: 60, unit: 'SECONDS')
@@ -39,9 +37,8 @@ pipeline {
 
         stage('Prod') {
             steps {
-                input {
-                    message "Proceed with deploying to Prod environment?"
-                    ok "Deploy"
+                script {
+                    input(message: "Proceed with deploying to Prod environment?", ok: "Deploy")
                 }
 
                 sleep(time: 60, unit: 'SECONDS')
