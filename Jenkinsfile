@@ -8,6 +8,11 @@ pipeline {
                         echo 'stg deployment done'
                     }
                 }
+               stage('stg signoff') {
+                    steps {
+                        input "Does the staging environment look ok?"
+                    }
+                }
                 stage('deploy to prod') {
                     steps {
                         echo 'prod deployment done'
