@@ -31,7 +31,7 @@ pipeline {
                 sleep(time: 60, unit: 'SECONDS')
 
                 echo 'Deploying to Staging environment...'
-                // Add deployment steps for Staging environment
+                // Add deployment steps for the Staging environment
             }
         }
 
@@ -44,25 +44,28 @@ pipeline {
                 sleep(time: 60, unit: 'SECONDS')
 
                 echo 'Deploying to Prod environment...'
-                // Add deployment steps for Prod environment
+                // Add deployment steps for the Prod environment
             }
         }
     }
 
     post {
-        always {
-            // Add post-build actions here
-            // These steps will always run, regardless of the build status
-        }
-
         success {
-            // Add success-specific actions here
-            // These steps will only run if the build succeeds
+            script {
+                // Add post-build success actions here
+            }
         }
 
         failure {
-            // Add failure-specific actions here
-            // These steps will only run if the build fails
+            script {
+                // Add post-build failure actions here
+            }
+        }
+
+        always {
+            script {
+                // Add post-build actions that should always run here
+            }
         }
     }
 }
